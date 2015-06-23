@@ -7,19 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-      <% if flash[:notice] %>
-        <p class="alert alert-info"><%= flash[:notice] %></p>
-      <% end %>
-      <% if flash[:alert] %>
-        <p class="alert alert-warning"><%= flash[:alert] %></p>
-      <% end %>
-      <% if flash[:success] %>
-        <p class="alert alert-success"><%= flash[:success] %></p>
-      <% end %>
-      <% if flash[:danger] %>
-        <p class="alert alert-danger"><%= flash[:danger] %></p>
-      <% end %>
-      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook),:class => "btn btn-primary" %>
+      <div class="container">
+        <div class="row">
+        <div class="spacing"></div>
+          <% if flash[:notice] %>
+            <p class="alert alert-info"><%= flash[:notice] %></p>
+          <% end %>
+          <% if flash[:alert] %>
+            <p class="alert alert-warning"><%= flash[:alert] %></p>
+          <% end %>
+          <% if flash[:success] %>
+            <p class="alert alert-success"><%= flash[:success] %></p>
+          <% end %>
+          <% if flash[:danger] %>
+            <p class="alert alert-danger"><%= flash[:danger] %></p>
+          <% end %>
+        </div>
+      </div>
+
 
 <%= yield %>
 

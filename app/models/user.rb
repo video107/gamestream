@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # , :lockable, :timeoutable and
+  # , :lockable, :timeoutable and, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
 
@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
       # user.name = auth.info.name # assuming the user model has a name
       user.fb_image = auth.info.image # assuming the user model has an image
     end
+    user.save!
+    user
   end
 
   def self.new_with_session(params, session)
