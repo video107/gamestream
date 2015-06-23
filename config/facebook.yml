@@ -1,0 +1,11 @@
+development:
+  app_id: 933319393376553
+  secret: 8ca2cfe0203d6f5a8c5d4c993706e0fc
+
+test:
+  app_id:
+  secret:
+
+production:
+  app_id:
+  secret:
