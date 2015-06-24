@@ -8,7 +8,7 @@ gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
-# gem 'mysql2'
+gem 'mysql2'
 
 gem 'faraday'
 

@@ -8,8 +8,6 @@ class CasesController < ApplicationController
   end
 
   def show
-    @cases = current_user.cases
-   byebug
   end
 
 
