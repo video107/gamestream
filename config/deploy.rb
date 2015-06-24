@@ -9,7 +9,8 @@ set :repo_url, 'git@github.com:video107/gamestream.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/deploy/gamestream'
-
+set :passenger_restart_command, -> { "touch #{fetch(:deploy_to)}/current/tmp/restart.txt" }
+set :passenger_restart_options, ""
 # Default value for :scm is :git
 # set :scm, :git
 
