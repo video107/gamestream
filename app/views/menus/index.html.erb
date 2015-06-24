@@ -1,12 +1,28 @@
 <div class="container">
  <div class="row">
-  <h1>Hi</h1>
    <% if current_user %>
-    <%= link_to('登出', destroy_user_session_path, :method => :delete,:class => "btn btn-success") %>
-        <%#= link_to('修改密碼', edit_registration_path(:user)) %>
+
+    <div class="col-xs-12">
+      <h2>Hi <%= current_user.user_name %></h2>
+      <%= link_to('登出', destroy_user_session_path, :method => :delete,:class => "btn btn-success") %>
+    </div>
+    <%#= link_to('修改密碼', edit_registration_path(:user)) %>
+    <% @menus.each do |menu| %>
+      <div class="col-xs-4 text-center box_height">
+        <%= image_tag(menu.image,:width => 100) %> <br>
+        遊戲名稱：<%= menu.name %> <br>
+        遊戲內容大綱：<%= menu.contents %>
+        <%= link_to %>
+      </div>
+    <% end %>
    <% else %>
+    <h1>請先登入系統</h1>
     <%= link_to('註冊', new_registration_path(:user),:class => "btn btn-success") %> | <%= link_to('登入', new_session_path(:user),:class => "btn btn-default") %>
     <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook),:class => "btn btn-primary" %>
    <% end %>
+ </div>
+ <div class="row">
+   <%= paginate @menus %> <br>
+   <%= link_to "回到遊戲選單", root_path, :class => "btn btn-info" %>
  </div>
 </div>

@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
 
+  has_many :menu_users
+  has_many :menus, :through => :menu_users
+
+
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, fb_uid: auth.uid).first
 
@@ -27,5 +31,14 @@ class User < ActiveRecord::Base
         end
       end
   end
+
+  def user_name
+    if self
+      self.email.split("@").first || self.nickname
+    else
+      "Guest"
+    end
+  end
+
 
 end

@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623140922) do
+ActiveRecord::Schema.define(version: 20150624040709) do
+
+  create_table "cases", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.integer  "menu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cases", ["menu_id"], name: "index_cases_on_menu_id"
+  add_index "cases", ["user_id"], name: "index_cases_on_user_id"
+
+  create_table "menu_users", force: :cascade do |t|
+    t.integer  "menu_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "menu_users", ["menu_id"], name: "index_menu_users_on_menu_id"
+  add_index "menu_users", ["user_id"], name: "index_menu_users_on_user_id"
+
+  create_table "menus", force: :cascade do |t|
+    t.string   "image"
+    t.string   "name"
+    t.text     "contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
