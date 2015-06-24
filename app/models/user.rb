@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :menu_users
   has_many :menus, :through => :menu_users
 
+  has_many :cases
+
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, fb_uid: auth.uid).first
@@ -39,6 +41,8 @@ class User < ActiveRecord::Base
       "Guest"
     end
   end
+
+
 
 
 end

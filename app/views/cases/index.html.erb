@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+  <h1>專屬連結列表</h1>
+   <% @cases.each do |c| %>
+    <ul>
+      <li><%= link_to "localhost:3000"+c.case_url, c.case_url %></li>
+    </ul>
+   <% end %>
+   <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
+ </div>
+</div>

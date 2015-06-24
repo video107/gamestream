@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :menus do
     resources :cases
   end
+  resources :users do
+    resources :cases
+  end
   # devise_scope :user do
    # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end
