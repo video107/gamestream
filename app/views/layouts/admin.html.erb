@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gamestream</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+
+    <% if flash[:success] %>
+    <p class="notice alert alert-success">
+      <%= flash[:success] %>
+    </p>
+    <%end%>
+    <% if flash[:notice] %>
+    <p class="notice alert alert-info">
+      <%= flash[:notice] %>
+    </p>
+    <%end%>
+    <% if flash[:alert] %>
+    <p class="alert alert-danger">
+      <%= flash[:alert] %>
+    </p>
+    <%end%>
+    <%= yield %>
+  </body>
+</html>

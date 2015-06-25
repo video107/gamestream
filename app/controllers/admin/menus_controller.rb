@@ -1,4 +1,4 @@
-class Admin::MenusController < ApplicationController
+class Admin::MenusController < AdminController
   before_action :set_admin_menu, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/menus
