@@ -12,18 +12,26 @@ class User < ActiveRecord::Base
   has_many :cases
 
 
+  # def self.from_omniauth(auth)
+  #   user = where(provider: auth.provider, fb_uid: auth.uid).first
+  #   unless user
+  #     user = self.new
+  #     user.fb_uid = auth.uid
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0,20]
+  #     # user.name = auth.info.name # assuming the user model has a name
+  #     user.fb_image = auth.info.image # assuming the user model has an image
+  #     user.save!
+  #   end
+  #   user
+  # end
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, fb_uid: auth.uid).first
-
-    unless user
-      user = self.new
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name # assuming the user model has a name
-      user.fb_image = auth.info.image # assuming the user model has an image
+  where(provider: auth.provider, fb_uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    # user.name = auth.info.name   # assuming the user model has a name
+    user.fb_image = auth.info.image # assuming the user model has an image
     end
-    user.save!
-    user
   end
 
   def self.new_with_session(params, session)
