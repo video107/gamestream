@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624164111) do
+ActiveRecord::Schema.define(version: 20150625151207) do
 
   create_table "cases", force: :cascade do |t|
     t.string   "case_url",   limit: 255
@@ -35,12 +35,37 @@ ActiveRecord::Schema.define(version: 20150624164111) do
   add_index "menu_users", ["user_id"], name: "index_menu_users_on_user_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
-    t.string   "image",      limit: 255
-    t.string   "name",       limit: 255
-    t.text     "contents",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "menu_url",   limit: 255
+    t.string   "image",                   limit: 255
+    t.string   "name",                    limit: 255
+    t.text     "contents",                limit: 65535
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "menu_url",                limit: 255
+    t.string   "game_pic_file_name",      limit: 255
+    t.string   "game_pic_content_type",   limit: 255
+    t.integer  "game_pic_file_size",      limit: 4
+    t.datetime "game_pic_updated_at"
+    t.string   "game_icon_file_name",     limit: 255
+    t.string   "game_icon_content_type",  limit: 255
+    t.integer  "game_icon_file_size",     limit: 4
+    t.datetime "game_icon_updated_at"
+    t.string   "menu_url_ios",            limit: 255
+    t.string   "game_pic_2_file_name",    limit: 255
+    t.string   "game_pic_2_content_type", limit: 255
+    t.integer  "game_pic_2_file_size",    limit: 4
+    t.datetime "game_pic_2_updated_at"
+    t.string   "game_pic_3_file_name",    limit: 255
+    t.string   "game_pic_3_content_type", limit: 255
+    t.integer  "game_pic_3_file_size",    limit: 4
+    t.datetime "game_pic_3_updated_at"
+    t.string   "game_pic_4_file_name",    limit: 255
+    t.string   "game_pic_4_content_type", limit: 255
+    t.integer  "game_pic_4_file_size",    limit: 4
+    t.datetime "game_pic_4_updated_at"
+    t.string   "game_pic_5_file_name",    limit: 255
+    t.string   "game_pic_5_content_type", limit: 255
+    t.integer  "game_pic_5_file_size",    limit: 4
+    t.datetime "game_pic_5_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

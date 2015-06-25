@@ -1,0 +1,61 @@
+<%= form_for(@admin_menu) do |f| %>
+  <% if @admin_menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_menu.errors.count, "error") %> prohibited this admin_menu from being saved:</h2>
+
+      <ul>
+      <% @admin_menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contents %><br>
+    <%= f.text_area :contents %>
+  </div>
+  <div class="field">
+    <%= f.label :menu_url %><br>
+    <%= f.text_field :menu_url %>
+  </div>
+  <div class="field">
+    <%= f.label :menu_url_ios %><br>
+    <%= f.text_field :menu_url_ios %>
+  </div>
+  <div class="field">
+    <%= f.label :game_pic %><br>
+    <%= f.text_field :game_pic %>
+  </div>
+  <div class="field">
+    <%= f.label :game_pic_2 %><br>
+    <%= f.text_field :game_pic_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :game_pic_3 %><br>
+    <%= f.text_field :game_pic_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :game_pic_4 %><br>
+    <%= f.text_field :game_pic_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :game_pic_5 %><br>
+    <%= f.text_field :game_pic_5 %>
+  </div>
+  <div class="field">
+    <%= f.label :game_icon %><br>
+    <%= f.text_field :game_icon %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

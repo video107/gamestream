@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <h2>Hi <%= current_user.user_name %></h2>
+    <% if current_user.fb_image %>
+        <h2>Hi <%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
+      <% else %>
+        <h2>Hi <%= current_user.user_name %></h2>
+    <% end %>
     <%= form_for @case, :url => menu_cases_path(@menu) do |f| %>
       <%= f.hidden_field :case_url%>
       <%= f.submit "建立專屬連結", :class => "btn btn-primary" %>

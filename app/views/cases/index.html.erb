@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
   <h1>專屬連結列表</h1>
+  <% if current_user.fb_image %>
+        <%=image_tag(current_user.fb_image,:class => "img-circle") %>
+      <% else %>
+        <h2><%= current_user.user_name %></h2>
+  <% end %>
+
    <% @cases.each do |c| %>
     <ul>
       <li style="list-style-type:none">遊戲名稱：<%= c.menu.name %></li>
