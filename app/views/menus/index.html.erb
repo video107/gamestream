@@ -15,7 +15,25 @@
     <%#= link_to('修改密碼', edit_registration_path(:user)) %>
     <div class="clearfix"></div>
     <div class="spacing"></div>
-    <table class="table table-bordered">
+    <ul class="nav nav-pills">
+      <div class="text-right form-inline">
+        <%= search_form_for @q do |f| %>
+          <%= f.label :name_or_contents,"遊戲名或簡介" %>
+          <%= f.search_field :name_or_contents_cont, :class => "form-control form_word" %>
+          <%= f.submit "Search", :class=>"btn btn-default"%>
+      <% end %>
+      </div>
+      <% Category.all.each do |c| %>
+        <li role="presentation" class="<%= (params[:cid] == c.id.to_s)? "active" : "" %>">
+          <%= link_to c.name, menus_path( :cid => c ) %>
+        </li>
+      <% end %>
+        <li role="presentation" class="<%= (params[:cid] == nil)? "active" : "" %>">
+          <%= link_to "全部遊戲", menus_path %>
+        </li>
+    </ul>
+    <div class="spacing"></div>
+    <table class="table">
       <tr>
         <th>遊戲icon</th>
         <th>遊戲名稱</th>
@@ -25,9 +43,9 @@
       </tr>
       <% @menus.order(:id => :desc).each do |menu| %>
         <tr>
-          <td><%= image_tag(menu.game_icon(:thumb)) %></td>
-          <td><%= menu.name %></td>
-          <td><%= menu.name %></td>
+          <td style="width:100px"><%= image_tag(menu.game_icon(:thumb)) %></td>
+          <td style="width:100px"><%= menu.name %></td>
+          <td style="width:100px"><%= menu.category.name %></td>
           <td><%= menu.contents %></td>
           <td><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-warning" %></td>
         </tr>

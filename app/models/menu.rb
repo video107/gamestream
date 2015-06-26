@@ -1,5 +1,6 @@
 class Menu < ActiveRecord::Base
 
+  belongs_to :category
   has_many :menu_users
   has_many :users, :through => :menu_users
 
