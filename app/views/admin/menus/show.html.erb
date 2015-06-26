@@ -1,59 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <p id="notice">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+    </p>
+    <h1>遊戲詳細</h1>
+    <p>
+      <strong>遊戲大頭照:</strong>
+      <%= image_tag(@admin_menu.image,:width => 100) %> <br>
+      <strong>大頭照網址:</strong>
+      <%= @admin_menu.image %>
+    </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @admin_menu.image %>
-</p>
+    <p>
+      <strong>遊戲名:</strong>
+      <%= @admin_menu.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @admin_menu.name %>
-</p>
+    <p>
+      <strong>遊戲簡介:</strong>
+      <%= @admin_menu.contents %>
+    </p>
 
-<p>
-  <strong>Contents:</strong>
-  <%= @admin_menu.contents %>
-</p>
+    <p>
+      <strong>遊戲原始連結android:</strong>
+      <%= @admin_menu.menu_url %>
+    </p>
 
-<p>
-  <strong>Menu url:</strong>
-  <%= @admin_menu.menu_url %>
-</p>
+    <p>
+      <strong>遊戲原始連結ios:</strong>
+      <%= @admin_menu.menu_url_ios %>
+    </p>
 
-<p>
-  <strong>Menu url ios:</strong>
-  <%= @admin_menu.menu_url_ios %>
-</p>
+    <p>
+      <strong>遊戲圖片1:</strong> <br>
+      <%= image_tag(@menu.game_pic(:thumb)) %>
+    </p>
 
-<p>
-  <strong>Game pic:</strong>
-  <%= @admin_menu.game_pic %>
-</p>
+    <p>
+      <strong>遊戲圖片2:</strong> <br>
+      <%= image_tag(@menu.game_pic_2(:thumb)) %>
+    </p>
 
-<p>
-  <strong>Game pic 2:</strong>
-  <%= @admin_menu.game_pic_2 %>
-</p>
+    <p>
+      <strong>遊戲圖片3:</strong> <br>
+      <%= image_tag(@menu.game_pic_3(:thumb)) %>
+    </p>
 
-<p>
-  <strong>Game pic 3:</strong>
-  <%= @admin_menu.game_pic_3 %>
-</p>
+    <p>
+      <strong>遊戲圖片4:</strong> <br>
+      <%= image_tag(@menu.game_pic_4(:thumb)) %>
+    </p>
 
-<p>
-  <strong>Game pic 4:</strong>
-  <%= @admin_menu.game_pic_4 %>
-</p>
+    <p>
+      <strong>遊戲圖片5:</strong> <br>
+      <%= image_tag(@menu.game_pic_5(:thumb)) %>
+    </p>
 
-<p>
-  <strong>Game pic 5:</strong>
-  <%= @admin_menu.game_pic_5 %>
-</p>
+    <p>
+      <strong>遊戲icon:</strong> <br>
+      <%= image_tag(@menu.game_icon(:medium)) %>
+    </p>
 
-<p>
-  <strong>Game icon:</strong>
-  <%= @admin_menu.game_icon %>
-</p>
-
-<%= link_to 'Edit', edit_admin_menu_path(@admin_menu) %> |
-<%= link_to 'Back', admin_menus_path %>
+    <%= link_to '編輯', edit_admin_menu_path(@admin_menu), :class => "btn btn-primary" %>
+    <%= link_to '回到上架後台', admin_menus_path, :class => "btn btn-default" %></div>
+</div>

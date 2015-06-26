@@ -33,29 +33,30 @@
   </div>
   <div class="field">
     <%= f.label :game_pic %><br>
-    <%= f.text_field :game_pic %>
+    <%= f.file_field :game_pic %>
   </div>
   <div class="field">
     <%= f.label :game_pic_2 %><br>
-    <%= f.text_field :game_pic_2 %>
+    <%= f.file_field :game_pic_2 %>
   </div>
   <div class="field">
     <%= f.label :game_pic_3 %><br>
-    <%= f.text_field :game_pic_3 %>
+    <%= f.file_field :game_pic_3 %>
   </div>
   <div class="field">
     <%= f.label :game_pic_4 %><br>
-    <%= f.text_field :game_pic_4 %>
+    <%= f.file_field :game_pic_4 %>
   </div>
   <div class="field">
     <%= f.label :game_pic_5 %><br>
-    <%= f.text_field :game_pic_5 %>
+    <%= f.file_field :game_pic_5 %>
   </div>
   <div class="field">
     <%= f.label :game_icon %><br>
-    <%= f.text_field :game_icon %>
+    <%= f.file_field :game_icon %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="spacing"></div>
+  <div class="action">
+    <%= f.submit "新增或更新", :class => "btn btn-success"%>
   </div>
 <% end %>

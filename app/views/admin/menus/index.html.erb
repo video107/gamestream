@@ -1,47 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <p id="notice">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+    </p>
 
-<h1>Listing Admin Menus</h1>
+    <h1>遊戲上架後台</h1> <br>
+    <span><%= link_to '新遊戲', new_admin_menu_path, :class => "btn btn-warning" %></span>
+    <div class="spacing"></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Contents</th>
-      <th>Menu url</th>
-      <th>Menu url ios</th>
-      <th>Game pic</th>
-      <th>Game pic 2</th>
-      <th>Game pic 3</th>
-      <th>Game pic 4</th>
-      <th>Game pic 5</th>
-      <th>Game icon</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table_header">
+          <th>遊戲大頭照</th>
+          <th>遊戲名</th>
+          <th>遊戲簡介</th>
+          <th>遊戲原始連結android</th>
+          <th>遊戲原始連結ios</th>
+          <th>遊戲圖片1</th>
+          <th>遊戲icon</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @admin_menus.each do |admin_menu| %>
-      <tr>
-        <td><%= admin_menu.image %></td>
-        <td><%= admin_menu.name %></td>
-        <td><%= admin_menu.contents %></td>
-        <td><%= admin_menu.menu_url %></td>
-        <td><%= admin_menu.menu_url_ios %></td>
-        <td><%= admin_menu.game_pic %></td>
-        <td><%= admin_menu.game_pic_2 %></td>
-        <td><%= admin_menu.game_pic_3 %></td>
-        <td><%= admin_menu.game_pic_4 %></td>
-        <td><%= admin_menu.game_pic_5 %></td>
-        <td><%= admin_menu.game_icon %></td>
-        <td><%= link_to 'Show', admin_menu %></td>
-        <td><%= link_to 'Edit', edit_admin_menu_path(admin_menu) %></td>
-        <td><%= link_to 'Destroy', admin_menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <%# @admin_menus.each do |admin_menu| %>
+        <% @menus.each do |menu| %>
+          <tr>
+            <td>
+              <%#= admin_menu.image %>
+              <%= image_tag(menu.image,:width => 100) %>
+            </td>
+            <td><%= menu.name %></td>
+            <td><%= menu.contents %></td>
+            <td><%= menu.menu_url %></td>
+            <td><%= menu.menu_url_ios %></td>
+            <td><%= image_tag(menu.game_pic(:thumb),:class => "img_circle") %></td>
+            <td><%= menu.game_icon %></td>
+            <td>
+              <%= link_to '詳細', admin_menu_path(menu), :class => "btn btn-warning" %>
+              <%= link_to '編輯', edit_admin_menu_path(menu), :class => "btn btn-info" %>
+              <%= link_to '刪除', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' },:class => "btn btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        <%# end %>
+      </tbody>
+    </table>
+    <%= paginate @menus  %>
 
-<br>
 
-<%= link_to 'New Menu', new_admin_menu_path %>
+  </div>
+</div>
