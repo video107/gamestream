@@ -26,18 +26,18 @@
 
       <tbody>
         <%# @admin_menus.each do |admin_menu| %>
-        <% @menus.each do |menu| %>
+        <% @menus.order(:id => :desc).each do |menu| %>
           <tr>
             <td>
               <%#= admin_menu.image %>
-              <%= image_tag(menu.image,:width => 100) %>
+              <%= image_tag(menu.game_image(:thumb)) %>
             </td>
-            <td><%= menu.name %></td>
-            <td><%= menu.contents %></td>
-            <td><%= menu.menu_url %></td>
-            <td><%= menu.menu_url_ios %></td>
-            <td><%= image_tag(menu.game_pic(:thumb),:class => "img_circle") %></td>
-            <td><%= menu.game_icon %></td>
+            <td class="td_fix"><%= menu.name %></td>
+            <td class="td_over"><%= menu.contents %></td>
+            <td class="td_fix"><%= menu.menu_url %></td>
+            <td class="td_fix"><%= menu.menu_url_ios %></td>
+            <td class="td_fix"><%= image_tag(menu.game_pic(:thumb),:class => "img_circle") %></td>
+            <td><%= image_tag(menu.game_icon(:thumb),:class => "img_circle") %></td>
             <td>
               <%= link_to '詳細', admin_menu_path(menu), :class => "btn btn-warning" %>
               <%= link_to '編輯', edit_admin_menu_path(menu), :class => "btn btn-info" %>

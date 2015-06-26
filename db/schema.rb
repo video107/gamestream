@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625151207) do
+ActiveRecord::Schema.define(version: 20150626084838) do
 
   create_table "cases", force: :cascade do |t|
     t.string   "case_url",   limit: 255
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150625151207) do
   add_index "menu_users", ["user_id"], name: "index_menu_users_on_user_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
-    t.string   "image",                   limit: 255
     t.string   "name",                    limit: 255
     t.text     "contents",                limit: 65535
     t.datetime "created_at",                            null: false
@@ -66,6 +65,10 @@ ActiveRecord::Schema.define(version: 20150625151207) do
     t.string   "game_pic_5_content_type", limit: 255
     t.integer  "game_pic_5_file_size",    limit: 4
     t.datetime "game_pic_5_updated_at"
+    t.string   "game_image_file_name",    limit: 255
+    t.string   "game_image_content_type", limit: 255
+    t.integer  "game_image_file_size",    limit: 4
+    t.datetime "game_image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

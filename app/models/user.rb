@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :menu_users
   has_many :menus, :through => :menu_users
 
-  has_many :cases
+  has_many :cases, :dependent => :destroy
 
 
   # def self.from_omniauth(auth)

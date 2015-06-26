@@ -3,7 +3,12 @@ class Menu < ActiveRecord::Base
   has_many :menu_users
   has_many :users, :through => :menu_users
 
-  has_many :cases
+  has_many :cases, :dependent => :destroy
+
+  has_attached_file :game_image, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
+  validates_attachment_content_type :game_image, :content_type => /\Aimage\/.*\Z/
+
 
   has_attached_file :game_pic, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"

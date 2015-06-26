@@ -7,10 +7,14 @@
     </p>
     <h1>遊戲詳細</h1>
     <p>
+      <strong>遊戲上架時間:</strong>
+      <%= @admin_menu.created_at.localtime.strftime("%Y/%m/%d") %>
+      <%= @admin_menu.created_at.localtime.strftime("%_I:%M %P")%>
+    </p>
+
+    <p>
       <strong>遊戲大頭照:</strong>
-      <%= image_tag(@admin_menu.image,:width => 100) %> <br>
-      <strong>大頭照網址:</strong>
-      <%= @admin_menu.image %>
+      <%= image_tag(@menu.game_image(:thumb)) %> <br>
     </p>
 
     <p>
