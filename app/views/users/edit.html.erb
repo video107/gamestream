@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+  <h1>修改個人資料</h1> <br>
+  <%= form_for @user, :url => user_path(@user), :method => :patch do |f| %>
+    <% if @user.errors.any? %>
+     <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+
+      <ul>
+       <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+       <% end %>
+      </ul>
+     </div>
+     <% end %>
+
+     <div class="field regist_word form-inline">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word form-inline">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word form-inline">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word form-inline">
+          <%= f.label :phone %>
+          <%= f.text_field :phone, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word">
+          <%= f.label :address %><br />
+          <%= f.text_area :address, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <div class="field regist_word">
+          <%= f.label :bank_account %><br />
+          <%= f.text_field :bank_account, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <div class="spacing"></div>
+      <div class="actions">
+        <%= f.submit "更新", :class => "btn btn-primary" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= link_to "回到個人頁面",user_cases_path(current_user),:class => "btn btn-default" %>
+      </div>
+
+  <% end %>
+
+  </div>
+</div>
