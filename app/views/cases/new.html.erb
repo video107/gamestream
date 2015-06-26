@@ -2,6 +2,8 @@
   <div class="row">
     <% if current_user.fb_image %>
         <h2>Hi <%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
+      <% elsif current_user.nickname%>
+        <h2>Hi <%= current_user.nickname %></h2>
       <% else %>
         <h2>Hi <%= current_user.user_name %></h2>
     <% end %>

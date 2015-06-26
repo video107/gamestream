@@ -1,34 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <p id="notice">
+        <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @admin_user.email %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @admin_user.email %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @admin_user.name %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @admin_user.name %>
+    </p>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @admin_user.nickname %>
-</p>
+    <p>
+      <strong>Nickname:</strong>
+      <%= @admin_user.nickname %>
+    </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @admin_user.phone %>
-</p>
+    <p>
+      <strong>Phone:</strong>
+      <%= @admin_user.phone %>
+    </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @admin_user.address %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @admin_user.address %>
+    </p>
 
-<p>
-  <strong>Bank account:</strong>
-  <%= @admin_user.bank_account %>
-</p>
+    <p>
+      <strong>Bank account:</strong>
+      <%= @admin_user.bank_account %>
+    </p>
 
-<%= link_to 'Edit', edit_admin_user_path(@admin_user) %> |
-<%= link_to 'Back', admin_users_path %>
+    <%= link_to '編輯', edit_admin_user_path(@admin_user),:class => "btn btn-primary" %>
+    <%= link_to '管理使用者頁面', admin_users_path, :class => "btn btn-default" %></div>
+</div>

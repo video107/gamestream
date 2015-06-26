@@ -1,41 +1,45 @@
-<%= form_for(@admin_user) do |f| %>
-  <% if @admin_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+<div class="container">
+  <div class="row">
+    <%= form_for(@admin_user) do |f| %>
+      <% if @admin_user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
 
-      <ul>
-      <% @admin_user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @admin_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :nickname %><br>
+        <%= f.text_field :nickname %>
+      </div>
+      <div class="field">
+        <%= f.label :phone %><br>
+        <%= f.text_field :phone %>
+      </div>
+      <div class="field">
+        <%= f.label :address %><br>
+        <%= f.text_field :address %>
+      </div>
+      <div class="field">
+        <%= f.label :bank_account %><br>
+        <%= f.text_field :bank_account %>
+      </div> <br>
+      <div class="actions">
+        <%= f.submit "新建或更新使用者",:class => "btn btn-success" %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :nickname %><br>
-    <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :bank_account %><br>
-    <%= f.text_field :bank_account %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

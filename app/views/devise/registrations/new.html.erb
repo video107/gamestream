@@ -11,6 +11,11 @@
       </div>
 
       <div class="field">
+        <span style="font-size:18px"><%= f.label :nickname %></span><br />
+        <%= f.text_field :nickname, autofocus: true,:class => "form-control form_word" %>
+      </div>
+
+      <div class="field">
         <span style="font-size:18px"><%= f.label :password,"密碼" %></span>
         <% if @minimum_password_length %>
         <em>(至少 <%= @minimum_password_length %> 位數字)</em>
