@@ -45,7 +45,7 @@
         <tr>
           <td style="width:100px"><%= image_tag(menu.game_icon(:thumb)) %></td>
           <td style="width:100px"><%= menu.name %></td>
-          <td style="width:100px"><%= menu.category.name %></td>
+          <td style="width:100px"><%= menu.category.try(:name) %></td>
           <td><%= menu.contents %></td>
           <td><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-warning" %></td>
         </tr>

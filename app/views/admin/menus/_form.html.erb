@@ -16,7 +16,7 @@
     <%= f.file_field :game_image %>
   </div>
   <div class="field">
-    <%= f.label :game_image %><br>
+    <%= f.label :game_category %><br>
     <%= f.collection_select(:category_id, Category.all, :id, :name, {} , :class => "form-control form_word")%>
   </div>
   <div class="field">
