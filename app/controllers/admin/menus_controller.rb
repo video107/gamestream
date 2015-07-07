@@ -71,6 +71,6 @@ class Admin::MenusController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_menu_params
-      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon)
+      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon,:category_id)
     end
 end
