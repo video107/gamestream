@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :cases, :dependent => :destroy
 
+  has_many :case_followers
+  has_many :follow_cases, :through => :case_followers, :source => :case
 
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, fb_uid: auth.uid).first

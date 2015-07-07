@@ -50,6 +50,10 @@ gem 'paperclip'
 gem "letter_opener", :group => :development
 gem 'rack-mini-profiler', require: false
 
+# tracking gem (like GA in ROR)
+gem 'ahoy_matey'
+# initiate user uuid
+gem 'activeuuid', '>= 0.5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -56,6 +56,8 @@
        <%= paginate @menus %> <br>
        <%= link_to "回到遊戲選單", root_path, :class => "btn btn-info" %>
     </div>
+    <br>
+    <%= link_to "Test link", menu_case_path(@menu, @case) %>
    <% else %>
     <h1>請先登入系統</h1>
     <%= link_to('註冊', new_registration_path(:user),:class => "btn btn-success") %> | <%= link_to('登入', new_session_path(:user),:class => "btn btn-default") %>

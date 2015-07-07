@@ -9,6 +9,8 @@ class MenusController < ApplicationController
     end
     @q = @menus.ransack(params[:q])
     @menus = @q.result(distinct: true).page(params[:page]).per(6)
+    @menu = Menu.find(36)
+    @case = @menu.cases.find_by_id(8)
   end
 
 end
