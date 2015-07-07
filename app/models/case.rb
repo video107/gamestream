@@ -6,4 +6,10 @@ class Case < ActiveRecord::Base
   has_many :case_followers
   has_many :follow_users, :through => :case_followers, :source => :user
 
+  def find_followed_by_user(user)
+    self.case_followers.where(:user_id => user.id).first
+  end
+
+
+
 end

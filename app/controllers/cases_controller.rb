@@ -8,6 +8,12 @@ class CasesController < ApplicationController
   end
 
   def show
+    @case = Case.find(params[:id])
+    already_followed = @case.find_followed_by_user(current_user)
+    unless already_followed || @case.user == current_user
+      @follow_user = CaseFollower.create(:user => current_user , :case => @case )
+    end
+
   end
 
 
@@ -40,7 +46,7 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case).permit(:case_url)
+    params.require(:case).permit( :case_url, :owner, :user_id, :menu_id)
   end
 
 

@@ -5,7 +5,7 @@
         <%= flash[:notice] %>
       <% end %>
     </p>
-
+    <h1>User Details</h1>
     <p>
       <strong>Email:</strong>
       <%= @admin_user.email %>
@@ -33,7 +33,32 @@
 
     <p>
       <strong>Bank account:</strong>
+      <%= @admin_user.bank_name %>
+    </p>
+
+    <p>
+      <strong>Bank account:</strong>
+      <%= @admin_user.bank_name_code %>
+    </p>
+
+    <p>
+      <strong>Bank account:</strong>
       <%= @admin_user.bank_account %>
+    </p>
+
+    <p>
+      <strong>User case followers:</strong>
+      <% @admin_user.cases.each do |c| %>
+        <ul>
+          <li>遊戲名稱：<%= c.menu.name %></li>
+          <li>
+            遊戲粉絲：<% c.case_followers.each do |follower| %>
+            <%= follower.user.user_name %>
+            <% end %>
+
+          </li>
+        </ul>
+        <% end %>
     </p>
 
     <%= link_to '編輯', edit_admin_user_path(@admin_user),:class => "btn btn-primary" %>

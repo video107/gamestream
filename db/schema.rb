@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707151955) do
+ActiveRecord::Schema.define(version: 20150707164629) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150707151955) do
     t.integer  "menu_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "owner",      limit: 255
   end
 
   add_index "cases", ["menu_id"], name: "index_cases_on_menu_id", using: :btree
@@ -128,6 +129,8 @@ ActiveRecord::Schema.define(version: 20150707151955) do
     t.string   "bank_account",           limit: 255
     t.string   "fb_image",               limit: 255
     t.string   "role",                   limit: 255
+    t.string   "bank_name",              limit: 255
+    t.integer  "bank_name_code",         limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

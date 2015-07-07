@@ -15,6 +15,8 @@
       <th>暱稱</th>
       <th>電話</th>
       <th>地址</th>
+      <th>銀行行庫名稱</th>
+      <th>銀行行庫代碼</th>
       <th>銀行帳號</th>
     </tr>
 
@@ -24,13 +26,18 @@
       <td><%= current_user.try(:nickname) %></td>
       <td><%= current_user.try(:phone) %></td>
       <td><%= current_user.try(:address) %></td>
+      <td><%= current_user.try(:bank_name) %></td>
+      <td><%= current_user.try(:bank_name_code) %></td>
       <td><%= current_user.try(:bank_account) %></td>
     </tr>
   </table>
+  <div class="spacing_large"></div>
+
    <% @cases.each do |c| %>
     <ul>
       <li style="list-style-type:none">遊戲名稱：<%= c.menu.name %></li>
       <li style="list-style-type:none">專屬連結：<%= link_to "localhost:3000"+c.case_url, c.case_url %></li>
+      <li style="list-style-type:none">粉絲人數：<%= c.case_followers.count %></li>
       <!-- <li style="list-style-type:none">專屬連結：<%#= link_to "139.162.19.7"+c.case_url, c.case_url %></li> -->
     </ul>
    <% end %>
