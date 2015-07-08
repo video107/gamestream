@@ -8,6 +8,7 @@ class CasesController < ApplicationController
   end
 
   def show
+    #要改...wait
     if current_user
       @case = Case.find(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
@@ -32,6 +33,11 @@ class CasesController < ApplicationController
     if @case.save!
       flash[:success] = "專屬連結建立成功"
       @case.case_url = menu_case_path(@menu,@case)
+      if params[:commit] == "建立專屬IOS連結"
+        @case.update!(:owner => "ios")
+      elsif params[:commit] == "建立專屬Android連結"
+        @case.update!(:owner => "android")
+      end
       @case.save!
       redirect_to root_path
     else
