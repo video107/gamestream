@@ -62,6 +62,7 @@
     <h1>請先登入系統</h1>
     <%= link_to('註冊', new_registration_path(:user),:class => "btn btn-success") %> | <%= link_to('登入', new_session_path(:user),:class => "btn btn-default") %>
     <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook),:class => "btn btn-primary" %>
+    <%= link_to "Google 登入", user_omniauth_authorize_path(:google),:class => "btn btn-danger btn-google" %>
     <% end %>
   </div>
 </div>

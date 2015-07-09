@@ -42,6 +42,9 @@ gem 'faker'
 # gem 'bcrypt', '~> 3.1.7'
 # another pagenate for rails
 gem "omniauth-facebook"
+gem "omniauth-google"
+gem 'omniauth-google-oauth2'
+gem "omniauth"
 # poor guy search bar
 gem 'ransack'
 gem 'paperclip'

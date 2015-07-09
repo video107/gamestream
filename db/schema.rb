@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707164629) do
+ActiveRecord::Schema.define(version: 20150709103054) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20150707164629) do
     t.string   "role",                   limit: 255
     t.string   "bank_name",              limit: 255
     t.integer  "bank_name_code",         limit: 4
+    t.string   "google_uid",             limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
