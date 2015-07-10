@@ -1,0 +1,11 @@
+development:
+  app_id: 745658416941-j11gm7tvnk12tmj7qcaqpgft96s6uo9s.apps.googleusercontent.com
+  secret: 1XQTTc0wt3e9ac3zU-bxBOUx
+
+test:
+  app_id:
+  secret:
+
+production:
+  app_id:
+  secret:
