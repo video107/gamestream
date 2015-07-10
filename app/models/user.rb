@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :case_followers
   has_many :follow_cases, :through => :case_followers, :source => :case
+  has_paper_trail
 
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, google_uid: auth.uid).first
@@ -40,6 +41,9 @@ class User < ActiveRecord::Base
 
 
 
+  def has_right?
+    self.role == nil || self.role == "active"
+  end
 
 
   def self.new_with_session(params, session)

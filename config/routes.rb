@@ -16,9 +16,17 @@ Rails.application.routes.draw do
   resources :menus do
     resources :cases
   end
+
   resources :users do
+
+    member do
+      post :suspend
+      post :restore
+    end
     resources :cases
   end
+
+  get "/suspend" => "menus#suspend"
   # devise_scope :user do
   #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :des_user_session
   # end

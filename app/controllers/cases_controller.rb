@@ -2,6 +2,8 @@ class CasesController < ApplicationController
 
 
   before_action :set_menu, :only => [:new, :create, :show]
+  before_action :authenticate_user!
+  before_action :check_rights
 
   def index
     @cases = current_user.cases
@@ -15,9 +17,9 @@ class CasesController < ApplicationController
       unless already_followed || @case.user == current_user
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
-    else
-      redirect_to root_path
-      flash["alert"] = "請先登入"
+    # else
+      # redirect_to root_path
+      # flash["alert"] = "請先登入"
     end
   end
 
@@ -58,6 +60,15 @@ class CasesController < ApplicationController
   def case_params
     params.require(:case).permit( :case_url, :owner, :user_id, :menu_id)
   end
+
+  def check_rights
+    unless current_user.has_right?
+      flash[:alert] = "你沒有權限"
+      redirect_to suspend_path
+      return
+    end
+  end
+
 
 
 

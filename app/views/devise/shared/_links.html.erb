@@ -1,10 +1,10 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "登入", new_session_path(resource_name),:class => "btn btn-default" %>
+  <%= link_to "登入", new_session_path(resource_name),:class => "btn btn-warning" %>
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "#{provider.to_s.titleize}登入", omniauth_authorize_path(resource_name, provider),:class => "btn btn-default btn-#{provider}"  %>
+    <%= link_to "#{provider.to_s.titleize.split(" ")[0]}登入", omniauth_authorize_path(resource_name, provider),:class => "btn btn-default btn-#{provider}"  %>
   <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

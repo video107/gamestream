@@ -41,7 +41,8 @@ gem 'faker'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # another pagenate for rails
-gem "omniauth-facebook"
+#gem "omniauth-facebook"
+
 # gem "omniauth-google"
 gem 'omniauth-google-oauth2'
 # gem "omniauth"
@@ -53,6 +54,8 @@ gem 'paperclip'
 gem "letter_opener", :group => :development
 gem 'rack-mini-profiler', require: false
 
+# Soft deletion gem
+gem 'paper_trail', '~> 4.0.0.rc'
 # tracking gem (like GA in ROR)
 gem 'ahoy_matey'
 # initiate user uuid
