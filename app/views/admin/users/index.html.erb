@@ -28,7 +28,7 @@
 
       <tbody>
         <% @admin_users.each do |admin_user| %>
-          <tr class= "<%= admin_user.role %>">
+          <tr class= <%= admin_user.role %>>
             <td><%= admin_user.id %></td>
             <td><%= admin_user.email %></td>
             <td><%= admin_user.name %></td>
@@ -42,7 +42,7 @@
               <%= link_to '使用者詳細', admin_user,:class => "btn btn-warning" %>
               <%= link_to '編輯', edit_admin_user_path(admin_user), :class => "btn btn-info" %>
               <%= link_to '刪除使用者', admin_user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
-              <% if admin_user.role == nil || admin_user.role == "active" %>
+              <% if admin_user.role == nil || admin_user.role == "normal" %>
                 <%= link_to "停權", suspend_user_path(admin_user),:method => :post,  :class => "btn btn-suspend" %>
               <% elsif admin_user.role == "suspend" %>
                 <%= link_to "復權", restore_user_path(admin_user),:method => :post, :class => "btn btn-restore" %>
@@ -52,7 +52,7 @@
         <% end %>
       </tbody>
     </table>
-
+    <%= paginate @admin_users %>
     <br>
     <%= link_to "遊戲上架後台", admin_menus_path, :class => "btn btn-success" %>
     <%= link_to "遊戲前台", root_path, :class => "btn btn-warning" %>

@@ -38,5 +38,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @users %> <br>
+    <%= link_to "回使用者管理",admin_users_path, :class => "btn btn-primary"%>
   </div>
 </div>

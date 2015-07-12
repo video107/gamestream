@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.all
+    @admin_users = Admin::User.all.page(params[:page]).per(7)
   end
 
   # GET /admin/users/1
@@ -63,20 +63,14 @@ class Admin::UsersController < AdminController
 
 
   def trashcan
-    @users = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC')
+    @users = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').page(params[:page]).per(7)
   end
 
   def recover_delete
-
-    PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').each do |user|
-      @user = user
-    end
-
-    if @user.save!
-      flash[:success]="recover success"
-      redirect_to admin_users_path
-    end
-
+    @user = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').find_by_item_id(params[:id])
+    @user.reify.save!
+    flash[:success] = "回復使用者成功"
+    redirect_to admin_users_path
   end
 
 

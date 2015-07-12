@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:suspend, :restore]
 
   def edit
     @user = current_user
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def restore
     @user = User.find(params[:id])
-    @user.update!(:role => "active")
+    @user.update!(:role => "normal")
     @user.save!
     redirect_to admin_users_path
   end
