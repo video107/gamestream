@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <h1>Hey</h1>
+    <table class ="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Nickname</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Bank name</th>
+          <th>Bank name code</th>
+          <th>Bank account</th>
+          <th>Last Delete</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.reify.id %></td>
+            <td><%= user.reify.email %></td>
+            <td><%= user.reify.name %></td>
+            <td><%= user.reify.nickname %></td>
+            <td><%= user.reify.phone %></td>
+            <td><%= user.reify.address %></td>
+            <td><%= user.reify.bank_name %></td>
+            <td><%= user.reify.bank_name_code %></td>
+            <td><%= user.reify.bank_account %></td>
+            <td><%= user.reify.updated_at.to_s(:short) %></td>
+            <td>
+              <%= link_to "回復刪除帳號", recover_delete_admin_user_path(user.reify.id),:method => :post, :class => "btn btn-success" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

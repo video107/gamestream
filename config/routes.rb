@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
+    resources :users do
+      collection do
+        post :trashcan
+      end
+      member do
+        post :recover_delete
+      end
+    end
   end
   namespace :admin do
     resources :menus

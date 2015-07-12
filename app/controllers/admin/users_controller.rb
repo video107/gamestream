@@ -61,6 +61,26 @@ class Admin::UsersController < AdminController
     end
   end
 
+
+  def trashcan
+    @users = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC')
+  end
+
+  def recover_delete
+
+    PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').each do |user|
+      @user = user
+    end
+
+    if @user.save!
+      flash[:success]="recover success"
+      redirect_to admin_users_path
+    end
+
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
