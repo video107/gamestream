@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
 
   def has_right?
-    self.role == nil || self.role == "active"
+    self.role == nil || self.role == "normal"
   end
 
 

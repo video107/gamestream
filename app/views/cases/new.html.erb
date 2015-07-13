@@ -26,13 +26,33 @@
           <%= f.hidden_field :owner, :value => "ios" %>
           <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
           <%= f.submit "建立專屬Android連結", :class => "btn btn-primary",:name => "commit" %>
-         <% end %> <br>
-          <%#= form_for @case,:url => menu_cases_path(@menu) do |f| %>
-           <%#= f.hidden_field :case_url%>
-           <%#= f.hidden_field :owner, :value => "andorid" %>
-           <%#= f.submit "建立專屬Android連結", :class => "btn btn-primary" %>
-          <%# end %>
+         <% end %>
+         <%#= link_to "#", :data => {:toggle=>"modal", :target => "#myModal"}, :class => "btn btn-primary" do %>
+            <!-- 建立專屬IOS連結 -->
+         <%# end %>
+         <%#= link_to "#", :data => {:toggle=>"modal", :target => "#myModal"}, :class => "btn btn-primary" do %>
+            <!-- 建立專屬Android連結 -->
+         <%# end %>
+         <br>
+         <br>
         <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
         </div>
   </div>
 </div>
+
+
+<!--     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center" role="document">
+          <div class="modal-content">
+            <div class="modal-footer">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <br>
+              <div class="text-center">
+                <button type="button" class="btn btn-primary">確認</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->

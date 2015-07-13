@@ -36,7 +36,7 @@
    <% @cases.each do |c| %>
     <ul>
       <li style="list-style-type:none">遊戲名稱：<%= c.menu.name %> (<%= c.owner %>)</li>
-      <li style="list-style-type:none">專屬連結：<%= link_to "139.162.19.7"+c.case_url, c.case_url %></li>
+      <li style="list-style-type:none">專屬連結：<%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></li>
       <li style="list-style-type:none">粉絲人數：<%= c.case_followers.count %></li>
 
     </ul>

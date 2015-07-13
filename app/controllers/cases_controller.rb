@@ -10,16 +10,12 @@ class CasesController < ApplicationController
   end
 
   def show
-    #要改...wait
     if current_user
       @case = Case.find(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
       unless already_followed || @case.user == current_user
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
-    # else
-      # redirect_to root_path
-      # flash["alert"] = "請先登入"
     end
   end
 
@@ -41,7 +37,7 @@ class CasesController < ApplicationController
         @case.update!(:owner => "android")
       end
       @case.save!
-      redirect_to root_path
+      redirect_to :back
     else
       render "new"
     end
