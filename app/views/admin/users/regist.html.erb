@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+  <h1>註冊報表</h1>
+   <div class="spacing"></div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>會員總數</th>
+          <th>新增會員數</th>
+          <th>新會員比例</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% (@first_user.to_date..Date.today).each do |day|%>
+      <tr>
+        <th><%= day %></th>
+        <th><%= total = User.where(:created_at => @first_user..day).count %></th>
+        <th><%= additional = User.where("DATE(created_at) = ?", day).count %></th>
+        <th><%= total == 0? "0" : (additional*100 / total ) %>%</th>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to "使用者管理後台", admin_users_path, :class => "btn btn-primary" %>
+
+  </div>
+</div>

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       member do
         post :recover_delete
       end
+      collection do
+        get :regist
+      end
+
     end
   end
   namespace :admin do

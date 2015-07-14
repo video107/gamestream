@@ -18,8 +18,28 @@
     <div class="regist_word">遊戲連結ios：</div>
     <%= @menu.menu_url_ios %>
     <div class="spacing"></div>
+
+    <div class="regist_word">遊戲大頭照：</div>
+    <%= image_tag(@menu.game_image(:thumb)) %>
+
     <div class="regist_word">遊戲icon：</div>
-    <%= image_tag(@menu.game_icon(:small)) %>
+    <%= image_tag(@menu.game_icon(:thumb)) %>
+
+    <div class="regist_word">遊戲圖片1：</div>
+    <%= image_tag(@menu.game_pic(:small)) %>
+
+    <div class="regist_word">遊戲圖片2：</div>
+    <%= image_tag(@menu.game_pic_2(:small)) %>
+
+    <div class="regist_word">遊戲圖片3：</div>
+    <%= image_tag(@menu.game_pic_3(:small)) %>
+
+    <div class="regist_word">遊戲圖片4：</div>
+    <%= image_tag(@menu.game_pic_4(:small)) %>
+
+    <div class="regist_word">遊戲圖片5：</div>
+    <%= image_tag(@menu.game_pic_5(:small)) %>
+
     <div class="spacing"></div>
          <%= form_for @case,:url => menu_cases_path(@menu) do |f| %>
           <%= f.hidden_field :case_url%>

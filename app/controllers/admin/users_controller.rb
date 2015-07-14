@@ -21,6 +21,11 @@ class Admin::UsersController < AdminController
   def edit
   end
 
+  def regist
+    @first_user = User.first.created_at
+  end
+
+
   # POST /admin/users
   # POST /admin/users.json
   def create
