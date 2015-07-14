@@ -6,6 +6,133 @@
       <% end %>
     </p>
     <h1>User Details</h1>
+
+    <div class="row">
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid">會員帳號</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.email %></span>
+      </div>
+
+      <div class="col-xs-2 text-left grid col-xs-offset-4">
+        <span class="text_center_for_grid">會員電話</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.phone %></span>
+      </div>
+
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid">會員類別</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid">ＳＵＣＫ</span>
+      </div>
+
+      <div class="col-xs-2 text-left grid col-xs-offset-4">
+        <span class="text_center_for_grid">會員地址</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.address %></span>
+      </div>
+
+       <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid">會員姓名</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.name %></span>
+      </div>
+
+      <div class="col-xs-2 text-left grid col-xs-offset-4">
+        <span class="text_center_for_grid">銀行行庫代碼</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.bank_name_code %></span>
+      </div>
+
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid">銀行行庫名稱</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.bank_name %></span>
+      </div>
+
+      <div class="col-xs-2 text-left grid col-xs-offset-4">
+        <span class="text_center_for_grid">銀行代碼</span>
+      </div>
+      <div class="col-xs-2 text-left grid">
+        <span class="text_center_for_grid"><%= @admin_user.bank_account %></span>
+      </div>
+    </div>
+
+    <div class="spacing_large"></div>
+
+    <div class="row">
+     <div class="col-xs-2 text-center grid">
+      <span class="text_center_for_grid">總獲利</span>
+     </div>
+     <div class="col-xs-2 text-center grid col-xs-offset-3">
+      <span class="text_center_for_grid">已領款</span>
+     </div>
+     <div class="col-xs-2 text-center grid col-xs-offset-3">
+      <span class="text_center_for_grid">未領款</span>
+     </div>
+     <div class="col-xs-2 text-center grid">
+      <span class="text_center_for_grid">$100</span>
+     </div>
+     <div class="col-xs-2 text-center grid col-xs-offset-3">
+      <span class="text_center_for_grid">$50</span>
+     </div>
+     <div class="col-xs-2 text-center grid col-xs-offset-3">
+      <span class="text_center_for_grid">$50</span>
+     </div>
+    </div>
+
+    <div class="spacing_large"></div>
+    <div class="row">
+      <h3>參與案件</h3>
+    <table class="table table-bordered">
+
+      <tr>
+        <th>案件名稱</th>
+        <th>案件點擊數</th>
+        <th>案件安裝數</th>
+        <th>案件執行數</th>
+        <th>案件獲利</th>
+      </tr>
+     <% @admin_user.cases.each do |c| %>
+      <tr>
+        <td><%= c.menu.name %>(<%= c.owner %>)</td>
+        <td><%= c.case_followers.count %></td>
+        <td>none</td>
+        <td>none</td>
+        <td>none</td>
+      </tr>
+
+      <% end %>
+    </table>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <p>
       <strong>Email:</strong>
       <%= @admin_user.email %>

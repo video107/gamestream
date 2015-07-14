@@ -27,6 +27,8 @@ class CasesController < ApplicationController
   def create
     @case = @menu.cases.new(case_params)
     @case.user = current_user
+    @case.user.uid = current_user.id
+    @case.user.save!
 
     if @case.save!
       flash[:success] = "專屬連結建立成功"

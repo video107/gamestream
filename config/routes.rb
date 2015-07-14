@@ -3,14 +3,13 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         post :trashcan
+        get :regist
       end
       member do
         post :recover_delete
+        get :day_report
+        get :total_report
       end
-      collection do
-        get :regist
-      end
-
     end
   end
   namespace :admin do
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'menus#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # devise_for :users, :controllers => { :registrations => "my_devise/registrations" }
 
   resources :menus do
     resources :cases

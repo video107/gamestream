@@ -52,6 +52,21 @@
 .normal {
   background-color: white;
 }
+.grid {
+  border: 1px solid lightgray;
+  min-height:40px;
+  vertical-align: middle;
+}
+.text_center_for_grid {
+  margin-top: 7px;
+}
+
+
+
+
+
+
+
 .vertical-alignment-helper {
     display:table;
     height: 100%;
