@@ -1,11 +1,13 @@
 class Admin::MenusController < AdminController
-  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy, :total_report]
 
   # GET /admin/menus
   # GET /admin/menus.json
   def index
     @admin_menus = Admin::Menu.all
-    @menus = Menu.all.page(params[:page]).per(5)
+    # @menus = Menu.all.page(params[:page]).per(7)
+    @q = @admin_menus.ransack(params[:q])
+    @admin_menus = @q.result(distinct: true).page(params[:page]).per(7)
   end
 
   # GET /admin/menus/1
@@ -22,6 +24,11 @@ class Admin::MenusController < AdminController
   # GET /admin/menus/1/edit
   def edit
   end
+
+  def total_report
+
+  end
+
 
   # POST /admin/menus
   # POST /admin/menus.json

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714105939) do
+ActiveRecord::Schema.define(version: 20150715154157) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20150714105939) do
   create_table "case_followers", force: :cascade do |t|
     t.integer  "case_id",    limit: 4
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cpi_check",  limit: 255
+    t.string   "cpa_check",  limit: 255
   end
 
   add_index "case_followers", ["case_id"], name: "index_case_followers_on_case_id", using: :btree
@@ -99,6 +101,12 @@ ActiveRecord::Schema.define(version: 20150714105939) do
     t.integer  "game_image_file_size",    limit: 4
     t.datetime "game_image_updated_at"
     t.integer  "category_id",             limit: 4
+    t.integer  "cpc_android",             limit: 4
+    t.integer  "cpi_android",             limit: 4
+    t.integer  "cpa_android",             limit: 4
+    t.integer  "cpc_ios",                 limit: 4
+    t.integer  "cpi_ios",                 limit: 4
+    t.integer  "cpa_ios",                 limit: 4
   end
 
   add_index "menus", ["category_id"], name: "index_menus_on_category_id", using: :btree

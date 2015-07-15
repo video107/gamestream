@@ -1,0 +1,392 @@
+<div class="container_fluid" style="background-color:lightyellow">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+      <h1>案件獲利總報表</h1>
+      <div class="spacing_large"></div>
+        <div class="row">
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">案件名稱</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_menu.name %></span>
+          </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-2">
+            <span class="text_center_for_grid">參與會員數</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_menu.followers? %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">日期區間</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_menu.to_now? %></span>
+          </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-2">
+            <span class="text_center_for_grid">總註冊會員數</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= Admin::User.all.count %></span>
+          </div>
+        </div>
+
+
+
+        <div class="spacing_large"></div>
+          <div class="row text-center">
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行</span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid">案件總營業額</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">不重複點擊</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">不重複安裝</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">不重複執行</span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總點擊數</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總安裝數</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總執行數</span>
+              </div>
+
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid">案件總成本</span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊總營業額</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝總營業額</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行總營業額</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid">案件總成本</span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊拆帳比例</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝拆帳比例</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行拆帳比例</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊總成本</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝總成本</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行總成本</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊總淨利</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝總淨利</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行總淨利</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+            </div>
+
+        <div class="spacing"></div>
+        <%= link_to "遊戲管理", admin_menus_path, :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,5 +35,17 @@ class Menu < ActiveRecord::Base
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
 
+  def followers?
+    total_followers = 0
+    self.cases.each do |c|
+      total_followers = total_followers + c.follow_users.count
+    end
+    total_followers
+  end
+
+  def to_now?
+    self.created_at.to_date..Time.now.to_date
+  end
+
 
 end

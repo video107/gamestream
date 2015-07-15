@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     end
   end
   namespace :admin do
-    resources :menus
+    resources :menus do
+      member do
+        get :total_report
+      end
+    end
   end
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
