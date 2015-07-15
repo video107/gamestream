@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :total_report]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -12,6 +12,7 @@ class Admin::UsersController < AdminController
   # GET /admin/users/1
   # GET /admin/users/1.json
   def show
+    @cases = @admin_user.cases.page(params[:page]).per(7)
   end
 
   # GET /admin/users/new
@@ -22,6 +23,7 @@ class Admin::UsersController < AdminController
   # GET /admin/users/1/edit
   def edit
   end
+
 
   def regist
     @first_user = User.first.created_at

@@ -1,198 +1,127 @@
-<div class="container">
+<div class="container_fluid" style="background-color:aliceblue;">
   <div class="row">
-    <p id="notice">
-        <% if flash[:notice] %>
-        <%= flash[:notice] %>
-      <% end %>
-    </p>
-    <h1>User Details</h1>
+    <div class="container">
+      <div class="row">
+        <p id="notice">
+            <% if flash[:notice] %>
+            <%= flash[:notice] %>
+          <% end %>
+        </p>
+        <h1>User Details</h1>
 
-    <div class="row">
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid">會員帳號</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.email %></span>
-      </div>
+        <div class="row">
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員帳號</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.email %></span>
+          </div>
 
-      <div class="col-xs-2 text-left grid col-xs-offset-4">
-        <span class="text_center_for_grid">會員電話</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.phone %></span>
-      </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">會員電話</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.phone %></span>
+          </div>
 
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid">會員類別</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid">ＳＵＣＫ</span>
-      </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員類別</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">ＳＵＣＫ</span>
+          </div>
 
-      <div class="col-xs-2 text-left grid col-xs-offset-4">
-        <span class="text_center_for_grid">會員地址</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.address %></span>
-      </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">會員地址</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.address %></span>
+          </div>
 
-       <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid">會員姓名</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.name %></span>
-      </div>
+           <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員姓名</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.name %></span>
+          </div>
 
-      <div class="col-xs-2 text-left grid col-xs-offset-4">
-        <span class="text_center_for_grid">銀行行庫代碼</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.bank_name_code %></span>
-      </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">銀行行庫代碼</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.bank_name_code %></span>
+          </div>
 
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid">銀行行庫名稱</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.bank_name %></span>
-      </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">銀行行庫名稱</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.bank_name %></span>
+          </div>
 
-      <div class="col-xs-2 text-left grid col-xs-offset-4">
-        <span class="text_center_for_grid">銀行代碼</span>
-      </div>
-      <div class="col-xs-2 text-left grid">
-        <span class="text_center_for_grid"><%= @admin_user.bank_account %></span>
-      </div>
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">銀行代碼</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= @admin_user.bank_account %></span>
+          </div>
+        </div>
+
+        <div class="spacing_large"></div>
+
+        <div class="row">
+         <div class="col-xs-2 text-center grid">
+          <span class="text_center_for_grid">總獲利</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">已領款</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">未領款</span>
+         </div>
+         <div class="col-xs-2 text-center grid">
+          <span class="text_center_for_grid">$100</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">$50</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">$50</span>
+         </div>
+        </div>
+
+        <div class="spacing_large"></div>
+        <div class="row">
+          <h3>參與案件</h3>
+        <table class="table table-bordered">
+
+          <tr>
+            <th>案件名稱</th>
+            <th>案件點擊數</th>
+            <th>案件安裝數</th>
+            <th>案件執行數</th>
+            <th>案件獲利</th>
+          </tr>
+         <% @cases.each do |c| %>
+          <tr>
+            <td><%= link_to c.menu.name, admin_user_case_path(@admin_user, c) %>(<%= c.owner %>)</td>
+            <td><%= c.case_followers.count %></td>
+            <td>none</td>
+            <td>none</td>
+            <td>none</td>
+          </tr>
+
+          <% end %>
+        </table>
+        <%= paginate @cases %>
+        </div>
+
+
+        <%= link_to '編輯', edit_admin_user_path(@admin_user),:class => "btn btn-primary" %>
+        <%= link_to '管理使用者頁面', admin_users_path, :class => "btn btn-default" %>
+
+
+        </div>
     </div>
-
-    <div class="spacing_large"></div>
-
-    <div class="row">
-     <div class="col-xs-2 text-center grid">
-      <span class="text_center_for_grid">總獲利</span>
-     </div>
-     <div class="col-xs-2 text-center grid col-xs-offset-3">
-      <span class="text_center_for_grid">已領款</span>
-     </div>
-     <div class="col-xs-2 text-center grid col-xs-offset-3">
-      <span class="text_center_for_grid">未領款</span>
-     </div>
-     <div class="col-xs-2 text-center grid">
-      <span class="text_center_for_grid">$100</span>
-     </div>
-     <div class="col-xs-2 text-center grid col-xs-offset-3">
-      <span class="text_center_for_grid">$50</span>
-     </div>
-     <div class="col-xs-2 text-center grid col-xs-offset-3">
-      <span class="text_center_for_grid">$50</span>
-     </div>
-    </div>
-
-    <div class="spacing_large"></div>
-    <div class="row">
-      <h3>參與案件</h3>
-    <table class="table table-bordered">
-
-      <tr>
-        <th>案件名稱</th>
-        <th>案件點擊數</th>
-        <th>案件安裝數</th>
-        <th>案件執行數</th>
-        <th>案件獲利</th>
-      </tr>
-     <% @admin_user.cases.each do |c| %>
-      <tr>
-        <td><%= c.menu.name %>(<%= c.owner %>)</td>
-        <td><%= c.case_followers.count %></td>
-        <td>none</td>
-        <td>none</td>
-        <td>none</td>
-      </tr>
-
-      <% end %>
-    </table>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <p>
-      <strong>Email:</strong>
-      <%= @admin_user.email %>
-    </p>
-
-    <p>
-      <strong>Name:</strong>
-      <%= @admin_user.name %>
-    </p>
-
-    <p>
-      <strong>Google Uid:</strong>
-      <%= @admin_user.google_uid %>
-    </p>
-
-    <p>
-      <strong>Nickname:</strong>
-      <%= @admin_user.nickname %>
-    </p>
-
-    <p>
-      <strong>Phone:</strong>
-      <%= @admin_user.phone %>
-    </p>
-
-    <p>
-      <strong>Address:</strong>
-      <%= @admin_user.address %>
-    </p>
-
-    <p>
-      <strong>Bank Name:</strong>
-      <%= @admin_user.bank_name %>
-    </p>
-
-    <p>
-      <strong>Bank Name Code:</strong>
-      <%= @admin_user.bank_name_code %>
-    </p>
-
-    <p>
-      <strong>Bank account:</strong>
-      <%= @admin_user.bank_account %>
-    </p>
-
-    <p>
-      <strong>User case followers:</strong>
-      <% @admin_user.cases.each do |c| %>
-        <ul>
-          <li>遊戲名稱：<%= c.menu.name %></li>
-          <li>
-            遊戲粉絲：<% c.case_followers.each do |follower| %>
-            <%= follower.user.user_name %>
-            <% end %>
-
-          </li>
-        </ul>
-        <% end %>
-    </p>
-
-    <%= link_to '編輯', edit_admin_user_path(@admin_user),:class => "btn btn-primary" %>
-    <%= link_to '管理使用者頁面', admin_users_path, :class => "btn btn-default" %></div>
+  </div>
 </div>

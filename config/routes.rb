@@ -7,9 +7,8 @@ Rails.application.routes.draw do
       end
       member do
         post :recover_delete
-        get :day_report
-        get :total_report
       end
+      resources :cases
     end
   end
   namespace :admin do
