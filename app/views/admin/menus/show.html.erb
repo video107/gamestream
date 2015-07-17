@@ -37,7 +37,28 @@
       <strong>遊戲原始連結ios:</strong>
       <%= @admin_menu.menu_url_ios %>
     </p>
+    <table class="table table-bordered">
+      <tr>
+        <th>CPC_Android</th>
+        <th>CPI_Android</th>
+        <th>CPA_Android</th>
+        <th>CPC_IOS</th>
+        <th>CPI_IOS</th>
+        <th>CPA_IOS</th>
+      </tr>
+      <tr>
+        <td><%= @admin_menu.cpc_android %></td>
+        <td><%= @admin_menu.cpi_android %></td>
+        <td><%= @admin_menu.cpa_android %></td>
+        <td><%= @admin_menu.cpc_ios %></td>
+        <td><%= @admin_menu.cpi_ios %></td>
+        <td><%= @admin_menu.cpa_ios %></td>
+      </tr>
 
+
+
+
+    </table>
     <p>
       <strong>遊戲圖片1:</strong> <br>
       <%= image_tag(@menu.game_pic(:thumb)) %>

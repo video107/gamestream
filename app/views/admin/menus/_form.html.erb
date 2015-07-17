@@ -31,9 +31,33 @@
     <%= f.label :menu_url %><br>
     <%= f.text_field :menu_url, :class => "form-control form_word"  %>
   </div>
-  <div class="field">
+  <div class="field" id="menu_menu_url">
     <%= f.label :menu_url_ios %><br>
     <%= f.text_field :menu_url_ios, :class => "form-control form_word"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpc_android, "CPC_Android" %><br>
+    <%= f.text_field :cpc_android, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpi_android, "CPI_Android" %><br>
+    <%= f.text_field :cpi_android, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpa_android, "CPA_Android" %><br>
+    <%= f.text_field :cpa_android, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpc_ios, "CPC_IOS" %><br>
+    <%= f.text_field :cpc_ios, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpi_ios, "CPI_IOS" %><br>
+    <%= f.text_field :cpi_ios, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :cpa_ios, "CPA_IOS" %><br>
+    <%= f.text_field :cpa_ios, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :game_pic %><br>
@@ -59,8 +83,15 @@
     <%= f.label :game_icon %><br>
     <%= f.file_field :game_icon %>
   </div>
+
   <div class="spacing"></div>
   <div class="action">
     <%= f.submit "新增或更新", :class => "btn btn-success"%>
   </div>
 <% end %>
+
+<script>
+  $(function (){
+        $('#menu_menu_url').datepicker();
+});
+</script>

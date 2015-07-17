@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :case_followers
   has_many :follow_cases, :through => :case_followers, :source => :case
   has_paper_trail
-
+  
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, google_uid: auth.uid).first
   #   unless user

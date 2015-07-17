@@ -13,7 +13,8 @@ class CasesController < ApplicationController
     if current_user
       @case = Case.find(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
-      unless already_followed || @case.user == current_user
+      if already_followed || @case.user == current_user
+        already_followed.
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
     end
