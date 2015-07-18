@@ -9,7 +9,7 @@
             <span class="text_center_for_grid">案件名稱</span>
           </div>
           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= @case.menu.name %></span>
+            <span class="text_center_for_grid"><%= @case.menu.name %>(<%= @case.owner %>)</span>
           </div>
           <div class="col-xs-2 text-left grid col-xs-offset-2">
             <span class="text_center_for_grid">本日獲利</span>
@@ -51,7 +51,13 @@
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                <%= @case.case_followers.count %>
+              <% else %>
+                0
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">Android</span>
@@ -69,7 +75,13 @@
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                <%= @case.case_followers.count %>
+              <% else %>
+                0
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
@@ -96,7 +108,13 @@
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                <%= @case.total_click? %>
+              <% else %>
+                0
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">Android</span>
@@ -114,7 +132,13 @@
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+             <% if @case.owner == "ios" %>
+                <%= @case.total_click? %>
+             <% else %>
+                0
+             <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>

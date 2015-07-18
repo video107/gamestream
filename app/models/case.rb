@@ -14,7 +14,16 @@ class Case < ActiveRecord::Base
     self.created_at.to_date..Time.now.to_date
   end
 
-
-
+  def total_click?
+   total_click = 0
+    self.case_followers.each do |f|
+      if f.repeat_click == nil || f.repeat_click == 0
+        total_click += 1
+      else
+        total_click += f.repeat_click
+      end
+    end
+   return total_click
+  end
 
 end
