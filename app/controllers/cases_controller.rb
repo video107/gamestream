@@ -6,15 +6,18 @@ class CasesController < ApplicationController
   before_action :check_rights
 
   def index
-    @cases = current_user.cases
+    @cases = current_user.cases.page(params[:page]).per(7)
   end
 
   def show
     if current_user
       @case = Case.find(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
-      if already_followed || @case.user == current_user
-        already_followed.
+      if already_followed
+        already_followed.click?
+      elsif  @case.user == current_user
+        return
+      elsif
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
     end

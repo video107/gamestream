@@ -15,7 +15,7 @@
             <span class="text_center_for_grid">參與會員數</span>
           </div>
           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= @admin_menu.followers? %></span>
+            <span class="text_center_for_grid"><%= @admin_menu.followers?("total") %></span>
           </div>
         </div>
         <div class="row">
@@ -66,7 +66,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("android") %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -89,7 +89,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("ios") %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -125,7 +125,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.total_click?("android") %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -147,7 +147,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.total_click?("ios") %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -183,7 +183,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("android") * @admin_menu.cpc_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -198,13 +198,13 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid">案件總成本</span>
+                <span class="text_center_for_grid">案件總淨利</span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("ios") * @admin_menu.cpc_ios %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>

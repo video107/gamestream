@@ -6,15 +6,15 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
-  has_many :menu_users
-  has_many :menus, :through => :menu_users
+  has_many :menu_users, :dependent => :destroy
+  has_many :menus, :through => :menu_users, :dependent => :destroy
 
   has_many :cases, :dependent => :destroy
 
-  has_many :case_followers
-  has_many :follow_cases, :through => :case_followers, :source => :case
+  has_many :case_followers, :dependent => :destroy
+  has_many :follow_cases, :through => :case_followers, :source => :case, :dependent => :destroy
   has_paper_trail
-  
+
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, google_uid: auth.uid).first
   #   unless user
