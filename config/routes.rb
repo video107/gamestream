@@ -8,13 +8,18 @@ Rails.application.routes.draw do
       member do
         post :recover_delete
       end
-      resources :cases
+      resources :cases do
+        member do
+          get :day_report
+        end
+      end
     end
   end
   namespace :admin do
     resources :menus do
       member do
         get :total_report
+        get :day_report
       end
     end
   end
