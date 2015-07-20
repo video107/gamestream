@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718104612) do
+ActiveRecord::Schema.define(version: 20150720155609) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20150718104612) do
   add_index "ahoy_events", ["time"], name: "index_ahoy_events_on_time", using: :btree
   add_index "ahoy_events", ["user_id"], name: "index_ahoy_events_on_user_id", using: :btree
   add_index "ahoy_events", ["visit_id"], name: "index_ahoy_events_on_visit_id", using: :btree
+
+  create_table "case_click_install_excutes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "case_id",    limit: 4
+    t.string   "cpc",        limit: 255
+    t.string   "cpi",        limit: 255
+    t.string   "cpa",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "case_click_install_excutes", ["case_id"], name: "index_case_click_install_excutes_on_case_id", using: :btree
+  add_index "case_click_install_excutes", ["user_id"], name: "index_case_click_install_excutes_on_user_id", using: :btree
 
   create_table "case_followers", force: :cascade do |t|
     t.integer  "case_id",        limit: 4
