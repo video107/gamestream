@@ -3,8 +3,14 @@ class Case < ActiveRecord::Base
   belongs_to :user
   belongs_to :menu
 
-  has_many :case_followers
+  has_many :case_followers, :dependent => :destroy
   has_many :follow_users, :through => :case_followers, :source => :user
+
+  has_many :case_click_install_excutes, :dependent => :destroy
+  has_many :click_users, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
+  has_many :install_users, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
+  has_many :excute_users, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
+
 
   def find_followed_by_user(user)
     self.case_followers.where(:user_id => user.id).first
@@ -16,14 +22,9 @@ class Case < ActiveRecord::Base
 
   def total_click?
    total_click = 0
-    self.case_followers.each do |f|
-      if f.repeat_click == nil || f.repeat_click == 0
-        total_click += 1
-      else
-        total_click += f.repeat_click
-      end
-    end
-   return total_click
+   self.click_users.count
   end
+
+
 
 end

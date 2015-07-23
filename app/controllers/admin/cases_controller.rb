@@ -5,4 +5,8 @@ class Admin::CasesController < AdminController
     @case = @user.cases.find(params[:id])
   end
 
+  def day_report
+  end
+
+
 end

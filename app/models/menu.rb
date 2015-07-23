@@ -59,34 +59,81 @@ class Menu < ActiveRecord::Base
     end
   end
 
+  def followers_day?(owner,date)
+    total_followers_day = []
+    ios_followers_day = 0
+    android_followers_day = 0
+    if owner == "total"
+      self.cases.each do |c|
+        c.case_followers.each do |casefollower|
+          if casefollower.created_at.to_date == date
+            total_followers_day << casefollower.user.email
+          end
+        end
+      end
+      return total_followers_day.uniq.count
+    elsif owner == "ios"
+      self.cases.where(:owner => "ios").each do |c|
+        c.case_followers.each do |casefollower|
+          if casefollower.created_at.to_date == date
+            ios_followers_day += 1
+          end
+        end
+      end
+      return ios_followers_day
+    elsif owner == "android"
+      self.cases.where(:owner => "android").each do |c|
+        c.case_followers.each do |casefollower|
+          if casefollower.created_at.to_date == date
+            android_followers_day += 1
+          end
+        end
+      end
+      return android_followers_day
+    end
+  end
+
   def to_now?
     self.created_at.to_date..Time.now.to_date
   end
+
 
   def total_click?(owner)
     ios_click = 0
     android_click = 0
     if owner == "ios"
       self.cases.where(:owner => "ios").each do |c|
-        c.case_followers.each do |f|
-          if f.repeat_click == nil || f.repeat_click == 0
+        ios_click += c.click_users.count
+      end
+      return ios_click
+    elsif owner == "android"
+     self.cases.where(:owner => "android").each do |c|
+       android_click += c.click_users.count
+     end
+      return android_click
+    end
+  end
+
+  def total_click_day?(owner,date)
+    ios_click = 0
+    android_click = 0
+    if owner == "ios"
+      self.cases.where(:owner => "ios").each do |c|
+        c.click_users.each do |cu|
+          if cu.created_at.to_date == date
             ios_click += 1
-          else
-            ios_click += f.repeat_click
           end
         end
       end
       return ios_click
     elsif owner == "android"
      self.cases.where(:owner => "android").each do |c|
-        c.case_followers.each do |f|
-          if f.repeat_click == nil || f.repeat_click == 0
-            android_click += 1
-          else
-            android_click += f.repeat_click
-          end
+      c.click_users.each do |cu|
+        if cu.created_at.to_date == date
+         android_click += 1
         end
       end
+     end
       return android_click
     end
   end

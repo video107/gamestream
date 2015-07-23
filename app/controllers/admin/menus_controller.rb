@@ -1,5 +1,5 @@
 class Admin::MenusController < AdminController
-  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy, :total_report]
+  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy, :total_report, :day_report]
 
   # GET /admin/menus
   # GET /admin/menus.json
@@ -26,9 +26,15 @@ class Admin::MenusController < AdminController
   end
 
   def total_report
-
   end
 
+  def day_report
+    if params[:date] != ""
+      @date = params[:date].to_date
+    else
+      render "error"
+    end
+  end
 
   # POST /admin/menus
   # POST /admin/menus.json

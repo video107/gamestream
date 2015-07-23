@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   has_many :follow_cases, :through => :case_followers, :source => :case, :dependent => :destroy
   has_paper_trail
 
+  has_many :case_click_install_excutes, :dependent => :destroy
+  has_many :clicks, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
+  has_many :installs, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
+  has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
+
+
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, google_uid: auth.uid).first
   #   unless user

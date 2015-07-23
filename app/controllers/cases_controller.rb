@@ -14,7 +14,7 @@ class CasesController < ApplicationController
       @case = Case.find(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
       if already_followed
-        already_followed.click?
+        CaseClickInstallExcute.create(:user => current_user, :case => @case, :cpc => true)
       elsif  @case.user == current_user
         return
       elsif
