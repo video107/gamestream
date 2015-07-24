@@ -21,10 +21,28 @@ class Case < ActiveRecord::Base
   end
 
   def total_click?
-   total_click = 0
    self.click_users.count
   end
 
 
+  def total_click_day?(date)
+    clicks_day = 0
+   self.click_users.each do |c|
+    if c.created_at.to_date == date
+      clicks_day +=1
+    end
+   end
+   return clicks_day
+  end
+
+  def case_followers_day?(date)
+    followers_day = 0
+    self.case_followers.each do |c|
+      if c.created_at.to_date == date
+        followers_day += 1
+      end
+    end
+    return followers_day
+  end
 
 end

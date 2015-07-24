@@ -13,7 +13,8 @@
       </thead>
 
       <tbody>
-      <% (@first_user.to_date..Date.today).each do |day|%>
+      <%# (@first_user.to_date..Date.today).each do |day|%>
+      <% @time_period.each do |day|%>
       <tr>
         <th><%= day %></th>
         <th><%= total = User.where(:created_at => @first_user..day).count %></th>
@@ -23,6 +24,7 @@
       <% end %>
       </tbody>
     </table>
+    <%= paginate @pagg %>
     <%= link_to "使用者管理後台", admin_users_path, :class => "btn btn-primary" %>
 
   </div>

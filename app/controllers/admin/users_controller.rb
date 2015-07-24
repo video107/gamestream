@@ -26,6 +26,8 @@ class Admin::UsersController < AdminController
 
 
   def regist
+    @time_period = (User.first.created_at.to_date..Date.today)
+    @pagg = @time_period.page(params[:page]).per(10)
     @first_user = User.first.created_at
   end
 
