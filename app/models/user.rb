@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
-  has_many :menu_users, :dependent => :destroy
-  has_many :menus, :through => :menu_users, :dependent => :destroy
+  # has_many :menu_users, :dependent => :destroy
+  # has_many :menus, :through => :menu_users, :dependent => :destroy
 
   has_many :cases, :dependent => :destroy
 

@@ -10,7 +10,7 @@ class MenusController < ApplicationController
         @menus = Menu.all
       end
       @q = @menus.ransack(params[:q])
-      @menus = @q.result(distinct: true).page(params[:page]).per(6)
+      @menus = @q.result(distinct: true).where("deadline > ?", Time.now.to_date).page(params[:page]).per(6)
   end
 
   def suspend

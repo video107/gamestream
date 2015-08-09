@@ -4,11 +4,16 @@ class Admin::MenusController < AdminController
   # GET /admin/menus
   # GET /admin/menus.json
   def index
-    @admin_menus = Admin::Menu.all
-    # @menus = Menu.all.page(params[:page]).per(7)
+    @admin_menus = Admin::Menu.where("deadline > ?", Time.now.to_date)
+    # @admin_menus = Admin::Menu.all
     @q = @admin_menus.ransack(params[:q])
     @admin_menus = @q.result(distinct: true).page(params[:page]).per(7)
   end
+
+  def done_promoted
+    @admin_menus = Admin::Menu.where("deadline < ?", Time.now.to_date).page(params[:page]).per(7)
+  end
+
 
   # GET /admin/menus/1
   # GET /admin/menus/1.json
@@ -76,6 +81,17 @@ class Admin::MenusController < AdminController
     end
   end
 
+ def trashcan
+   @menus = PaperTrail::Version.where(:event => "destroy", :item_type => "menu").joins("LEFT JOIN menus ON item_id = menus.id").where("menus.id IS NULL").order('versions.created_at DESC').page(params[:page]).per(7)
+ end
+
+ def recover_delete
+   @menu = PaperTrail::Version.where(:event => "destroy", :item_type => "menu").joins("LEFT JOIN menus ON item_id = menus.id").where("menus.id IS NULL").order('versions.created_at DESC').find_by_item_id(params[:id])
+   @menu.reify.save!
+   flash[:success] = "回復遊戲成功"
+   redirect_to admin_menus_path
+ end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_menu
@@ -84,6 +100,6 @@ class Admin::MenusController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_menu_params
-      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon, :category_id, :game_image, :cpc_android, :cpc_ios, :cpi_android, :cpi_ios, :cpa_android, :cpa_ios)
+      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon, :category_id, :game_image, :cpc_android, :cpc_ios, :cpi_android, :cpi_ios, :cpa_android, :cpa_ios, :cpc_android_user, :cpc_ios_user, :cpi_android_user, :cpi_ios_user, :cpa_android_user, :cpa_ios_user, :deadline)
     end
 end

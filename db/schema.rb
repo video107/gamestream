@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720155609) do
+ActiveRecord::Schema.define(version: 20150807085917) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -39,15 +39,10 @@ ActiveRecord::Schema.define(version: 20150720155609) do
   add_index "case_click_install_excutes", ["user_id"], name: "index_case_click_install_excutes_on_user_id", using: :btree
 
   create_table "case_followers", force: :cascade do |t|
-    t.integer  "case_id",        limit: 4
-    t.integer  "user_id",        limit: 4
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "cpi_check",      limit: 255
-    t.string   "cpa_check",      limit: 255
-    t.integer  "repeat_click",   limit: 4,   default: 0
-    t.integer  "repeat_install", limit: 4,   default: 0
-    t.integer  "repeat_excute",  limit: 4,   default: 0
+    t.integer  "case_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "case_followers", ["case_id"], name: "index_case_followers_on_case_id", using: :btree
@@ -70,16 +65,6 @@ ActiveRecord::Schema.define(version: 20150720155609) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "menu_users", force: :cascade do |t|
-    t.integer  "menu_id",    limit: 4
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "menu_users", ["menu_id"], name: "index_menu_users_on_menu_id", using: :btree
-  add_index "menu_users", ["user_id"], name: "index_menu_users_on_user_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.string   "name",                    limit: 255
@@ -123,6 +108,13 @@ ActiveRecord::Schema.define(version: 20150720155609) do
     t.integer  "cpc_ios",                 limit: 4
     t.integer  "cpi_ios",                 limit: 4
     t.integer  "cpa_ios",                 limit: 4
+    t.integer  "cpc_android_user",        limit: 4
+    t.integer  "cpi_android_user",        limit: 4
+    t.integer  "cpa_android_user",        limit: 4
+    t.integer  "cpc_ios_user",            limit: 4
+    t.integer  "cpi_ios_user",            limit: 4
+    t.integer  "cpa_ios_user",            limit: 4
+    t.date     "deadline"
   end
 
   add_index "menus", ["category_id"], name: "index_menus_on_category_id", using: :btree

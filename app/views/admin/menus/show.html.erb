@@ -13,6 +13,11 @@
     </p>
 
     <p>
+      <strong>遊戲推廣deadline:</strong>
+      <%= @admin_menu.deadline %>
+    </p>
+
+    <p>
       <strong>遊戲大頭照:</strong>
       <%= image_tag(@menu.game_image(:thumb)) %>
        <br>
@@ -53,6 +58,23 @@
         <td><%= @admin_menu.cpc_ios %></td>
         <td><%= @admin_menu.cpi_ios %></td>
         <td><%= @admin_menu.cpa_ios %></td>
+      </tr>
+
+      <tr>
+        <th>CPC_Android_for_user</th>
+        <th>CPI_Android_for_user</th>
+        <th>CPA_Android_for_user</th>
+        <th>CPC_IOS_for_user</th>
+        <th>CPI_IOS_for_user</th>
+        <th>CPA_IOS_for_user</th>
+      </tr>
+      <tr>
+        <td><%= @admin_menu.cpc_android_user %></td>
+        <td><%= @admin_menu.cpi_android_user %></td>
+        <td><%= @admin_menu.cpa_android_user %></td>
+        <td><%= @admin_menu.cpc_ios_user %></td>
+        <td><%= @admin_menu.cpi_ios_user %></td>
+        <td><%= @admin_menu.cpa_ios_user %></td>
       </tr>
 
 

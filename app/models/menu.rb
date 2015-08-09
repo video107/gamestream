@@ -1,9 +1,9 @@
 class Menu < ActiveRecord::Base
 
   belongs_to :category
-  has_many :menu_users
-  has_many :users, :through => :menu_users
-
+  # has_many :menu_users
+  # has_many :users, :through => :menu_users
+  has_paper_trail
   has_many :cases, :dependent => :destroy
 
   has_attached_file :game_image, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",

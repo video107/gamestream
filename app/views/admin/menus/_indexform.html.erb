@@ -1,0 +1,31 @@
+<table class="table table-bordered">
+  <thead>
+    <tr class="table_header">
+      <th>遊戲名</th>
+      <th>遊戲分類</th>
+      <th>遊戲上架時間</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @admin_menus.order(:id => :desc).each do |menu| %>
+    <tr>
+      <!-- <td class="td_fix"><%#= link_to menu.name, total_report_admin_menu_path(menu),:class => "label label-default" %></td> -->
+      <td class="td_over"><%= menu.name%></td>
+      <td class="td_over"><%= menu.category.name %></td>
+      <td class="td_over"><%= menu.created_at.strftime("%Y-%m-%d %I:%M %p") %></td>
+      <td>
+        <%= link_to '詳細', admin_menu_path(menu), :class => "btn btn-warning" %>
+        <%= link_to '編輯', edit_admin_menu_path(menu), :class => "btn btn-info" %>
+        <%= link_to '刪除', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' },:class => "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @admin_menus  %>
+
+<br>
+<%= link_to "使用者管理後台", admin_users_path, :class => "btn btn-success" %>

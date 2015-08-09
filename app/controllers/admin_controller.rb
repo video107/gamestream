@@ -17,4 +17,8 @@ class AdminController < ApplicationController
     )
   end
   layout 'admin'
+
+  def index
+  end
+  
 end

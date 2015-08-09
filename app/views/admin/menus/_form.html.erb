@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :game_upload_time %><br>
+    <%= Time.now.strftime("%Y-%m-%d %I:%M %p") %>
+  </div>
+  <div class="field">
     <%= f.label :game_image %><br>
     <%= f.file_field :game_image %>
   </div>
@@ -35,29 +39,45 @@
     <%= f.label :menu_url_ios %><br>
     <%= f.text_field :menu_url_ios, :class => "form-control form_word"  %>
   </div>
-  <div class="field">
+  <div class="field form_inline">
     <%= f.label :cpc_android, "CPC_Android" %><br>
     <%= f.text_field :cpc_android, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpc_android_user, "CPC_Android_for_user" %>
+    <%= f.text_field :cpc_android_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :cpi_android, "CPI_Android" %><br>
     <%= f.text_field :cpi_android, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpi_android_user, "CPI_Android_for_user" %><br>
+    <%= f.text_field :cpi_android_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :cpa_android, "CPA_Android" %><br>
     <%= f.text_field :cpa_android, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpa_android_user, "CPA_Android_for_user" %><br>
+    <%= f.text_field :cpa_android_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :cpc_ios, "CPC_IOS" %><br>
     <%= f.text_field :cpc_ios, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpc_ios_user, "CPC_IOS_for_user" %><br>
+    <%= f.text_field :cpc_ios_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :cpi_ios, "CPI_IOS" %><br>
     <%= f.text_field :cpi_ios, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpi_ios_user, "CPI_IOS_for_user" %><br>
+    <%= f.text_field :cpi_ios_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
     <%= f.label :cpa_ios, "CPA_IOS" %><br>
     <%= f.text_field :cpa_ios, :class =>"form-control form_word_small"  %>
+    <%= f.label :cpa_ios_user, "CPA_IOS_for_user" %><br>
+    <%= f.text_field :cpa_ios_user, :class =>"form-control form_word_small"  %>
+  </div>
+  <div class="field">
+    <%= f.label :dateline %><br>
+    <%= f.text_field :deadline, :id => "deadline",:class => "form-control form_word" %>
   </div>
   <div class="field">
     <%= f.label :game_pic %><br>
@@ -89,3 +109,11 @@
     <%= f.submit "新增或更新", :class => "btn btn-success"%>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  $('#deadline').datepicker({
+     format: "yyyy-mm-dd"
+  });
+
+</script>

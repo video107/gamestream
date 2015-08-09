@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :menus do
+      collection do
+        get :done_promoted, :as => :promoted
+        post :trashcan
+      end
+      member do
+        get :total_report
+        get :day_report
+        post :recover_delete
+      end
+    end
     resources :users do
       collection do
         post :trashcan
@@ -15,14 +26,8 @@ Rails.application.routes.draw do
       end
     end
   end
-  namespace :admin do
-    resources :menus do
-      member do
-        get :total_report
-        get :day_report
-      end
-    end
-  end
+
+  get 'admin/index' => "admin#index"
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -50,7 +55,7 @@ Rails.application.routes.draw do
   #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :des_user_session
   # end
   # devise_scope :user do
-   # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

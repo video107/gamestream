@@ -37,14 +37,12 @@
     <ul>
       <li style="list-style-type:none">遊戲名稱：<%= c.menu.name %> (<%= c.owner %>)</li>
       <li style="list-style-type:none">專屬連結：<%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></li>
-      <li style="list-style-type:none">粉絲人數：<%= c.case_followers.count %></li>
-
     </ul>
    <% end %>
    <%= paginate @cases %>
    <br>
    <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
-   <%= link_to('修改密碼', edit_registration_path(:user), :class => "btn btn-warning") %>
+   <%#= link_to('修改密碼', edit_registration_path(:user), :class => "btn btn-warning") %>
    <%= link_to('修改個人資料', edit_user_path(current_user), :class => "btn btn-success") %>
  </div>
 </div>

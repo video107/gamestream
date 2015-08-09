@@ -23,11 +23,6 @@
           <th>Email</th>
           <th>Name</th>
           <th>Nickname</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Bank name</th>
-          <th>Bank name code</th>
-          <th>Bank account</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -39,11 +34,6 @@
             <td><%= admin_user.email %></td>
             <td><%= admin_user.name %></td>
             <td><%= admin_user.nickname %></td>
-            <td><%= admin_user.phone %></td>
-            <td><%= admin_user.address %></td>
-            <td><%= admin_user.bank_name %></td>
-            <td><%= admin_user.bank_name_code %></td>
-            <td><%= admin_user.bank_account %></td>
             <td>
               <%= link_to '使用者詳細', admin_user,:class => "btn btn-warning" %>
               <%= link_to '編輯', edit_admin_user_path(admin_user), :class => "btn btn-info" %>
