@@ -29,13 +29,13 @@ class Admin::UsersController < AdminController
   def regist
     @first_user = User.first.created_at.to_date
     if params[:date1] == nil || params[:date2] == nil
-      @users = User.order(:id => :desc).where("created_at > ? && created_at < ?", 20.days.ago.to_date, Date.today).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("created_at >= ? && created_at =< ?", 20.days.ago.to_date, Date.today).page(params[:page]).per(7)
       @date = 10.days.ago.to_date..Date.today
       return
     elsif params[:date1] !="" && params[:date2] != ""
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
-      @users = User.order(:id => :desc).where("created_at > ? && created_at < ?", @early_date, @late_date).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("created_at >= ? && created_at =< ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
         @date = @early_date..@late_date
       elsif @early_date.to_date == @late_date.to_date

@@ -59,34 +59,6 @@ class Menu < ActiveRecord::Base
     end
   end
 
-  # def followers_day?(owner,date1,date2)
-  #   total_followers_day = 0
-  #   ios_followers_day = 0
-  #   android_followers_day = 0
-  #   if owner == "total"
-  #     self.cases.each do |c|
-  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
-  #           total_followers_day += 1
-  #       end
-  #     end
-  #     return total_followers_day
-  #   elsif owner == "ios"
-  #     self.cases.where(:owner => "ios").each do |c|
-  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
-  #           ios_followers_day += 1
-  #       end
-  #     end
-  #     return ios_followers_day
-  #   elsif owner == "android"
-  #     self.cases.where(:owner => "android").each do |c|
-  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
-  #           android_followers_day += 1
-  #       end
-  #     end
-  #     return android_followers_day
-  #   end
-  # end
-
   def to_now?
     self.created_at.to_date..Time.now.to_date
   end
@@ -96,12 +68,12 @@ class Menu < ActiveRecord::Base
     ios_click = 0
     android_click = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
         ios_click += c.click_users.count
       end
       return ios_click
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
        android_click += c.click_users.count
      end
       return android_click
@@ -112,12 +84,12 @@ class Menu < ActiveRecord::Base
     ios_install = 0
     android_install = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
         ios_install += c.install_users.count
       end
       return ios_install
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
        android_install += c.install_users.count
      end
       return android_install
@@ -128,12 +100,12 @@ class Menu < ActiveRecord::Base
     ios_excute = 0
     android_excute = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
         ios_excute += c.excute_users.count
       end
       return ios_excute
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
        android_excute += c.excute_users.count
      end
       return android_excute
