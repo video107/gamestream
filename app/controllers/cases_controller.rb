@@ -6,18 +6,48 @@ class CasesController < ApplicationController
   before_action :check_rights
 
   def index
-    @cases = current_user.cases.page(params[:page]).per(7)
+    @cases = current_user.cases.page(params[:page]).order(:id => :desc).per(7)
+    @cases_for_profit = current_user.cases
   end
+
+
+  def case_report
+    @case = current_user.cases.find(params[:id])
+    if params[:date1] == nil || params[:date2] == nil
+      return
+    elsif params[:date1] !="" && params[:date2] != ""
+      @early_date = params[:date1]
+      @late_date = params[:date2]
+      if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
+        @date = @early_date + "..." + @late_date
+      elsif @early_date.to_date == @late_date.to_date
+        @date = @early_date
+      elsif @early_date.to_date > @late_date.to_date
+        flash[:notice] = "日期順序錯誤"
+        redirect_to case_report_user_case_path(current_user,@case)
+      end
+    else
+      render "error"
+    end
+  end
+
+
 
   def show
     if current_user
       @case = Case.find(params[:id])
+      # if current_user.uid? == false
+      #   current_user.update(uid: current_user.id)
+      # end
       already_followed = @case.find_followed_by_user(current_user)
       if already_followed
+        current_user.update(uid: current_user.id)
         CaseClickInstallExcute.create(:user => current_user, :case => @case, :cpc => true)
       elsif  @case.user == current_user
+        current_user.update(uid: current_user.id)
         return
       elsif
+        current_user.update(uid: current_user.id)
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
     end

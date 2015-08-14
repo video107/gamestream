@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :clicks, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
   has_many :installs, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
   has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
+  has_many :deposit_records
 
 
   # def self.from_omniauth(auth)
@@ -68,6 +69,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def deposit?
+    self.deposit_records.all.map { |x| x.amount}.sum
+  end
 
 
 

@@ -20,10 +20,18 @@
             <span class="text_center_for_grid">報表日期</span>
           </div>
           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= @case.to_now? %></span>
+            <span class="text_center_for_grid">
+              <% if @date %>
+                <%= @date %>
+              <% else  %>
+                <%= @case.to_now? %>
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              $<%= @case.total_profit?("current_user",@early_date,@late_date) %>
+            </span>
           </div>
         </div>
         <div class="row">
@@ -31,10 +39,11 @@
             <span class="text_center_for_grid">選擇日期</span>
           </div>
           <div class="col-xs-2 text-center grid">
-           <%= form_tag day_report_admin_user_case_path(@user,@case), :method => :get do %>
-            <%= text_field_tag "date",nil, class: "form-control"%>
-            <%= submit_tag "Select", :class => "btn btn-default" %>
-           <% end %>
+            <%= form_tag admin_user_case_path(@user,@case), :method => :get do %>
+             From <%= text_field_tag "date1",nil, class: "form-control"%>
+             To <%= text_field_tag "date2",nil, class: "form-control"%><br>
+             <%= submit_tag "Select", :class => "btn btn-default" %>
+            <% end %>
           </div>
         </div>
         <div class="spacing_large"></div>
@@ -64,9 +73,9 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "android" %>
-                <%= @case.case_followers.count %>
+                <%= @case.follower_by_date(@early_date,@late_date) %>
               <% else %>
-                0
+                na
               <% end %>
             </span>
           </div>
@@ -88,9 +97,9 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "ios" %>
-                <%= @case.case_followers.count %>
+                <%= @case.follower_by_date(@early_date,@late_date) %>
               <% else %>
-                0
+                na
               <% end %>
             </span>
           </div>
@@ -121,9 +130,90 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "android" %>
-                <%= @case.total_click? %>
+                <%= @case.total_click?(@early_date,@late_date) %>
               <% else %>
-                0
+                na
+              <% end %>
+            </span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">Android</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                 <%= @case.total_install?(@early_date,@late_date) %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">Android</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                 <%= @case.total_excute?(@early_date,@late_date) %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">IOS</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+             <% if @case.owner == "ios" %>
+                <%= @case.total_click?(@early_date,@late_date) %>
+             <% else %>
+                na
+             <% end %>
+            </span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">IOS</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                 <%= @case.total_install?(@early_date,@late_date) %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">IOS</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                 <%= @case.total_excute?(@early_date,@late_date) %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
+          </div>
+          <div class="col-xs-4 grid">
+            <span class="text_center_for_grid">點擊總獲利</span>
+          </div>
+          <div class="col-xs-4 grid">
+            <span class="text_center_for_grid">安裝總獲利</span>
+          </div>
+          <div class="col-xs-4 grid">
+            <span class="text_center_for_grid">執行總獲利</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">Android</span>
+          </div>
+          <div class="col-xs-2 grid">
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                 <%= @case.follower_by_date(@early_date,@late_date) * (@case.menu.cpc_android_user ? @case.menu.cpc_android_user : 0) %>
+              <% else %>
+                 na
               <% end %>
             </span>
           </div>
@@ -144,103 +234,12 @@
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
-             <% if @case.owner == "ios" %>
-                <%= @case.total_click? %>
-             <% else %>
-                0
-             <% end %>
+              <% if @case.owner == "ios" %>
+                 <%= @case.follower_by_date(@early_date,@late_date) * (@case.menu.cpc_ios_user ? @case.menu.cpc_ios_user : 0) %>
+              <% else %>
+                 na
+              <% end %>
             </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">點擊拆帳比例</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝拆帳比例</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行拆帳比例</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">點擊總獲利</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝總獲利</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行總獲利</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
@@ -263,8 +262,10 @@
   </div>
 </div>
 <script type="text/javascript">
-  $('#date').datepicker({
+  $('#date1').datepicker({
      format: "yyyy-mm-dd"
   });
-
+  $('#date2').datepicker({
+     format: "yyyy-mm-dd"
+  });
 </script>

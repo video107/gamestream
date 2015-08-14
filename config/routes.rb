@@ -4,11 +4,11 @@ Rails.application.routes.draw do
       collection do
         get :done_promoted, :as => :promoted
         post :trashcan
+        get :total_report
       end
       member do
-        get :total_report
-        get :day_report
         post :recover_delete
+        get :day_report
       end
     end
     resources :users do
@@ -47,7 +47,11 @@ Rails.application.routes.draw do
       post :suspend
       post :restore
     end
-    resources :cases
+    resources :cases do
+      member do
+        get :case_report
+      end
+    end
   end
 
   get "/suspend" => "menus#suspend"

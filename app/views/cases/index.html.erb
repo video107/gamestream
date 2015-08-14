@@ -1,48 +1,142 @@
-<div class="container">
+<div class="container_fluid" style="background-color:aliceblue;">
   <div class="row">
-  <h1>專屬連結列表</h1>
-      <% if current_user.fb_image %>
-        <h2><%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
-      <% elsif current_user.nickname%>
-        <h2><%= current_user.nickname %></h2>
-      <% else %>
-        <h2><%= current_user.user_name %></h2>
-      <% end %>
-  <table class="table table-striped">
-    <tr>
-      <th>Email</th>
-      <th>姓名</th>
-      <th>暱稱</th>
-      <th>電話</th>
-      <th>地址</th>
-      <th>銀行行庫名稱</th>
-      <th>銀行行庫代碼</th>
-      <th>銀行帳號</th>
-    </tr>
+    <div class="container">
+      <div class="row">
+        <% if current_user.fb_image %>
+          <h2><%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
+        <% elsif current_user.nickname%>
+          <h2><%= current_user.nickname %></h2>
+        <% else %>
+          <h2><%= current_user.user_name %></h2>
+        <% end %>
+        <div class="row">
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員帳號</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.email %></span>
+          </div>
 
-    <tr>
-      <td><%= current_user.email %></td>
-      <td><%= current_user.try(:name) %></td>
-      <td><%= current_user.try(:nickname) %></td>
-      <td><%= current_user.try(:phone) %></td>
-      <td><%= current_user.try(:address) %></td>
-      <td><%= current_user.try(:bank_name) %></td>
-      <td><%= current_user.try(:bank_name_code) %></td>
-      <td><%= current_user.try(:bank_account) %></td>
-    </tr>
-  </table>
-  <div class="spacing_large"></div>
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">會員電話</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.phone %></span>
+          </div>
 
-   <% @cases.each do |c| %>
-    <ul>
-      <li style="list-style-type:none">遊戲名稱：<%= c.menu.name %> (<%= c.owner %>)</li>
-      <li style="list-style-type:none">專屬連結：<%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></li>
-    </ul>
-   <% end %>
-   <%= paginate @cases %>
-   <br>
-   <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
-   <%#= link_to('修改密碼', edit_registration_path(:user), :class => "btn btn-warning") %>
-   <%= link_to('修改個人資料', edit_user_path(current_user), :class => "btn btn-success") %>
- </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員類別</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">ＳＵＣＫ</span>
+          </div>
+
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">會員地址</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.address %></span>
+          </div>
+
+           <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">會員姓名</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.name %></span>
+          </div>
+
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">銀行行庫代碼</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.bank_name_code %></span>
+          </div>
+
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">銀行行庫名稱</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.bank_name %></span>
+          </div>
+
+          <div class="col-xs-2 text-left grid col-xs-offset-4">
+            <span class="text_center_for_grid">銀行代碼</span>
+          </div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid"><%= current_user.bank_account %></span>
+          </div>
+        </div>
+
+        <div class="spacing_large"></div>
+
+        <div class="row">
+         <div class="col-xs-2 text-center grid">
+          <span class="text_center_for_grid">總獲利</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">已領款</span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">未領款</span>
+         </div>
+         <div class="col-xs-2 text-center grid">
+          <span class="text_center_for_grid">
+            <% profit = 0 %>
+            <% @cases_for_profit.each do |c| %>
+              <% profit = profit + c.total_profit?("current_user",c.created_at.to_date,c.menu.deadline) %>
+              <!-- only cpc -->
+            <% end %>
+            $<%= profit %>
+          </span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">
+            $<%= current_user.deposit? %>
+          </span>
+         </div>
+         <div class="col-xs-2 text-center grid col-xs-offset-3">
+          <span class="text_center_for_grid">
+            $<%= profit - current_user.deposit? %>
+          </span>
+         </div>
+        </div>
+
+        <div class="spacing_large"></div>
+        <div class="row">
+          <h3>參與案件</h3>
+        <table class="table table-bordered">
+
+          <tr>
+            <th>案件名稱</th>
+            <th>案件推廣區間</th>
+            <th>Android連結</th>
+            <th>IOS連結</th>
+            <th>案件獲利</th>
+          </tr>
+         <% @cases.each do |c| %>
+          <tr>
+            <td><%= link_to c.menu.name, case_report_user_case_path(current_user, c),:class => "label label-primary" %>  (<%= c.owner %>)</td>
+            <td><%= c.menu.deadline %></td>
+            <% if c.owner == "android" %>
+              <td><%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if c.owner == "ios" %>
+              <td><%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <td>$<%= c.total_profit?("current_user",c.created_at.to_date, c.menu.deadline) %></td>
+          </tr>
+
+          <% end %>
+        </table>
+        <%= paginate @cases %>
+        </div>
+        <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
+        <%= link_to('修改個人資料', edit_user_path(current_user), :class => "btn btn-success") %>
+        </div>
+    </div>
+  </div>
 </div>

@@ -3,7 +3,7 @@
   <h1><%= @error %></h1>
     <div class="container">
       <div class="row">
-      <h1>案件總報表</h1>
+      <h1>單一案件總報表</h1>
       <div class="spacing_large"></div>
         <div class="row">
           <div class="col-xs-2 text-left grid">
@@ -13,75 +13,105 @@
             <span class="text_center_for_grid"><%= @admin_menu.name %></span>
           </div>
           <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">日參與會員數</span>
+            <span class="text_center_for_grid">案件推廣區間</span>
           </div>
           <div class="col-xs-2 text-left grid">
             <span class="text_center_for_grid">
-              <%= @admin_menu.followers_day?("total",@date) %>
+              <%= @admin_menu.created_at.to_date...@admin_menu.deadline %>
             </span>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">日期</span>
+            <span class="text_center_for_grid">日期區間</span>
           </div>
           <div class="col-xs-2 text-left grid">
             <span class="text_center_for_grid">
-              <%= @date %>
+              <% if @date %>
+                <%= @date %>
+              <% else %>
+                <%= Date.today %>
+              <% end %>
             </span>
 
           </div>
           <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">總註冊會員數</span>
+            <span class="text_center_for_grid">參與會員數</span>
           </div>
           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= Admin::User.all.count %></span>
+            <span class="text_center_for_grid">
+              <% if @date %>
+                <%= @admin_menu.followers?("total",@early_date,@late_date) %>
+              <% else %>
+                <%= @admin_menu.followers?("total",Date.today,Date.today) %>
+              <% end %>
+            </span>
+          </div>
+          <div class="spacing_large"></div>
+          <div class="col-xs-2 text-left grid">
+            <span class="text_center_for_grid">選取時間</span>
+          </div>
+          <div class="col-xs-2 text-center grid">
+            <%= form_tag day_report_admin_menu_path(@admin_menu), :method => :get do %>
+             From <%= text_field_tag "date1",nil, class: "form-control"%>
+             To <%= text_field_tag "date2",nil, class: "form-control"%><br>
+             <%= submit_tag "Select", :class => "btn btn-default" %>
+            <% end %>
           </div>
         </div>
+
 
         <div class="spacing_large"></div>
           <div class="row text-center">
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日點擊</span>
+                <span class="text_center_for_grid">點擊</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日安裝</span>
+                <span class="text_center_for_grid">安裝</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日執行</span>
+                <span class="text_center_for_grid">執行</span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid">案件日營業額</span>
+                <span class="text_center_for_grid">案件總營業額</span><br>
+                <span class="text_center_for_grid">(*default累計至deadline)</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日不重複點擊</span>
+                <span class="text_center_for_grid">每次點擊價格(CPC)</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日不重複安裝</span>
+                <span class="text_center_for_grid">每次安裝價格(CPI)</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日不重複執行</span>
+                <span class="text_center_for_grid">每次每次執行價格(CPA)</span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  <% if @date %>
+                    <%= @admin_menu.total_profit?(@early_date,@late_date) %>
+                  <% else  %>
+                    <%= @admin_menu.total_profit?(@admin_menu.created_at.to_date,@admin_menu.deadline) %>
+                  <% end %>
+
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.followers_day?("android",@date) %></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpc_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpi_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpa_android %></span>
               </div>
 
               <div class="col-xs-3" style="min-height:40px;">
@@ -92,19 +122,19 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.followers_day?("ios",@date) %></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpc_ios %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpi_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid"><%= @admin_menu.cpa_android %></span>
               </div>
 
               <div class="col-xs-3" style="min-height:40px;">
@@ -112,81 +142,23 @@
               </div>
 
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日總點擊數</span>
+                <span class="text_center_for_grid">不重複點擊數</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日總安裝數</span>
+                <span class="text_center_for_grid">不重複安裝數</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">日總執行數</span>
+                <span class="text_center_for_grid">不重複執行數</span>
               </div>
 
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid">案件日成本</span>
+                <span class="text_center_for_grid">案件總成本</span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.total_click_day?("android",@date) %></span>
-              </div>
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">Android</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
-              </div>
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">Android</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
-              </div>
-              <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid"></span>
-              </div>
-
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">IOS</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.total_click_day?("ios",@date) %></span>
-              </div>
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">IOS</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
-              </div>
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">IOS</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
-              </div>
-
-              <div class="col-xs-3" style="min-height:40px;">
-                <span class="text_center_for_grid"></span>
-              </div>
-
-              <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">點擊日營業額</span>
-              </div>
-              <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">安裝日營業額</span>
-              </div>
-              <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">執行日營業額</span>
-              </div>
-              <div class="col-xs-3" style="min-height:40px;">
-                <span class="text_center_for_grid"></span>
-              </div>
-
-              <div class="col-xs-1 grid">
-                <span class="text_center_for_grid">Android</span>
-              </div>
-              <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.followers?("android") * @admin_menu.cpc_android %></span>
+                <span class="text_center_for_grid"><%#= @admin_menu.total_click_day?("android",@date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -201,13 +173,71 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid">案件日淨利</span>
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"><%#= @admin_menu.total_click_day?("ios",@date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.followers?("ios") * @admin_menu.cpc_ios %></span>
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總點擊數</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總安裝數</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">總執行數</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"><%#= @admin_menu.followers?("android") * @admin_menu.cpc_android %></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-2 grid col-xs-offset-1">
+                <span class="text_center_for_grid">案件總淨利</span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"><%#= @admin_menu.followers?("ios") * @admin_menu.cpc_ios %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -226,13 +256,13 @@
               </div>
 
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">點擊拆帳比例</span>
+                <span class="text_center_for_grid">點擊總營業額</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">安裝拆帳比例</span>
+                <span class="text_center_for_grid">安裝總營業額</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">執行拆帳比例</span>
+                <span class="text_center_for_grid">執行總營業額</span>
               </div>
               <div class="col-xs-3" style="min-height:40px;">
                 <span class="text_center_for_grid"></span>
@@ -280,13 +310,13 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">點擊日成本</span>
+                <span class="text_center_for_grid">點擊支付金額</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">安裝日成本</span>
+                <span class="text_center_for_grid">安裝支付金額</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">執行日成本</span>
+                <span class="text_center_for_grid">執行支付金額</span>
               </div>
               <div class="col-xs-3" style="min-height:40px;">
                 <span class="text_center_for_grid"></span>
@@ -335,13 +365,13 @@
               </div>
 
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">點擊日淨利</span>
+                <span class="text_center_for_grid">點擊總成本</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">安裝日淨利</span>
+                <span class="text_center_for_grid">安裝總成本</span>
               </div>
               <div class="col-xs-3 grid">
-                <span class="text_center_for_grid">執行日淨利</span>
+                <span class="text_center_for_grid">執行總成本</span>
               </div>
               <div class="col-xs-3" style="min-height:40px;">
                 <span class="text_center_for_grid"></span>
@@ -385,12 +415,78 @@
               <div class="col-xs-2 grid">
                 <span class="text_center_for_grid"></span>
               </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">點擊總淨利</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">安裝總淨利</span>
+              </div>
+              <div class="col-xs-3 grid">
+                <span class="text_center_for_grid">執行總淨利</span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">Android</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-3" style="min-height:40px;">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+              <div class="col-xs-1 grid">
+                <span class="text_center_for_grid">IOS</span>
+              </div>
+              <div class="col-xs-2 grid">
+                <span class="text_center_for_grid"></span>
+              </div>
+
+
+
 
             </div>
 
         <div class="spacing"></div>
-        <%= link_to "回總報告", total_report_admin_menu_path(@admin_menu ),:class => "btn btn-primary "%>
+        <%= link_to "回總報告", total_report_admin_menus_path,:class => "btn btn-primary "%>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('#date1').datepicker({
+     format: "yyyy-mm-dd"
+  });
+  $('#date2').datepicker({
+     format: "yyyy-mm-dd"
+  });
+</script>

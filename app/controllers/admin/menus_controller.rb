@@ -1,5 +1,5 @@
 class Admin::MenusController < AdminController
-  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy, :total_report, :day_report]
+  before_action :set_admin_menu, only: [:show, :edit, :update, :destroy,:day_report]
 
   # GET /admin/menus
   # GET /admin/menus.json
@@ -31,11 +31,40 @@ class Admin::MenusController < AdminController
   end
 
   def total_report
+    # @q = @admin_menus.ransack(params[:q])
+    # @admin_menus = @q.result(distinct: true).page(params[:page]).per(7)
+    if params[:date1] == nil || params[:date2] == nil
+      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at > ? && created_at < ?", 30.days.ago.to_date, Date.today).page(params[:page]).per(7)
+      return
+    elsif params[:date1] !="" && params[:date2] != ""
+      @early_date = params[:date1]
+      @late_date = params[:date2]
+      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at > ? && created_at < ?", @early_date, @late_date).page(params[:page]).per(7)
+      if @early_date.to_date != @late_date.to_date
+        @date = @early_date + "..." + @late_date
+      elsif @early_date.to_date == @late_date.to_date
+        @date = @early_date
+      end
+    else
+      render "error"
+    end
   end
 
   def day_report
-    if params[:date] != ""
-      @date = params[:date].to_date
+    if params[:date1] == nil || params[:date2] == nil
+      return
+    elsif params[:date1] !="" && params[:date2] != ""
+      @early_date = params[:date1]
+      @late_date = params[:date2]
+      # @admin_menu = Admin::Menu.find(params[:id]).where("created_at > ? && created_at < ?", @early_date, @late_date).page(params[:page]).per(7)
+      if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
+        @date = @early_date + "..." + @late_date
+      elsif @early_date.to_date == @late_date.to_date
+        @date = @early_date
+      elsif @early_date.to_date > @late_date.to_date
+        flash[:alert] = "日期順序錯誤"
+        redirect_to day_report_admin_menu_path(@admin_menu)
+      end
     else
       render "error"
     end

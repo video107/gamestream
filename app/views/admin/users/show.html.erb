@@ -80,13 +80,23 @@
           <span class="text_center_for_grid">未領款</span>
          </div>
          <div class="col-xs-2 text-center grid">
-          <span class="text_center_for_grid">$100</span>
+          <span class="text_center_for_grid">
+            <% profit = 0 %>
+            <% @cases_for_profit.each do |c| %>
+              <% profit = profit + c.total_profit?("current_user",c.created_at.to_date,c.menu.deadline) %>
+            <% end %>
+            $<%= profit %>
+          </span>
          </div>
          <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">$50</span>
+          <span class="text_center_for_grid">
+            $<%= @admin_user.deposit? %>
+          </span>
          </div>
          <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">$50</span>
+          <span class="text_center_for_grid">
+            $<%= profit - @admin_user.deposit? %>
+          </span>
          </div>
         </div>
 
@@ -104,7 +114,7 @@
           </tr>
          <% @cases.each do |c| %>
           <tr>
-            <td><%= link_to c.menu.name, admin_user_case_path(@admin_user, c) %>(<%= c.owner %>)</td>
+            <td><%= link_to c.menu.name, admin_user_case_path(@admin_user, c),:class => "label label-primary" %> (<%= c.owner %>)</td>
             <td><%= c.case_followers.count %></td>
             <td>none</td>
             <td>none</td>

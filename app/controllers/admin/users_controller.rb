@@ -13,6 +13,7 @@ class Admin::UsersController < AdminController
   # GET /admin/users/1.json
   def show
     @cases = @admin_user.cases.page(params[:page]).per(7)
+    @cases_for_profit = @admin_user.cases
   end
 
   # GET /admin/users/new
@@ -26,7 +27,6 @@ class Admin::UsersController < AdminController
 
 
   def regist
-    # @time_period = (User.first.created_at.to_date..Date.today)
     @time_period = User.first.created_at.to_date..Date.today
     @first_user = User.first.created_at
   end

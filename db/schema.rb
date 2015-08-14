@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807085917) do
+ActiveRecord::Schema.define(version: 20150812072637) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.uuid     "visit_id",   limit: 16
@@ -66,11 +66,18 @@ ActiveRecord::Schema.define(version: 20150807085917) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "deposit_records", force: :cascade do |t|
+    t.integer  "amount",     limit: 4, default: 0
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.text     "contents",                limit: 65535
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "menu_url",                limit: 255
     t.string   "game_pic_file_name",      limit: 255
     t.string   "game_pic_content_type",   limit: 255
@@ -102,18 +109,18 @@ ActiveRecord::Schema.define(version: 20150807085917) do
     t.integer  "game_image_file_size",    limit: 4
     t.datetime "game_image_updated_at"
     t.integer  "category_id",             limit: 4
-    t.integer  "cpc_android",             limit: 4
-    t.integer  "cpi_android",             limit: 4
-    t.integer  "cpa_android",             limit: 4
-    t.integer  "cpc_ios",                 limit: 4
-    t.integer  "cpi_ios",                 limit: 4
-    t.integer  "cpa_ios",                 limit: 4
-    t.integer  "cpc_android_user",        limit: 4
-    t.integer  "cpi_android_user",        limit: 4
-    t.integer  "cpa_android_user",        limit: 4
-    t.integer  "cpc_ios_user",            limit: 4
-    t.integer  "cpi_ios_user",            limit: 4
-    t.integer  "cpa_ios_user",            limit: 4
+    t.integer  "cpc_android",             limit: 4,     default: 0
+    t.integer  "cpi_android",             limit: 4,     default: 0
+    t.integer  "cpa_android",             limit: 4,     default: 0
+    t.integer  "cpc_ios",                 limit: 4,     default: 0
+    t.integer  "cpi_ios",                 limit: 4,     default: 0
+    t.integer  "cpa_ios",                 limit: 4,     default: 0
+    t.integer  "cpc_android_user",        limit: 4,     default: 0
+    t.integer  "cpi_android_user",        limit: 4,     default: 0
+    t.integer  "cpa_android_user",        limit: 4,     default: 0
+    t.integer  "cpc_ios_user",            limit: 4,     default: 0
+    t.integer  "cpi_ios_user",            limit: 4,     default: 0
+    t.integer  "cpa_ios_user",            limit: 4,     default: 0
     t.date     "deadline"
   end
 

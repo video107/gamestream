@@ -35,17 +35,17 @@ class Menu < ActiveRecord::Base
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
 
-  def followers?(owner)
-    total_followers = []
+  def followers?(owner,date1,date2)
+    total_followers = 0
     ios_followers = 0
     android_followers = 0
     if owner == "total"
       self.cases.each do |c|
-        c.follow_users.each do |u|
-          total_followers << u.email
+        c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |u|
+          total_followers += 1
         end
       end
-      return total_followers.uniq.count
+      return total_followers
     elsif owner == "ios"
       self.cases.where(:owner => "ios").each do |c|
         ios_followers = ios_followers + c.follow_users.count
@@ -58,7 +58,7 @@ class Menu < ActiveRecord::Base
       return android_followers
     end
   end
-
+  
   def followers_day?(owner,date)
     total_followers_day = []
     ios_followers_day = 0
@@ -98,45 +98,70 @@ class Menu < ActiveRecord::Base
   end
 
 
-  def total_click?(owner)
+  def total_click?(owner,date1,date2)
     ios_click = 0
     android_click = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").each do |c|
+      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
         ios_click += c.click_users.count
       end
       return ios_click
     elsif owner == "android"
-     self.cases.where(:owner => "android").each do |c|
+     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
        android_click += c.click_users.count
      end
       return android_click
     end
   end
 
-  def total_click_day?(owner,date)
-    ios_click = 0
-    android_click = 0
+  def total_install?(owner,date1,date2)
+    ios_install = 0
+    android_install = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").each do |c|
-        c.click_users.each do |cu|
-          if cu.created_at.to_date == date
-            ios_click += 1
-          end
-        end
+      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+        ios_install += c.install_users.count
       end
-      return ios_click
+      return ios_install
     elsif owner == "android"
-     self.cases.where(:owner => "android").each do |c|
-      c.click_users.each do |cu|
-        if cu.created_at.to_date == date
-         android_click += 1
-        end
-      end
+     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+       android_install += c.install_users.count
      end
-      return android_click
+      return android_install
     end
   end
+
+  def total_excute?(owner,date1,date2)
+    ios_excute = 0
+    android_excute = 0
+    if owner == "ios"
+      self.cases.where(:owner => "ios").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+        ios_excute += c.excute_users.count
+      end
+      return ios_excute
+    elsif owner == "android"
+     self.cases.where(:owner => "android").where("created_at > ? && created_at < ?", date1, date2).each do |c|
+       android_excute += c.excute_users.count
+     end
+      return android_excute
+    end
+  end
+
+  def total_profit?(date1,date2)
+    (self.total_click?("ios",date1,date2) * (self.cpc_ios ? self.cpc_ios : 0) + self.total_click?("android",date1,date2) * (self.cpc_android ? self.cpc_android : 0)) +
+    (self.total_install?("ios",date1,date2) * (self.cpi_ios ? self.cpi_ios : 0) + self.total_install?("android",date1,date2) * (self.cpi_android ? self.cpi_android : 0)) +
+    (self.total_excute?("ios",date1,date2) * (self.cpa_ios ? self.cpa_ios : 0) + self.total_excute?("android",date1,date2) * (self.cpa_android ? self.cpa_android : 0))
+  end
+
+  def total_net_profit?(date1,date2)
+    # only cpc
+    profit = 0
+    self.cases.each do |cas|
+      profit += cas.total_profit?("admin",date1,date2)
+    end
+    # profit
+    self.total_profit?(date1,date2) - profit
+  end
+
 
 
 
