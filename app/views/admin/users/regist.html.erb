@@ -2,6 +2,27 @@
   <div class="row">
   <h1>註冊報表</h1>
    <div class="spacing"></div>
+
+     <div class="col-xs-2 text-left grid">
+       <span class="text_center_for_grid">報表日期</span>
+     </div>
+     <div class="col-xs-2 text-left grid">
+       <span class="text_center_for_grid"><%= @date %></span>
+     </div>
+   <div class="spacing_large"></div>
+   <div class="col-xs-2 text-left grid">
+     <span class="text_center_for_grid">選取時間</span>
+   </div>
+   <div class="col-xs-2 text-center grid">
+     <%= form_tag regist_admin_users_path, :method => :get do %>
+      From <%= text_field_tag "date1",nil, class: "form-control"%>
+      To <%= text_field_tag "date2",nil, class: "form-control"%><br>
+      <%= submit_tag "Select", :class => "btn btn-default" %>
+     <% end %>
+   </div>
+
+   <div class="clearfix"></div>
+   <div class="spacing"></div>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -13,12 +34,12 @@
       </thead>
 
       <tbody>
-      <%# (@first_user.to_date..Date.today).each do |day|%>
-      <% @time_period.each do |day|%>
+      <%# @users.each do |u| %>
+      <% @date.each do |d| %>
       <tr>
-        <th><%= day %></th>
-        <th><%= total = User.where(:created_at => @first_user..day).count %></th>
-        <th><%= additional = User.where("DATE(created_at) = ?", day).count %></th>
+        <th><%= d %></th>
+        <th><%= total = User.where(:created_at => @first_user..d).count %></th>
+        <th><%= additional = User.where("DATE(created_at) = ?", d).count %></th>
         <th><%= total == 0? "0" : (additional*100 / total ) %>%</th>
       </tr>
       <% end %>
@@ -28,3 +49,12 @@
 
   </div>
 </div>
+<script type="text/javascript">
+  $('#date1').datepicker({
+     format: "yyyy-mm-dd"
+  });
+  $('#date2').datepicker({
+     format: "yyyy-mm-dd"
+  });
+
+</script>

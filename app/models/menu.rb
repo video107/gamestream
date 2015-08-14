@@ -58,40 +58,34 @@ class Menu < ActiveRecord::Base
       return android_followers
     end
   end
-  
-  def followers_day?(owner,date)
-    total_followers_day = []
-    ios_followers_day = 0
-    android_followers_day = 0
-    if owner == "total"
-      self.cases.each do |c|
-        c.case_followers.each do |casefollower|
-          if casefollower.created_at.to_date == date
-            total_followers_day << casefollower.user.email
-          end
-        end
-      end
-      return total_followers_day.uniq.count
-    elsif owner == "ios"
-      self.cases.where(:owner => "ios").each do |c|
-        c.case_followers.each do |casefollower|
-          if casefollower.created_at.to_date == date
-            ios_followers_day += 1
-          end
-        end
-      end
-      return ios_followers_day
-    elsif owner == "android"
-      self.cases.where(:owner => "android").each do |c|
-        c.case_followers.each do |casefollower|
-          if casefollower.created_at.to_date == date
-            android_followers_day += 1
-          end
-        end
-      end
-      return android_followers_day
-    end
-  end
+
+  # def followers_day?(owner,date1,date2)
+  #   total_followers_day = 0
+  #   ios_followers_day = 0
+  #   android_followers_day = 0
+  #   if owner == "total"
+  #     self.cases.each do |c|
+  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
+  #           total_followers_day += 1
+  #       end
+  #     end
+  #     return total_followers_day
+  #   elsif owner == "ios"
+  #     self.cases.where(:owner => "ios").each do |c|
+  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
+  #           ios_followers_day += 1
+  #       end
+  #     end
+  #     return ios_followers_day
+  #   elsif owner == "android"
+  #     self.cases.where(:owner => "android").each do |c|
+  #       c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |casefollower|
+  #           android_followers_day += 1
+  #       end
+  #     end
+  #     return android_followers_day
+  #   end
+  # end
 
   def to_now?
     self.created_at.to_date..Time.now.to_date
@@ -158,7 +152,6 @@ class Menu < ActiveRecord::Base
     self.cases.each do |cas|
       profit += cas.total_profit?("admin",date1,date2)
     end
-    # profit
     self.total_profit?(date1,date2) - profit
   end
 

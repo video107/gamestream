@@ -73,6 +73,8 @@ class User < ActiveRecord::Base
     self.deposit_records.all.map { |x| x.amount}.sum
   end
 
+  
+
 
 
 

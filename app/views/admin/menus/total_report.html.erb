@@ -49,11 +49,9 @@
             <th>淨利</th>
           </tr>
 
-        <!-- <tbody> -->
 
           <% @admin_menus.each do |menu| %>
           <tr>
-            <!-- <td class="td_fix"><%#= link_to menu.name, total_report_admin_menu_path(menu),:class => "label label-default" %></td> -->
             <td class="td"><%= link_to menu.name, day_report_admin_menu_path(menu),:class => "label label-primary"%></td>
             <td class="td"><%= menu.created_at.strftime("%Y-%m-%d %I:%M %p") %></td>
             <td class="td"><%= menu.try(:deadline) %></td>
@@ -64,11 +62,8 @@
             <td class="td"><%= menu.total_net_profit?(@early_date,@late_date)  %></td>
           </tr>
           <% end %>
-        <!-- </tbody> -->
       </table>
       <%= paginate @admin_menus  %>
-        <!-- <div class="spacing"></div> -->
-        <%= link_to "管理", admin_index_path, :class => "btn btn-primary" %>
       </div>
     </div>
   </div>

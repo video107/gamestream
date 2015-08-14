@@ -99,19 +99,19 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpc_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpc_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpi_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpi_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpa_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpa_android %></span>
               </div>
 
               <div class="col-xs-3" style="min-height:40px;">
@@ -122,19 +122,19 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpc_ios %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpc_ios %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpi_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpi_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%= @admin_menu.cpa_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.cpa_android %></span>
               </div>
 
               <div class="col-xs-3" style="min-height:40px;">
@@ -158,7 +158,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%#= @admin_menu.total_click_day?("android",@date) %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.followers?("android",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -180,7 +180,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%#= @admin_menu.total_click_day?("ios",@date) %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.followers?("ios",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -216,7 +216,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%#= @admin_menu.followers?("android") * @admin_menu.cpc_android %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.total_click?("android",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -237,7 +237,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"><%#= @admin_menu.followers?("ios") * @admin_menu.cpc_ios %></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.total_click?("ios",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -252,7 +252,7 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">$<%= @admin_menu.total_net_profit?(@early_date,@late_date) %></span>
               </div>
 
               <div class="col-xs-3 grid">
@@ -271,7 +271,9 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= total_profit_android =  @admin_menu.total_click?("android",@early_date,@late_date) * @admin_menu.cpc_android %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -292,7 +294,9 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= total_profit_ios = @admin_menu.total_click?("ios",@early_date,@late_date) * @admin_menu.cpc_ios %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -325,19 +329,25 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpc_android_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpi_android_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpa_android_user %>
+                </span>
               </div>
               <div class="col-xs-3" style="min-height:40px;">
                 <span class="text_center_for_grid"></span>
@@ -346,19 +356,25 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpc_ios_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpi_ios_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.cpa_ios_user %>
+                </span>
               </div>
               <div class="col-xs-3" style="min-height:40px;">
                 <span class="text_center_for_grid"></span>
@@ -380,7 +396,9 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= total_paid_android = @admin_menu.followers?("android",@early_date,@late_date) * @admin_menu.cpc_android_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -401,7 +419,9 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">
+                  $<%= total_paid_ios = @admin_menu.followers?("ios",@early_date,@late_date) * @admin_menu.cpc_ios_user %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -435,7 +455,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">$<%= total_profit_android - total_paid_android %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -456,7 +476,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">$<%= total_profit_ios - total_paid_ios %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
