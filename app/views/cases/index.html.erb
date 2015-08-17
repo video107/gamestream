@@ -118,12 +118,12 @@
             <td><%= link_to c.menu.name, case_report_user_case_path(current_user, c),:class => "label label-primary" %>  (<%= c.owner %>)</td>
             <td><%= c.menu.deadline %></td>
             <% if c.owner == "android" %>
-              <td><%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></td>
+              <td><%= link_to "http://www.johnsmurmur.com"+c.case_url, c.case_url, :target => "_blank" %></td>
             <% else %>
               <td>-</td>
             <% end %>
             <% if c.owner == "ios" %>
-              <td><%= link_to "139.162.19.7"+c.case_url, c.case_url, :target => "_blank" %></td>
+              <td><%= link_to "http://www.johnsmurmur.com"+c.case_url, c.case_url, :target => "_blank" %></td>
             <% else %>
               <td>-</td>
             <% end %>
