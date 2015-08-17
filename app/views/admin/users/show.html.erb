@@ -83,9 +83,10 @@
           <span class="text_center_for_grid">
             <% profit = 0 %>
             <% @cases_for_profit.each do |c| %>
-              <% profit = profit + c.total_profit?("current_user",c.created_at.to_date,c.menu.deadline) %>
+              <% profit = profit + c.total_profit?("customer",c.created_at.to_date,c.menu.deadline) %>
+
             <% end %>
-            $<%= profit %>
+            $<%#= profit %>
           </span>
          </div>
          <div class="col-xs-2 text-center grid col-xs-offset-3">
@@ -95,7 +96,7 @@
          </div>
          <div class="col-xs-2 text-center grid col-xs-offset-3">
           <span class="text_center_for_grid">
-            $<%= profit - @admin_user.deposit? %>
+            $<%#= profit - @admin_user.deposit? %>
           </span>
          </div>
         </div>

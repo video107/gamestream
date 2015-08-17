@@ -11,7 +11,7 @@ class Admin::MenusController < AdminController
   end
 
   def done_promoted
-    @admin_menus = Admin::Menu.where("deadline =< ?", Time.now.to_date).page(params[:page]).per(7)
+    @admin_menus = Admin::Menu.where("deadline <= ?", Time.now.to_date).page(params[:page]).per(7)
   end
 
 
@@ -34,12 +34,12 @@ class Admin::MenusController < AdminController
     # @q = @admin_menus.ransack(params[:q])
     # @admin_menus = @q.result(distinct: true).page(params[:page]).per(7)
     if params[:date1] == nil || params[:date2] == nil
-      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at >= ? && created_at =< ?", 30.days.ago.to_date, Date.today).page(params[:page]).per(7)
+      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at >= ? && created_at <= ?", 30.days.ago.to_date, Date.today).page(params[:page]).per(7)
       return
     elsif params[:date1] !="" && params[:date2] != ""
       @early_date = params[:date1]
       @late_date = params[:date2]
-      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at >= ? && created_at =< ?", @early_date, @late_date).page(params[:page]).per(7)
+      @admin_menus = Admin::Menu.all.order(:id => :desc).where("created_at >= ? && created_at <= ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
         @date = @early_date + "..." + @late_date
       elsif @early_date.to_date == @late_date.to_date

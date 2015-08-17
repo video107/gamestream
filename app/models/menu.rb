@@ -68,12 +68,12 @@ class Menu < ActiveRecord::Base
     ios_click = 0
     android_click = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
         ios_click += c.click_users.count
       end
       return ios_click
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
        android_click += c.click_users.count
      end
       return android_click
@@ -84,12 +84,12 @@ class Menu < ActiveRecord::Base
     ios_install = 0
     android_install = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
         ios_install += c.install_users.count
       end
       return ios_install
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
        android_install += c.install_users.count
      end
       return android_install
@@ -100,12 +100,12 @@ class Menu < ActiveRecord::Base
     ios_excute = 0
     android_excute = 0
     if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
         ios_excute += c.excute_users.count
       end
       return ios_excute
     elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at =< ?", date1, date2).each do |c|
+     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
        android_excute += c.excute_users.count
      end
       return android_excute

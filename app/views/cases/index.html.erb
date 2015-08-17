@@ -83,7 +83,7 @@
           <span class="text_center_for_grid">
             <% profit = 0 %>
             <% @cases_for_profit.each do |c| %>
-              <% profit = profit + c.total_profit?("current_user",c.created_at.to_date,c.menu.deadline) %>
+              <% profit = profit + c.total_profit?("customer",c.created_at.to_date,c.menu.deadline) %>
               <!-- only cpc -->
             <% end %>
             $<%= profit %>
@@ -127,7 +127,7 @@
             <% else %>
               <td>-</td>
             <% end %>
-            <td>$<%= c.total_profit?("current_user",c.created_at.to_date, c.menu.deadline) %></td>
+            <td>$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></td>
           </tr>
 
           <% end %>
