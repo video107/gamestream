@@ -4,14 +4,14 @@ class Admin::MenusController < AdminController
   # GET /admin/menus
   # GET /admin/menus.json
   def index
-    @admin_menus = Admin::Menu.where("deadline >= ?", Time.now.to_date)
+    @admin_menus = Admin::Menu.where("deadline >= ?", Date.today)
     # @admin_menus = Admin::Menu.all
     @q = @admin_menus.ransack(params[:q])
     @admin_menus = @q.result(distinct: true).page(params[:page]).per(7)
   end
 
   def done_promoted
-    @admin_menus = Admin::Menu.where("deadline <= ?", Time.now.to_date).page(params[:page]).per(7)
+    @admin_menus = Admin::Menu.where("deadline < ?", Date.today).page(params[:page]).per(7)
   end
 
 
@@ -55,7 +55,7 @@ class Admin::MenusController < AdminController
 
   def day_report
     if params[:date1] == nil || params[:date2] == nil
-      @early_date = Date.today 
+      @early_date = Date.today
       @late_date = Date.today
       return
     elsif params[:date1] !="" && params[:date2] != ""
