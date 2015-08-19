@@ -158,7 +158,7 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid">$<%= @admin_menu.followers?("android",@early_date,@late_date) %></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("android",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -180,7 +180,7 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid">$<%= @admin_menu.followers?("ios",@early_date,@late_date) %></span>
+                <span class="text_center_for_grid"><%= @admin_menu.followers?("ios",@early_date,@late_date) %></span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -216,7 +216,9 @@
                 <span class="text_center_for_grid">Android</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid">$<%= @admin_menu.total_click?("android",@early_date,@late_date) %></span>
+                <span class="text_center_for_grid">
+                  <%= @admin_menu.total_click?("android",@early_date,@late_date) %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">Android</span>
@@ -237,7 +239,9 @@
                 <span class="text_center_for_grid">IOS</span>
               </div>
               <div class="col-xs-2 grid">
-                <span class="text_center_for_grid">$<%= @admin_menu.total_click?("ios",@early_date,@late_date) %></span>
+                <span class="text_center_for_grid">
+                  <%= @admin_menu.total_click?("ios",@early_date,@late_date) %>
+                </span>
               </div>
               <div class="col-xs-1 grid">
                 <span class="text_center_for_grid">IOS</span>
@@ -252,7 +256,9 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid">$<%= @admin_menu.total_net_profit?(@early_date,@late_date) %></span>
+                <span class="text_center_for_grid">
+                  $<%= @admin_menu.total_net_profit?(@early_date,@late_date) %>
+                </span>
               </div>
 
               <div class="col-xs-3 grid">

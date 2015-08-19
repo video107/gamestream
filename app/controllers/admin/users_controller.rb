@@ -1,12 +1,31 @@
 class Admin::UsersController < AdminController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :total_report]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :total_report,:suspend,:restore]
 
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.all
+    @admin_users = Admin::User.all.where(:master => "true")
     @q = @admin_users.ransack(params[:q])
     @admin_users = @q.result(distinct: true).page(params[:page]).per(7)
+  end
+
+  def fans
+    @admin_users = Admin::User.all.where(:fans => "true").page(params[:page]).per(7)
+  end
+
+  def suspend
+    # @user = User.find(params[:id])
+    @admin_user.update!(:role => "suspend")
+    @admin_user.save!
+    redirect_to :back
+  end
+
+  def restore
+    # @user = User.find(params[:id])
+    @admin_user.update!(:role => "normal")
+    @admin_user.save!
+    # redirect_to admin_users_path
+    redirect_to :back
   end
 
   # GET /admin/users/1
@@ -29,13 +48,13 @@ class Admin::UsersController < AdminController
   def regist
     @first_user = User.first.created_at.to_date
     if params[:date1] == nil || params[:date2] == nil
-      @users = User.order(:id => :desc).where("created_at >= ? && created_at <= ?", 20.days.ago.to_date, Date.today).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", 20.days.ago.to_date, Date.today).page(params[:page]).per(7)
       @date = 10.days.ago.to_date..Date.today
       return
     elsif params[:date1] !="" && params[:date2] != ""
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
-      @users = User.order(:id => :desc).where("created_at >= ? && created_at <= ?", @early_date, @late_date).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
         @date = @early_date..@late_date
       elsif @early_date.to_date == @late_date.to_date
@@ -92,9 +111,14 @@ class Admin::UsersController < AdminController
   end
 
 
-  def trashcan
+  def trashcan_master
     @users = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').page(params[:page]).per(7)
   end
+
+  def trashcan_fans
+    @users = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').page(params[:page]).per(7)
+  end
+
 
   def recover_delete
     @user = PaperTrail::Version.where(:event => "destroy", :item_type => "user").joins("LEFT JOIN users ON item_id = users.id").where("users.id IS NULL").order('versions.created_at DESC').find_by_item_id(params[:id])
@@ -102,6 +126,7 @@ class Admin::UsersController < AdminController
     flash[:success] = "回復使用者成功"
     redirect_to admin_users_path
   end
+
 
 
 

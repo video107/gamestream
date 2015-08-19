@@ -41,7 +41,7 @@ class Menu < ActiveRecord::Base
     android_followers = 0
     if owner == "total"
       self.cases.each do |c|
-        c.case_followers.where("created_at > ? && created_at < ?", date1, date2).each do |u|
+        c.case_followers.where("DATE(created_at) > ? && DATE(created_at) < ?", date1, date2).each do |u|
           total_followers += 1
         end
       end
@@ -65,51 +65,15 @@ class Menu < ActiveRecord::Base
 
 
   def total_click?(owner,date1,date2)
-    ios_click = 0
-    android_click = 0
-    if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-        ios_click += c.click_users.count
-      end
-      return ios_click
-    elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-       android_click += c.click_users.count
-     end
-      return android_click
-    end
+    self.cases.where(:owner => owner).map {|c| c.click_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
   end
 
   def total_install?(owner,date1,date2)
-    ios_install = 0
-    android_install = 0
-    if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-        ios_install += c.install_users.count
-      end
-      return ios_install
-    elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-       android_install += c.install_users.count
-     end
-      return android_install
-    end
+    self.cases.where(:owner => owner).map {|c| c.install_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
   end
 
   def total_excute?(owner,date1,date2)
-    ios_excute = 0
-    android_excute = 0
-    if owner == "ios"
-      self.cases.where(:owner => "ios").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-        ios_excute += c.excute_users.count
-      end
-      return ios_excute
-    elsif owner == "android"
-     self.cases.where(:owner => "android").where("created_at >= ? && created_at <= ?", date1, date2).each do |c|
-       android_excute += c.excute_users.count
-     end
-      return android_excute
-    end
+    self.cases.where(:owner => owner).map {|c| c.excute_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
   end
 
   def total_profit?(date1,date2)
@@ -120,10 +84,8 @@ class Menu < ActiveRecord::Base
 
   def total_net_profit?(date1,date2)
     # only cpc
-    profit = 0
-    self.cases.each do |cas|
-      profit += cas.total_profit?("admin",date1,date2)
-    end
+
+    profit = self.cases.map { |cas| cas.total_profit?("admin",date1,date2)}.sum
     self.total_profit?(date1,date2) - profit
   end
 

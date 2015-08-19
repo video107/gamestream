@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :menus do
       collection do
         get :done_promoted, :as => :promoted
-        post :trashcan
+        get :trashcan
         get :total_report
       end
       member do
@@ -13,11 +13,15 @@ Rails.application.routes.draw do
     end
     resources :users do
       collection do
-        post :trashcan
+        get :trashcan_master
+        get :trashcan_fans
         get :regist
+        get :fans
       end
       member do
         post :recover_delete
+        post :suspend
+        post :restore
       end
       resources :cases do
         member do
@@ -43,10 +47,10 @@ Rails.application.routes.draw do
 
   resources :users do
 
-    member do
-      post :suspend
-      post :restore
-    end
+    # member do
+    #   post :suspend
+    #   post :restore
+    # end
     resources :cases do
       member do
         get :case_report

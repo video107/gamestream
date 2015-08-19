@@ -6,14 +6,14 @@
       <% end %>
     </p>
 
-    <h1>使用者管理後台</h1>
+    <h1>粉絲管理後台</h1>
       <div class="spacing"></div>
      <div class="text-right form-inline">
-        <%= search_form_for @q do |f| %>
-          <%= f.label :email_of_uid_cont,"Email or UID" %>
-          <%= f.search_field :email_or_uid_cont, :class => "form-control form_word" %>
-          <%= f.submit "Search", :class=>"btn btn-default"%>
-      <% end %>
+        <%#= search_form_for @q do |f| %>
+          <%#= f.label :email_of_uid_cont,"Email or UID" %>
+          <%#= f.search_field :email_or_uid_cont, :class => "form-control form_word" %>
+          <%#= f.submit "Search", :class=>"btn btn-default"%>
+      <%# end %>
       </div>
       <div class="spacing"></div>
     <table class ="table table-bordered">
@@ -35,9 +35,9 @@
             <td><%= admin_user.name %></td>
             <td><%= admin_user.nickname %></td>
             <td>
-              <%= link_to '使用者詳細', admin_user,:class => "btn btn-warning" %>
+              <%= link_to '粉絲詳細', admin_user,:class => "btn btn-warning" %>
               <%= link_to '編輯', edit_admin_user_path(admin_user), :class => "btn btn-info" %>
-              <%= link_to '刪除使用者', admin_user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+              <%= link_to '刪除粉絲', admin_user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
               <% if admin_user.role == nil || admin_user.role == "normal" %>
                 <%= link_to "停權", suspend_admin_user_path(admin_user),:method => :post,  :class => "btn btn-suspend" %>
               <% elsif admin_user.role == "suspend" %>
@@ -50,9 +50,8 @@
     </table>
     <%= paginate @admin_users %>
     <br>
-    <%= link_to "使用者垃圾桶", trashcan_master_admin_users_path, :class => "btn btn-danger" %>
-    <%= link_to "註冊報表", regist_admin_users_path, :class => "btn btn-default" %>
-    <%= link_to "粉絲管理", fans_admin_users_path, class: "btn btn-info" %>
+    <%= link_to "使用者管理", admin_users_path, :class => "btn btn-primary" %>
+    <%= link_to "紛絲垃圾桶", trashcan_fans_admin_users_path, :class => "btn btn-danger" %>
 
 
 

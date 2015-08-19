@@ -14,6 +14,8 @@ class CasesController < ApplicationController
   def case_report
     @case = current_user.cases.find(params[:id])
     if params[:date1] == nil || params[:date2] == nil
+      @early_date = @case.created_at.to_date
+      @late_date = @case.menu.deadline
       return
     elsif params[:date1] !="" && params[:date2] != ""
       @early_date = params[:date1]
@@ -36,18 +38,13 @@ class CasesController < ApplicationController
   def show
     if current_user
       @case = Case.find(params[:id])
-      # if current_user.uid? == false
-      #   current_user.update(uid: current_user.id)
-      # end
       already_followed = @case.find_followed_by_user(current_user)
+      current_user.update(uid: current_user.id, fans: "true")
       if already_followed
-        current_user.update(uid: current_user.id)
         CaseClickInstallExcute.create(:user => current_user, :case => @case, :cpc => true)
       elsif  @case.user == current_user
-        current_user.update(uid: current_user.id)
         return
       elsif
-        current_user.update(uid: current_user.id)
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
     end

@@ -20,6 +20,7 @@
 
       <tbody>
         <% @users.each do |user| %>
+          <% if user.reify.master == "true" %>
           <tr>
             <td><%= user.reify.id %></td>
             <td><%= user.reify.email %></td>
@@ -35,6 +36,7 @@
               <%= link_to "回復刪除帳號", recover_delete_admin_user_path(user.reify.id),:method => :post, :class => "btn btn-success" %>
             </td>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
