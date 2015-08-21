@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
+
     <script language="javascript">
+    <% if @case.owner == "andorid" %>
             window.location.href = "<%=@menu.menu_url%>"
+    <% elsif @case.owner == "ios" %>
+            window.location.href = "<%=@menu.menu_url_ios%>"
+    <% end %>
     </script>
   </div>
 </div>

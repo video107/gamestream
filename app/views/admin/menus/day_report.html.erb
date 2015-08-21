@@ -40,11 +40,7 @@
           </div>
           <div class="col-xs-2 text-left grid">
             <span class="text_center_for_grid">
-              <% if @date %>
                 <%= @admin_menu.followers?("total",@early_date,@late_date) %>
-              <% else %>
-                <%= @admin_menu.followers?("total",Date.today,Date.today) %>
-              <% end %>
             </span>
           </div>
           <div class="spacing_large"></div>

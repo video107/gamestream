@@ -41,7 +41,7 @@ class Menu < ActiveRecord::Base
     android_followers = 0
     if owner == "total"
       self.cases.each do |c|
-        c.case_followers.where("DATE(created_at) > ? && DATE(created_at) < ?", date1, date2).each do |u|
+        c.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).each do |u|
           total_followers += 1
         end
       end
