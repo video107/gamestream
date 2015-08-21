@@ -48,12 +48,16 @@ class Menu < ActiveRecord::Base
       return total_followers
     elsif owner == "ios"
       self.cases.where(:owner => "ios").each do |c|
-        ios_followers = ios_followers + c.follow_users.count
+        c.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).each do |u|
+          ios_followers +=1
+        end
       end
       return ios_followers
     elsif owner == "android"
       self.cases.where(:owner => "android").each do |c|
-        android_followers = android_followers + c.follow_users.count
+        c.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).each do |u|
+          android_followers +=1
+        end
       end
       return android_followers
     end
@@ -84,7 +88,8 @@ class Menu < ActiveRecord::Base
 
   def total_net_profit?(date1,date2)
     # only cpc
-    profit = self.cases.map { |cas| cas.total_profit?("admin",date1,date2)}.sum
+    profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
+    byebug
     self.total_profit?(date1,date2) - profit
   end
 

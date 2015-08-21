@@ -70,7 +70,6 @@
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
                 <span class="text_center_for_grid">案件總營業額</span><br>
-                <span class="text_center_for_grid">(*default累計至deadline)</span>
               </div>
               <div class="col-xs-3 grid">
                 <span class="text_center_for_grid">每次點擊價格(CPC)</span>
@@ -84,11 +83,10 @@
               <div class="col-xs-2 grid col-xs-offset-1">
                 <span class="text_center_for_grid">
                   <% if @date %>
-                    <%= @admin_menu.total_profit?(@early_date,@late_date) %>
+                    $<%= @admin_menu.total_profit?(@early_date,@late_date) %>
                   <% else  %>
-                    <%= @admin_menu.total_profit?(@admin_menu.created_at.to_date,@admin_menu.deadline) %>
+                    $<%= @admin_menu.total_profit?(Date.today,Date.today) %>
                   <% end %>
-
                 </span>
               </div>
               <div class="col-xs-1 grid">
@@ -169,7 +167,7 @@
                 <span class="text_center_for_grid"></span>
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
-                <span class="text_center_for_grid"></span>
+                <span class="text_center_for_grid">$案件總成本$</span>
               </div>
 
               <div class="col-xs-1 grid">
@@ -253,7 +251,11 @@
               </div>
               <div class="col-xs-2 grid col-xs-offset-1">
                 <span class="text_center_for_grid">
-                  $<%= @admin_menu.total_net_profit?(@early_date,@late_date) %>
+                  <% if @date %>
+                    $<%= @admin_menu.total_net_profit?(@early_date,@late_date) %>
+                  <% else  %>
+                    $<%= @admin_menu.total_net_profit?(Date.today,Date.today) %>
+                  <% end %>
                 </span>
               </div>
 
