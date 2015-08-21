@@ -26,7 +26,7 @@ class Case < ActiveRecord::Base
 
 
   def total_click?(date1,date2)
-   self.click_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+   self.click_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count + self.follower_by_date(date1,date2)
   end
 
   def total_install?(date1,date2)

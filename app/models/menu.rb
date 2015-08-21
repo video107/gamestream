@@ -65,15 +65,15 @@ class Menu < ActiveRecord::Base
 
 
   def total_click?(owner,date1,date2)
-    self.cases.where(:owner => owner).map {|c| c.click_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
+    self.cases.where(:owner => owner).map {|c| c.total_click?(date1,date2)}.sum
   end
 
   def total_install?(owner,date1,date2)
-    self.cases.where(:owner => owner).map {|c| c.install_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
+    self.cases.where(:owner => owner).map {|c| c.total_install?(date1,date2)}.sum
   end
 
   def total_excute?(owner,date1,date2)
-    self.cases.where(:owner => owner).map {|c| c.excute_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count}.sum
+    self.cases.where(:owner => owner).map {|c| c.total_excute?(date1,date2)}.sum
   end
 
   def total_profit?(date1,date2)
@@ -84,7 +84,6 @@ class Menu < ActiveRecord::Base
 
   def total_net_profit?(date1,date2)
     # only cpc
-
     profit = self.cases.map { |cas| cas.total_profit?("admin",date1,date2)}.sum
     self.total_profit?(date1,date2) - profit
   end
