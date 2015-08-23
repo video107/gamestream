@@ -135,6 +135,6 @@ class Admin::MenusController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_menu_params
-      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon, :category_id, :game_image, :cpc_android, :cpc_ios, :cpi_android, :cpi_ios, :cpa_android, :cpa_ios, :cpc_android_user, :cpc_ios_user, :cpi_android_user, :cpi_ios_user, :cpa_android_user, :cpa_ios_user, :deadline)
+      params.require(:admin_menu).permit(:image, :name, :contents, :menu_url, :menu_url_ios, :game_pic, :game_pic_2, :game_pic_3, :game_pic_4, :game_pic_5, :game_icon, :category_id, :game_image, :cpc_android, :cpc_ios, :cpi_android, :cpi_ios, :cpa_android, :cpa_ios, :cpc_android_user, :cpc_ios_user, :cpi_android_user, :cpi_ios_user, :cpa_android_user, :cpa_ios_user, :deadline, :_remove_pic, :_remove_pic_2, :_remove_pic_3, :_remove_pic_4,:_remove_pic_5,:_remove_pic_6,:_remove_icon )
     end
 end

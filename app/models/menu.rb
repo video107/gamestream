@@ -35,6 +35,16 @@ class Menu < ActiveRecord::Base
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
 
+
+  attr_accessor :_remove_pic, :_remove_pic_2, :_remove_pic_3, :_remove_pic_4, :_remove_pic_5, :_remove_pic_6, :_remove_icon
+  before_save :check_remove_pic
+  before_save :check_remove_pic_2
+  before_save :check_remove_pic_3
+  before_save :check_remove_pic_4
+  before_save :check_remove_pic_5
+  before_save :check_remove_pic_6
+  before_save :check_remove_icon
+
   def followers?(owner,date1,date2)
     total_followers = 0
     ios_followers = 0
@@ -92,7 +102,47 @@ class Menu < ActiveRecord::Base
     self.total_profit?(date1,date2) - profit
   end
 
+  private
 
+  def check_remove_pic
+    if self._remove_pic == "1"
+      self.game_pic = nil
+    end
+  end
 
+  def check_remove_pic_2
+    if self._remove_pic_2 == "1"
+      self.game_pic_2 = nil
+    end
+  end
 
+  def check_remove_pic_3
+    if self._remove_pic_3 == "1"
+      self.game_pic_3 = nil
+    end
+  end
+
+  def check_remove_pic_4
+    if self._remove_pic_4 == "1"
+      self.game_pic_4 = nil
+    end
+  end
+
+  def check_remove_pic_5
+    if self._remove_pic_5 == "1"
+      self.game_pic_5 = nil
+    end
+  end
+
+  def check_remove_pic_6
+    if self._remove_pic_6 == "1"
+      self.game_image = nil
+    end
+  end
+
+  def check_remove_icon
+    if self._remove_icon == "1"
+      self.game_icon = nil
+    end
+  end
 end
