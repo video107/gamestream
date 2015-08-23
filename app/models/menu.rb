@@ -89,7 +89,6 @@ class Menu < ActiveRecord::Base
   def total_net_profit?(date1,date2)
     # only cpc
     profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
-    byebug
     self.total_profit?(date1,date2) - profit
   end
 

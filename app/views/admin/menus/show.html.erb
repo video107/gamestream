@@ -17,11 +17,11 @@
       <%= @admin_menu.deadline %>
     </p>
 
-    <p>
-      <strong>遊戲大頭照:</strong>
-      <%= image_tag(@menu.game_image(:thumb)) %>
-       <br>
-    </p>
+    <!-- <p> -->
+      <!-- <strong>遊戲大頭照:</strong> -->
+      <%#= image_tag(@menu.game_image(:thumb)) %>
+       <!-- <br> -->
+    <!-- </p> -->
 
     <p>
       <strong>遊戲名:</strong>
@@ -82,28 +82,16 @@
 
     </table>
     <p>
-      <strong>遊戲圖片1:</strong> <br>
+      <strong>遊戲圖片:</strong> <br>
       <%= image_tag(@menu.game_pic(:thumb)) %>
-    </p>
-
-    <p>
-      <strong>遊戲圖片2:</strong> <br>
       <%= image_tag(@menu.game_pic_2(:thumb)) %>
-    </p>
-
-    <p>
-      <strong>遊戲圖片3:</strong> <br>
       <%= image_tag(@menu.game_pic_3(:thumb)) %>
     </p>
-
     <p>
-      <strong>遊戲圖片4:</strong> <br>
+      <strong>遊戲圖片2:</strong> <br>
       <%= image_tag(@menu.game_pic_4(:thumb)) %>
-    </p>
-
-    <p>
-      <strong>遊戲圖片5:</strong> <br>
       <%= image_tag(@menu.game_pic_5(:thumb)) %>
+      <%= image_tag(@menu.game_image(:thumb)) %>
     </p>
 
     <p>

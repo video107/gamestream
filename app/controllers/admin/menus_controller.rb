@@ -28,6 +28,7 @@ class Admin::MenusController < AdminController
 
   # GET /admin/menus/1/edit
   def edit
+    @menu = Menu.find(params[:id])
   end
 
   def total_report
