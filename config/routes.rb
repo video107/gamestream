@@ -24,9 +24,10 @@ Rails.application.routes.draw do
         post :restore
       end
       resources :cases do
-        member do
-          get :day_report
-        end
+        get :day_report, on: :member #same as below
+        # member do
+        #   get :day_report
+        # end
       end
     end
   end
@@ -39,22 +40,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'menus#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  # devise_for :users, :controllers => { :registrations => "my_devise/registrations" }
 
   resources :menus do
     resources :cases
   end
 
   resources :users do
-
-    # member do
-    #   post :suspend
-    #   post :restore
-    # end
     resources :cases do
-      member do
-        get :case_report
-      end
+        get :case_report, on: :member
     end
   end
 
