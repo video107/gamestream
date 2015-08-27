@@ -42,11 +42,13 @@
             <th>遊戲名稱</th>
             <th>上架時間</th>
             <th>推廣區間</th>
-            <th>總點擊數</th>
-            <th>總安裝數</th>
-            <th>總執行數</th>
-            <th>營業額</th>
-            <th>淨利</th>
+            <th>平台總營業額</th>
+            <th>平台不重複營業額</th>
+            <th>總推廣成本</th>
+            <th>不重複推廣成本</th>
+            <th>案件總淨利</th>
+            <th>案件不重複淨利</th>
+            <th>案件默認淨利</th>
           </tr>
 
 
@@ -55,11 +57,13 @@
             <td class="td"><%= link_to menu.name, day_report_admin_menu_path(menu),:class => "label label-primary"%></td>
             <td class="td"><%= menu.created_at.strftime("%Y-%m-%d %I:%M %p") %></td>
             <td class="td"><%= menu.try(:deadline) %></td>
-            <td class="td"><%= menu.total_click?("ios",@early_date,@late_date) + menu.total_click?("android",@early_date,@late_date) %></td>
-            <td class="td"><%= menu.total_install?("ios",@early_date,@late_date) + menu.total_install?("android",@early_date,@late_date)  %></td>
-            <td class="td"><%= menu.total_excute?("ios",@early_date,@late_date) + menu.total_excute?("android",@early_date,@late_date)  %></td>
-            <td class="td"><%= menu.total_profit?(@early_date,@late_date)  %></td>
-            <td class="td"><%= menu.total_net_profit?(@early_date,@late_date)  %></td>
+            <td class="td"><%= menu.total_profit?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_profit_no_repeat?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_cost?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_cost_no_repeat?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_net_profit?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_net_profit_no_repeat?(@early_date,@late_date)%></td>
+            <td class="td"><%= menu.total_net_profit_default?(@early_date,@late_date)%></td>
           </tr>
           <% end %>
       </table>

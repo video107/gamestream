@@ -96,10 +96,44 @@ class Menu < ActiveRecord::Base
     (self.total_excute?("ios",date1,date2) * (self.cpa_ios ? self.cpa_ios : 0) + self.total_excute?("android",date1,date2) * (self.cpa_android ? self.cpa_android : 0))
   end
 
+  def total_profit_no_repeat?(date1,date2)
+    (self.followers?("ios",date1,date2) * (self.cpc_ios ? self.cpc_ios : 0) + self.followers?("android",date1,date2) * (self.cpc_android ? self.cpc_android : 0)) +
+    (self.total_install?("ios",date1,date2) * (self.cpi_ios ? self.cpi_ios : 0) + self.total_install?("android",date1,date2) * (self.cpi_android ? self.cpi_android : 0)) +
+    (self.total_excute?("ios",date1,date2) * (self.cpa_ios ? self.cpa_ios : 0) + self.total_excute?("android",date1,date2) * (self.cpa_android ? self.cpa_android : 0))
+  end
+
+  def total_cost?(date1,date2)
+    (self.total_click?("ios",date1,date2) * (self.cpc_ios_user ? self.cpc_ios_user : 0) + self.total_click?("android",date1,date2) * (self.cpc_android_user ? self.cpc_android_user : 0)) +
+    (self.total_install?("ios",date1,date2) * (self.cpi_ios_user ? self.cpi_ios_user : 0) + self.total_install?("android",date1,date2) * (self.cpi_android_user ? self.cpi_android_user : 0)) +
+    (self.total_excute?("ios",date1,date2) * (self.cpa_ios_user ? self.cpa_ios_user : 0) + self.total_excute?("android",date1,date2) * (self.cpa_android_user ? self.cpa_android_user : 0))
+  end
+
+  def total_cost_no_repeat?(date1,date2)
+    (self.followers?("ios",date1,date2) * (self.cpc_ios_user ? self.cpc_ios_user : 0) + self.followers?("android",date1,date2) * (self.cpc_android_user ? self.cpc_android_user : 0)) +
+    (self.total_install?("ios",date1,date2) * (self.cpi_ios_user ? self.cpi_ios_user : 0) + self.total_install?("android",date1,date2) * (self.cpi_android_user ? self.cpi_android_user : 0)) +
+    (self.total_excute?("ios",date1,date2) * (self.cpa_ios_user ? self.cpa_ios_user : 0) + self.total_excute?("android",date1,date2) * (self.cpa_android_user ? self.cpa_android_user : 0))
+  end
+
+
   def total_net_profit?(date1,date2)
     # only cpc
-    profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
-    self.total_profit?(date1,date2) - profit
+    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
+    # self.total_profit?(date1,date2) - profit
+    self.total_profit?(date1,date2) - self.total_cost?(date1,date2)
+  end
+
+  def total_net_profit_no_repeat?(date1,date2)
+    # only cpc
+    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
+    # self.total_profit?(date1,date2) - profit
+    self.total_profit_no_repeat?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
+  end
+
+  def total_net_profit_default?(date1,date2)
+    # only cpc
+    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
+    # self.total_profit?(date1,date2) - profit
+    self.total_profit?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 
   private

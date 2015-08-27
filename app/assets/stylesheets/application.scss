@@ -24,7 +24,13 @@
   border-radius: 50%;
 }
 .table_header {
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: -2px;
+  color:darkcyan;
+}
+.table_header_small {
+  font-size: 16px;
+  letter-spacing: -2px;
   color:darkcyan;
 }
 .td_over {
@@ -66,6 +72,12 @@
 }
 .grid_double {
   border:  lightgray 3px groove;
+}
+
+.grid_title {
+  font-size: 25px;
+  // letter-spacing: -2px;
+  color:darkcyan;
 }
 
 
