@@ -12,7 +12,7 @@ class CasesController < ApplicationController
 
 
   def case_report
-    @case = current_user.cases.find(params[:id])
+    @case = current_user.cases.find_by_friendly_id(params[:id])
     if params[:date1] == nil || params[:date2] == nil
       @early_date = @case.created_at.to_date
       @late_date = @case.menu.deadline
@@ -37,7 +37,7 @@ class CasesController < ApplicationController
 
   def show
     if current_user
-      @case = Case.find(params[:id])
+      @case = Case.find_by_friendly_id(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
       current_user.update(uid: current_user.id, fans: "true")
       if already_followed
@@ -83,7 +83,7 @@ class CasesController < ApplicationController
   private
 
   def set_menu
-    @menu = Menu.find(params[:menu_id])
+    @menu = Menu.find_by_friendly_id(params[:menu_id])
   end
 
   def case_params

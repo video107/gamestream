@@ -17,4 +17,22 @@ namespace :dev do
                       :category_id => Category.all.sample.id  )
     end
   end
+
+
+  task :fix_friendly_id => :environment do
+    Menu.all.each do |e|
+      e.friendly_id = SecureRandom.hex(10)
+      e.save!
+    end
+    User.all.each do |e|
+      e.friendly_id = SecureRandom.hex(10)
+      e.save!
+    end
+    Case.all.each do |e|
+      e.friendly_id = SecureRandom.hex(10)
+      e.save!
+    end
+  end
+
+
 end

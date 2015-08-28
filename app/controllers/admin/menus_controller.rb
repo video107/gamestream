@@ -18,7 +18,7 @@ class Admin::MenusController < AdminController
   # GET /admin/menus/1
   # GET /admin/menus/1.json
   def show
-    @menu = Menu.find(params[:id])
+    @menu = Menu.find_by_friendly_id(params[:id])
   end
 
   # GET /admin/menus/new
@@ -28,7 +28,7 @@ class Admin::MenusController < AdminController
 
   # GET /admin/menus/1/edit
   def edit
-    @menu = Menu.find(params[:id])
+    @menu = Menu.find_by_friendly_id(params[:id])
   end
 
   def total_report
@@ -130,7 +130,7 @@ class Admin::MenusController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_menu
-      @admin_menu = Admin::Menu.find(params[:id])
+      @admin_menu = Admin::Menu.find_by_friendly_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

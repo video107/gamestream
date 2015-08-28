@@ -36,6 +36,11 @@ class Menu < ActiveRecord::Base
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
 
 
+  validates_presence_of :friendly_id
+  validates_uniqueness_of :friendly_id
+
+  before_validation :setup_friendly_id
+
   attr_accessor :_remove_pic, :_remove_pic_2, :_remove_pic_3, :_remove_pic_4, :_remove_pic_5, :_remove_pic_6, :_remove_icon
   before_save :check_remove_pic
   before_save :check_remove_pic_2
@@ -44,6 +49,14 @@ class Menu < ActiveRecord::Base
   before_save :check_remove_pic_5
   before_save :check_remove_pic_6
   before_save :check_remove_icon
+
+  def to_param
+    self.friendly_id
+  end
+
+  def setup_friendly_id
+    self.friendly_id ||= SecureRandom.hex(10)
+  end
 
   def followers?(owner,date1,date2)
     total_followers = 0

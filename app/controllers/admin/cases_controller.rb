@@ -3,7 +3,7 @@ class Admin::CasesController < AdminController
   before_action :set_user, only: [:show]
 
   def show
-    @case = @user.cases.find(params[:id])
+    @case = @user.cases.find_by_friendly_id(params[:id])
     if params[:date1] == nil || params[:date2] == nil
       return
     elsif params[:date1] !="" && params[:date2] != ""
@@ -24,7 +24,7 @@ class Admin::CasesController < AdminController
 
   private
   def set_user
-    @user = Admin::User.find(params[:user_id])
+    @user = Admin::User.find_by_friendly_id(params[:user_id])
   end
 
 

@@ -133,7 +133,7 @@ class Admin::UsersController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
-      @admin_user = Admin::User.find(params[:id])
+      @admin_user = Admin::User.find_by_friendly_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

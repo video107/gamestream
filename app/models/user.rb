@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
   has_many :deposit_records
 
+  validates_presence_of :friendly_id
+  validates_uniqueness_of :friendly_id
+
+  before_validation :setup_friendly_id
 
   # def self.from_omniauth(auth)
   #   user = where(provider: auth.provider, google_uid: auth.uid).first
@@ -35,6 +39,14 @@ class User < ActiveRecord::Base
   #   end
   #   user
   # end
+
+  def to_param
+    self.friendly_id
+  end
+
+  def setup_friendly_id
+    self.friendly_id ||= SecureRandom.hex(10)
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, email: auth.info.email).first_or_create do |user|
@@ -73,7 +85,7 @@ class User < ActiveRecord::Base
     self.deposit_records.all.map { |x| x.amount}.sum
   end
 
-  
+
 
 
 

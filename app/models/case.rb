@@ -12,6 +12,19 @@ class Case < ActiveRecord::Base
   has_many :excute_users, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
 
 
+  validates_presence_of :friendly_id
+  validates_uniqueness_of :friendly_id
+
+  before_validation :setup_friendly_id
+
+  def to_param
+    self.friendly_id
+  end
+
+  def setup_friendly_id
+    self.friendly_id ||= SecureRandom.hex(10)
+  end
+
   def find_followed_by_user(user)
     self.case_followers.where(:user_id => user.id).first
   end
