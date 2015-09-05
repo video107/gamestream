@@ -22,7 +22,7 @@ class Case < ActiveRecord::Base
   end
 
   def setup_friendly_id
-    self.friendly_id ||= SecureRandom.hex(10)
+    self.friendly_id ||= SecureRandom.hex(6)
   end
 
   def find_followed_by_user(user)

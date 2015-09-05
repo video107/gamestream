@@ -63,7 +63,8 @@ class CasesController < ApplicationController
 
     if @case.save!
       flash[:success] = "專屬連結建立成功"
-      @case.case_url = menu_case_path(@menu,@case)
+      # @case.case_url = menu_case_path(@menu,@case)
+      @case.case_url = menu_case_url(@menu,@case)
       if params[:commit] == "建立專屬IOS連結"
         @case.update!(:owner => "ios")
       elsif params[:commit] == "建立專屬Android連結"
