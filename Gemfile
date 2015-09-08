@@ -58,7 +58,7 @@ gem 'rack-mini-profiler', require: false
 # Soft deletion gem
 gem 'paper_trail', '~> 4.0.0.rc'
 # tracking gem (like GA in ROR)
-gem 'ahoy_matey'
+# gem 'ahoy_matey'
 # initiate user uuid
 gem 'activeuuid', '>= 0.5.0'
 # Use Capistrano for deployment
@@ -75,4 +75,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
