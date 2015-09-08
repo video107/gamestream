@@ -3,7 +3,6 @@ class MenusController < ApplicationController
   before_action :check_rights, :only => [:index]
 
   def index
-      current_user.update!(master: "true")
       if params[:cid]
         category = Category.find(params[:cid])
         @menus = category.menus
