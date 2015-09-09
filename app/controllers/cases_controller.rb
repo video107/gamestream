@@ -44,7 +44,7 @@ class CasesController < ApplicationController
         CaseClickInstallExcute.create(:user => current_user, :case => @case, :cpc => true)
       elsif  @case.user == current_user
         return
-      elsif
+      else
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
       end
     end

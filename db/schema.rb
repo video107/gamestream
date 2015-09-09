@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907133136) do
+ActiveRecord::Schema.define(version: 20150908163822) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20150907133136) do
   add_index "case_click_install_excutes", ["case_id"], name: "index_case_click_install_excutes_on_case_id", using: :btree
   add_index "case_click_install_excutes", ["user_id"], name: "index_case_click_install_excutes_on_user_id", using: :btree
 
+  create_table "case_excuters", force: :cascade do |t|
+    t.integer  "case_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "case_excuters", ["case_id"], name: "index_case_excuters_on_case_id", using: :btree
+  add_index "case_excuters", ["user_id"], name: "index_case_excuters_on_user_id", using: :btree
+
   create_table "case_followers", force: :cascade do |t|
     t.integer  "case_id",    limit: 4
     t.integer  "user_id",    limit: 4
@@ -35,6 +45,16 @@ ActiveRecord::Schema.define(version: 20150907133136) do
 
   add_index "case_followers", ["case_id"], name: "index_case_followers_on_case_id", using: :btree
   add_index "case_followers", ["user_id"], name: "index_case_followers_on_user_id", using: :btree
+
+  create_table "case_installers", force: :cascade do |t|
+    t.integer  "case_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "case_installers", ["case_id"], name: "index_case_installers_on_case_id", using: :btree
+  add_index "case_installers", ["user_id"], name: "index_case_installers_on_user_id", using: :btree
 
   create_table "cases", force: :cascade do |t|
     t.string   "case_url",    limit: 255

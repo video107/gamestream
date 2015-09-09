@@ -6,6 +6,12 @@ class Case < ActiveRecord::Base
   has_many :case_followers, :dependent => :destroy
   has_many :follow_users, :through => :case_followers, :source => :user
 
+  has_many :case_installers, :dependent => :destroy
+  has_many :install_users, :through => :case_installers, :source => :user
+
+  has_many :case_excuters, :dependent => :destroy
+  has_many :excute_users, :through => :case_excuters, :source => :user
+
   has_many :case_click_install_excutes, :dependent => :destroy
   has_many :click_users, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
   has_many :install_users, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
@@ -27,6 +33,10 @@ class Case < ActiveRecord::Base
 
   def find_followed_by_user(user)
     self.case_followers.where(:user_id => user.id).first
+  end
+
+  def find_installed_by_user(user)
+    self.case_installers.where(:user_id => user.id).first
   end
 
   def to_now?

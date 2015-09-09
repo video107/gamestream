@@ -18,11 +18,22 @@ class ApiV1::SdksController < ApplicationController
                      imei: params[:imei],
                      mac_addr: params[:mac_addr],
                      google_advertisingid: params[:google_advertisingid] )
-      
-      if @sdk.save!
-        render :json => { :message => "OK", :sdk_id => @sdk.id }
-      else
-        render :json => { :errors => @sdk.errors.full_messages }, :status => 400
+
+        user = User.find_by_email(params[:google_account])
+        menu = Menu.find_by_package_name(params[:package_name])
+        sdkcase = user.follow_cases.find_by_menu_id(menu.id)
+        already_installed = sdkcase.find_installed_by_user(user)
+      if user
+        if @sdk.save!
+            if already_installed
+              CaseClickInstallExcute.create(:user => user, :case => sdkcase, :cpi => true)
+            else
+              CaseInstaller.create(:user => user , :case => sdkcase )
+            end
+          render :json => { :message => "OK", :sdk_id => @sdk.id, :user_id => user.id, :menu_id => menu.id, :case_id => sdkcase.id }
+        else
+          render :json => { :errors => @sdk.errors.full_messages }, :status => 400
+        end
       end
     end
 

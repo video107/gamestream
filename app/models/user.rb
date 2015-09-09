@@ -64,6 +64,15 @@ class User < ActiveRecord::Base
     self.role == nil || self.role == "normal"
   end
 
+  def self.emails_all
+    emails = []
+    all.each do |user|
+      emails << user.email
+    end
+    emails
+  end
+
+
 
   def self.new_with_session(params, session)
       super.tap do |user|
