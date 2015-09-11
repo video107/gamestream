@@ -23,10 +23,20 @@ class ApiV1::SdksController < ApplicationController
         menu = Menu.find_by_package_name(params[:package_name])
         sdkcase = user.follow_cases.find_by_menu_id(menu.id)
         already_installed = sdkcase.find_installed_by_user(user)
+        already_excuted = sdkcase.find_excuted_by_user(user)
+        # find all the sdks from this user and this menu
+        sdk_all = Sdk.where(google_account: params[:google_account])
+        first_sdk_date = sdk_all.where(package_name: params[:package_name]).first.created_at.to_date
+
       if user
         if @sdk.save!
             if already_installed
-              CaseClickInstallExcute.create(:user => user, :case => sdkcase, :cpi => true)
+              if (@sdk.created_at.to_date - first_sdk_date).to_i >= menu.cpa_period
+                if already_excuted
+                else
+                  CaseExcuter.create(:user => user , :case => sdkcase )
+                end
+              end
             else
               CaseInstaller.create(:user => user , :case => sdkcase )
             end
@@ -36,5 +46,4 @@ class ApiV1::SdksController < ApplicationController
         end
       end
     end
-
 end

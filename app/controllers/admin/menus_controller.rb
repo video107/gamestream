@@ -141,6 +141,6 @@ class Admin::MenusController < AdminController
                                          :cpc_android_user, :cpc_ios_user, :cpi_android_user, :cpi_ios_user,
                                          :cpa_android_user, :cpa_ios_user, :deadline, :_remove_pic, :_remove_pic_2,
                                          :_remove_pic_3, :_remove_pic_4, :_remove_pic_5, :_remove_pic_6, :_remove_icon,
-                                         :package_name )
+                                         :package_name, :cpa_period )
     end
 end

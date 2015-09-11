@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908163822) do
+ActiveRecord::Schema.define(version: 20150910060524) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20150908163822) do
     t.date     "deadline"
     t.string   "friendly_id",             limit: 255
     t.string   "package_name",            limit: 255
+    t.integer  "cpa_period",              limit: 4
   end
 
   add_index "menus", ["category_id"], name: "index_menus_on_category_id", using: :btree

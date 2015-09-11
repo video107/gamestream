@@ -243,19 +243,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= android_clicks = @admin_menu.total_click?("android",@early_date,@late_date) %></span>
+                  <span class="text_center_for_grid">
+                    <%= android_clicks = @admin_menu.total_click?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= android_installs = @admin_menu.total_install?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= android_excutes = @admin_menu.total_install?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -265,19 +271,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= ios_clicks = @admin_menu.total_click?("ios",@early_date,@late_date) %></span>
+                  <span class="text_center_for_grid">
+                    <%= ios_clicks = @admin_menu.total_click?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= ios_installs = @admin_menu.total_install?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= ios_excutes = @admin_menu.total_excute?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-2" style="min-height:40px;">
                   <span class="text_center_for_grid"></span>
@@ -302,19 +314,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= android_clicks_no_repeat = @admin_menu.followers?("android",@early_date,@late_date) %></span>
+                  <span class="text_center_for_grid">
+                    <%= android_clicks_no_repeat = @admin_menu.followers?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= android_installs_no_repeat = @admin_menu.total_install?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= android_excutes_no_repeat = @admin_menu.total_excute?("android",@early_date,@late_date) %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -325,19 +343,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= ios_clicks_no_repeat = @admin_menu.followers?("ios",@early_date,@late_date) %></span>
+                  <span class="text_center_for_grid">
+                    <%= ios_clicks_no_repeat = @admin_menu.followers?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= ios_installs_no_repeat = @admin_menu.total_install?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    <%= ios_excutes_no_repeat = @admin_menu.total_excute?("ios",@early_date,@late_date) %>
+                  </span>
                 </div>
               </div>
               <div class="spacing_large"></div>
@@ -359,19 +383,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_profit_android = android_clicks * @admin_menu.cpc_android %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_android = android_clicks * @admin_menu.cpc_android %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_android = android_installs * @admin_menu.cpi_android %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_android = android_excutes * @admin_menu.cpa_android %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -381,19 +411,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_profit_ios = ios_clicks * @admin_menu.cpc_ios %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_ios = ios_clicks * @admin_menu.cpc_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_ios = ios_installs * @admin_menu.cpi_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_ios = ios_excutes * @admin_menu.cpa_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-2" style="min-height:40px;">
                   <span class="text_center_for_grid"></span>
@@ -418,19 +454,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_profit_anroid_no_repeat = android_clicks_no_repeat * @admin_menu.cpc_android %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_anroid_no_repeat = android_clicks_no_repeat * @admin_menu.cpc_android %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_anroid_no_repeat = android_installs_no_repeat * @admin_menu.cpi_android %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_anroid_no_repeat = android_excutes_no_repeat * @admin_menu.cpa_android %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -441,19 +483,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_profit_ios_no_repeat = ios_clicks_no_repeat * @admin_menu.cpc_ios %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_ios_no_repeat = ios_clicks_no_repeat * @admin_menu.cpc_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_ios_no_repeat = ios_installs_no_repeat * @admin_menu.cpi_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_ios_no_repeat = ios_excutes_no_repeat * @admin_menu.cpa_ios %>
+                  </span>
                 </div>
               </div>
               <div class="spacing_large"></div>
@@ -475,19 +523,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_cost_android = android_clicks * @admin_menu.cpc_android_user %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_cost_android = android_clicks * @admin_menu.cpc_android_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_cost_android = android_installs * @admin_menu.cpi_android_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_cost_android = android_excutes * @admin_menu.cpa_android_user %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -497,19 +551,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_cost_ios = ios_clicks * @admin_menu.cpc_ios_user %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_cost_ios = ios_clicks * @admin_menu.cpc_ios_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_cost_ios = ios_installs * @admin_menu.cpi_ios_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_cost_ios = ios_excutes * @admin_menu.cpa_ios_user %>
+                  </span>
                 </div>
                 <div class="col-xs-2" style="min-height:40px;">
                   <span class="text_center_for_grid"></span>
@@ -534,19 +594,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_cost_android_no_repeat = android_clicks_no_repeat * @admin_menu.cpc_android_user %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_cost_android_no_repeat = android_clicks_no_repeat * @admin_menu.cpc_android_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_cost_android_no_repeat = android_installs_no_repeat * @admin_menu.cpi_android_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_cost_android_no_repeat = android_excutes_no_repeat * @admin_menu.cpa_android_user %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -557,19 +623,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_cost_ios_no_repeat = ios_clicks_no_repeat * @admin_menu.cpc_ios_user %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_cost_ios_no_repeat = ios_clicks_no_repeat * @admin_menu.cpc_ios_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_cost_ios_no_repeat = ios_installs_no_repeat * @admin_menu.cpi_ios_user %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_cost_ios_no_repeat = ios_excutes_no_repeat * @admin_menu.cpa_ios_user %>
+                  </span>
                 </div>
               </div>
               <div class="spacing_large"></div>
@@ -591,19 +663,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_profit_android - cpc_cost_android  %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_android - cpc_cost_android  %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_android - cpi_cost_android  %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_android - cpa_cost_android  %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -613,19 +691,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">$<%= cpc_profit_ios - cpc_cost_ios %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_ios - cpc_cost_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_ios - cpi_cost_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_ios - cpa_cost_ios %>
+                  </span>
                 </div>
                 <div class="col-xs-2" style="min-height:40px;">
                   <span class="text_center_for_grid"></span>
@@ -650,19 +734,25 @@
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_profit_anroid_no_repeat - cpc_cost_android_no_repeat %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_anroid_no_repeat - cpc_cost_android_no_repeat %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_anroid_no_repeat - cpi_cost_android_no_repeat %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">Android</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_anroid_no_repeat - cpa_cost_android_no_repeat %>
+                  </span>
                 </div>
 
                 <div class="col-xs-2" style="min-height:40px;">
@@ -673,19 +763,25 @@
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid"><%= cpc_profit_ios_no_repeat - cpc_cost_ios_no_repeat %></span>
+                  <span class="text_center_for_grid">
+                    $<%= cpc_profit_ios_no_repeat - cpc_cost_ios_no_repeat %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpi_profit_ios_no_repeat - cpi_cost_ios_no_repeat %>
+                  </span>
                 </div>
                 <div class="col-xs-1 grid">
                   <span class="text_center_for_grid">IOS</span>
                 </div>
                 <div class="col-xs-2 grid">
-                  <span class="text_center_for_grid">not ready</span>
+                  <span class="text_center_for_grid">
+                    $<%= cpa_profit_ios_no_repeat - cpa_cost_ios_no_repeat %>
+                  </span>
                 </div>
               </div>
               <div class="spacing_large"></div>

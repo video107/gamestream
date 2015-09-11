@@ -164,13 +164,25 @@
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                <%= @case.installer_by_date(@early_date,@late_date) %>
+              <% else %>
+                na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                <%= @case.excuter_by_date(@early_date,@late_date) %>
+              <% else %>
+                na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
@@ -188,23 +200,35 @@
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                <%= @case.installer_by_date(@early_date,@late_date) %>
+              <% else %>
+                na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                <%= @case.excuter_by_date(@early_date,@late_date) %>
+              <% else %>
+                na
+              <% end %>
+            </span>
           </div>
 
           <div class="col-xs-4 grid">
             <span class="text_center_for_grid">點擊數</span>
           </div>
           <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝數</span>
+            <span class="text_center_for_grid">安裝數(等同於不重複安裝數)</span>
           </div>
           <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行數</span>
+            <span class="text_center_for_grid">執行數(等同於不重複執行數)</span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">Android</span>
@@ -224,7 +248,8 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "android" %>
-                 <%= @case.total_install?(@early_date,@late_date) %>
+                 <%= @case.installer_by_date(@early_date,@late_date) %>
+                 <%#= @case.total_install?(@early_date,@late_date) %>
               <% else %>
                  na
               <% end %>
@@ -236,7 +261,8 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "android" %>
-                 <%= @case.total_excute?(@early_date,@late_date) %>
+                 <%= @case.excuter_by_date(@early_date,@late_date) %>
+                 <%#= @case.total_excute?(@early_date,@late_date) %>
               <% else %>
                  na
               <% end %>
@@ -260,7 +286,8 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "ios" %>
-                 <%= @case.total_install?(@early_date,@late_date) %>
+                 <%= @case.installer_by_date(@early_date,@late_date) %>
+                 <%#= @case.total_install?(@early_date,@late_date) %>
               <% else %>
                  na
               <% end %>
@@ -272,7 +299,8 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "ios" %>
-                 <%= @case.total_excute?(@early_date,@late_date) %>
+                 <%= @case.excuter_by_date(@early_date,@late_date) %>
+                 <%#= @case.total_excute?(@early_date,@late_date) %>
               <% else %>
                  na
               <% end %>
@@ -293,7 +321,7 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "android" %>
-                 <%= @case.follower_by_date(@early_date,@late_date) * (@case.menu.cpc_android_user ? @case.menu.cpc_android_user : 0) %>
+                 <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_android_user  %>
               <% else %>
                  na
               <% end %>
@@ -303,13 +331,25 @@
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                 <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_android_user  %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">Android</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "android" %>
+                 <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_android_user  %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
@@ -317,7 +357,7 @@
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">
               <% if @case.owner == "ios" %>
-                 <%= @case.follower_by_date(@early_date,@late_date) * (@case.menu.cpc_ios_user ? @case.menu.cpc_ios_user : 0) %>
+                 <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_ios_user %>
               <% else %>
                  na
               <% end %>
@@ -327,13 +367,25 @@
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                 <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_ios_user %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
           </div>
           <div class="col-xs-2 grid">
             <span class="text_center_for_grid">IOS</span>
           </div>
           <div class="col-xs-2 grid">
-            <span class="text_center_for_grid"></span>
+            <span class="text_center_for_grid">
+              <% if @case.owner == "ios" %>
+                 <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_ios_user %>
+              <% else %>
+                 na
+              <% end %>
+            </span>
           </div>
         </div>
 
