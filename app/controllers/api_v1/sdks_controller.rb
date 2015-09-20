@@ -47,7 +47,11 @@ class ApiV1::SdksController < ApplicationController
             else
               CaseInstaller.create(:user => user , :case => sdkcase )
             end
-          render :json => { :message => "OK", :sdk_id => @sdk.id, :user_id => user.id, :menu_id => menu.id, :case_id => sdkcase.id }
+          if user && menu
+            render :json => { :message => "OK", :sdk_id => @sdk.id, :user_id => user.id, :menu_id => menu.id, :case_id => sdkcase.id }
+          else
+            render :json => { :message => "OK", :sdk_id => @sdk.id}
+          end
         else
           render :json => { :errors => @sdk.errors.full_messages }, :status => 400
         end
