@@ -17,7 +17,11 @@ class ApiV1::SdksController < ApplicationController
                      google_account: params[:google_account],
                      imei: params[:imei],
                      mac_addr: params[:mac_addr],
-                     google_advertisingid: params[:google_advertisingid] )
+                     google_advertisingid: params[:google_advertisingid],
+                     android_id: params[:android_id],
+                     screensize: params[:screensize],
+                     imsi: params[:imsi],
+                     retry: params[:retry])
 
         user = User.find_by_email(params[:google_account])
         menu = Menu.find_by_package_name(params[:package_name])

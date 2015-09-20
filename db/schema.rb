@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910060524) do
+ActiveRecord::Schema.define(version: 20150920122829) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -156,6 +156,10 @@ ActiveRecord::Schema.define(version: 20150910060524) do
     t.string   "google_advertisingid", limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "android_id",           limit: 255
+    t.string   "screensize",           limit: 255
+    t.string   "imsi",                 limit: 255
+    t.integer  "retry",                limit: 4
   end
 
   create_table "users", force: :cascade do |t|
