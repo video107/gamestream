@@ -31,9 +31,9 @@ class ApiV1::SdksController < ApplicationController
           already_excuted = sdkcase.find_excuted_by_user(user)
         end
         # find all the sdks from this user and this menu
-        sdk_all = Sdk.where(google_account: params[:google_account])
+        sdk_all = Sdk.where(google_account: params[:google_account], package_name: params[:package_name])
         if sdk_all.any?
-          first_sdk_date = sdk_all.where(package_name: params[:package_name]).first.created_at.to_date
+          first_sdk_date = sdk_all.first.created_at.to_date
         end
 
         if @sdk.save!
