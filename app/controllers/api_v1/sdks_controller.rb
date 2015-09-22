@@ -27,8 +27,10 @@ class ApiV1::SdksController < ApplicationController
         menu = Menu.find_by_package_name(params[:package_name])
         if user
           sdkcase = user.follow_cases.find_by_menu_id(menu.id)
-          already_installed = sdkcase.find_installed_by_user(user)
-          already_excuted = sdkcase.find_excuted_by_user(user)
+          if sdkcase
+            already_installed = sdkcase.find_installed_by_user(user)
+            already_excuted = sdkcase.find_excuted_by_user(user)
+          end
         end
         # find all the sdks from this user and this menu
         sdk_all = Sdk.where(google_account: params[:google_account], package_name: params[:package_name])
