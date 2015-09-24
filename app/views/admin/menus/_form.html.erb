@@ -28,10 +28,6 @@
     <%= f.text_field :package_name, :class =>"form-control form_word" %>
   </div>
   <div class="field">
-    <%= f.label :cpa_period %><br>
-    <%= f.text_field :cpa_period, :class =>"form-control form_word" %>
-  </div>
-  <div class="field">
     <%= f.label :contents %><br>
     <%= f.text_area :contents, :class => "form-control form_word" %>
   </div>
@@ -80,7 +76,11 @@
     <%= f.text_field :cpa_ios_user, :class =>"form-control form_word_small"  %>
   </div>
   <div class="field">
-    <%= f.label :dateline %><br>
+    <%= f.label :cpa_period %><br>
+    <%= f.text_field :cpa_period, :class =>"form-control form_word" %>
+  </div>
+  <div class="field">
+    <%= f.label :deadline %><br>
     <%= f.text_field :deadline, :id => "deadline",:class => "form-control form_word" %>
   </div>
   <div class="field">
