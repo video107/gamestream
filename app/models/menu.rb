@@ -1,8 +1,7 @@
 class Menu < ActiveRecord::Base
 
   belongs_to :category
-  # has_many :menu_users
-  # has_many :users, :through => :menu_users
+
   has_paper_trail
   has_many :cases, :dependent => :destroy
 
@@ -34,7 +33,6 @@ class Menu < ActiveRecord::Base
   has_attached_file :game_icon, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
-
 
   validates_presence_of :friendly_id
   validates_uniqueness_of :friendly_id
