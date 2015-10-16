@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   end
 
   get 'admin/index' => "admin#index"
-  # devise_for :users
 
   root 'menus#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -49,12 +48,7 @@ Rails.application.routes.draw do
   end
 
   get "/suspend" => "menus#suspend"
-  # devise_scope :user do
-  #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :des_user_session
-  # end
-  # devise_scope :user do
-  # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  # end
+
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
     post "login" => "auth#login"
     post "logout" => "auth#logout"
@@ -62,12 +56,4 @@ Rails.application.routes.draw do
     resources :sdks
 
   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
 end
