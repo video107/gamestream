@@ -1,0 +1,12 @@
+    <h1>heyhey taxi</h1>
+    <% @channels.each do |c| %>
+      <div class="col-xs-4">
+        <ul class="grid_double">
+          <li><%= c.name %> <%= c.id %></li>
+          <li><%= c.user.name %></li>
+          <%= link_to image_tag(c.url), c, target: "_blank" %>
+        </ul>
+
+
+      </div>
+      <% end %>

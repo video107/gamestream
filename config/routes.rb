@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+
+  # root 'landings#index'
+  root 'channels#index'
+  resources :landing, only: [:about, :index, :qa, :contact]
+  resources :channels
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :menus do
+    resources :cases
+  end
+
+  resources :users do
+    resources :cases do
+        get :case_report, on: :member
+    end
+  end
+
+  get "/suspend" => "menus#suspend"
+
+  get 'admin/index' => "admin#index"
   namespace :admin do
     resources :menus do
       collection do
@@ -32,28 +53,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'admin/index' => "admin#index"
-
-  root 'menus#index'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  resources :menus do
-    resources :cases
-  end
-
-  resources :users do
-    resources :cases do
-        get :case_report, on: :member
-    end
-  end
-
-  get "/suspend" => "menus#suspend"
 
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
     post "login" => "auth#login"
     post "logout" => "auth#logout"
 
     resources :sdks
-
   end
 end

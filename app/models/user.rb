@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and, :confirmable
   devise :database_authenticatable, :registerable,
@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :installs, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
   has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
   has_many :deposit_records
+  has_many :channels
 
   validates_presence_of :friendly_id
   validates_uniqueness_of :friendly_id
@@ -93,10 +94,6 @@ class User < ActiveRecord::Base
   def deposit?
     self.deposit_records.all.map { |x| x.amount}.sum
   end
-
-
-
-
 
 
 end

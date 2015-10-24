@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925081718) do
+ActiveRecord::Schema.define(version: 20151023071143) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20150925081718) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "channels", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "name",       limit: 255,   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "url",        limit: 65535
+  end
+
+  add_index "channels", ["user_id"], name: "index_channels_on_user_id", using: :btree
 
   create_table "deposit_records", force: :cascade do |t|
     t.integer  "amount",     limit: 4, default: 0
@@ -214,4 +224,5 @@ ActiveRecord::Schema.define(version: 20150925081718) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "channels", "users"
 end
