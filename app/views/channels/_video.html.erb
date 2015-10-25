@@ -1,1 +1,4 @@
-<iframe src="http://www.twitch.tv/<%= url %>/embed" frameborder="1" scrolling="no" height="565" width="940" allowfullscreen></iframe>
+<div id="IframeWrapper" style="position: relative;">
+  <div id="iframeBlocker" style="position: absolute; top: 0; left: 0; width: 940px; height: 565px"></div>
+  <iframe src="http://www.twitch.tv/<%= url %>/embed" frameborder="1" scrolling="no" height="565" width="940" allowfullscreen="false"></iframe>
+</div>

@@ -1,12 +1,28 @@
-    <h1>heyhey taxi</h1>
-    <% @channels.each do |c| %>
-      <div class="col-xs-4">
-        <ul class="grid_double">
-          <li><%= c.name %> <%= c.id %></li>
-          <li><%= c.user.name %></li>
-          <%= link_to image_tag(c.url), c, target: "_blank" %>
-        </ul>
-
-
-      </div>
-      <% end %>
+<h1>heyhey taxi</h1>
+<% @channels.each do |c| %>
+<div class="col-xs-4">
+  <ul class="grid_double">
+    <li><%= c.name %></li>
+    <li><%= c.user.name %></li>
+    <%= link_to image_tag(c.url), c, target: "_blank" %>
+    <% stream_channel = c.get_data_from_twitch %>
+    <br>
+    <% if stream_channel["stream"] == nil %>
+    <div>
+      <div id="circle_live" style="display: inline-block; background-color: white;"></div>
+      <div style="display: inline-block;">Offline</div>
+    </div>
+    <br>
+    <br>
+    <% else %>
+    Game
+    <br>
+    <%= stream_channel["stream"]["game"] %>
+    <div>
+      <div id="circle_live" style="display: inline-block;"></div>
+      <div style="display: inline-block;">Live <%= stream_channel["stream"]["viewers"] %> watching</div>
+    </div>
+    <% end %>
+  </ul>
+</div>
+<% end %>

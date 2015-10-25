@@ -6,8 +6,8 @@ namespace :setup do
     end
 
     task :user => :environment do
-        User.delete_all
         Channel.delete_all
+        User.delete_all
         password = "11111111"
         channel_name = %w[ youtube twitch livein streamup]
         url_name = %w[reall1992 hcm1008 briel_hs inkiiing nvidiatw nufevah vecanl lostovalex ogaminghs battle_of_taverns]
