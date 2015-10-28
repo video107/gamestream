@@ -1,4 +1,4 @@
-<h1>heyhey taxi</h1>
+
 <% @channels.each do |c| %>
 <div class="col-xs-4">
   <ul class="grid_double">
@@ -9,13 +9,15 @@
     <br>
     <% if c.name == "youtube"%>
       <% if stream_channel != nil && stream_channel["concurrentViewers"] %>
-      <div id="circle_live" style="display: inline-block;"></div>
-      <div style="display: inline-block;">
-        Live <%= stream_channel["concurrentViewers"]%> watching
-      </div>
-      <br>
-      <br>
-      <br>
+        <p>
+          Youtube Live
+        </p>
+        <div>
+          <div id="circle_live" style="display: inline-block;"></div>
+          <div style="display: inline-block;">
+            Live <%= stream_channel["concurrentViewers"]%> watching
+          </div>
+        </div>
       <% else  %>
         <div>
           <div id="circle_live" style="display: inline-block; background-color: white;"></div>
@@ -26,9 +28,9 @@
       <% end %>
     <% elsif c.name == "twitch"%>
       <% if stream_channel %>
-        Game
-        <br>
-        <%= stream_channel["game"] %>
+        <p>
+          <%= stream_channel["game"] %>
+        </p>
         <div>
           <div id="circle_live" style="display: inline-block;"></div>
           <div style="display: inline-block;">Live <%= stream_channel["viewers"] %> watching</div>
