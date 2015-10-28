@@ -2,26 +2,45 @@
 <% @channels.each do |c| %>
 <div class="col-xs-4">
   <ul class="grid_double">
-    <li><%= c.name %></li>
-    <li><%= c.user.name %></li>
-    <%= link_to image_tag(c.url), c, target: "_blank" %>
-    <% stream_channel = c.get_data_from_twitch %>
+    <li>頻道: <%= c.name %></li>
+    <li>直播主: <%= c.user.name %></li>
+    <%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %>
+    <% stream_channel = c.get_data_from_twitch(c.name) %>
     <br>
-    <% if stream_channel["stream"] == nil %>
-    <div>
-      <div id="circle_live" style="display: inline-block; background-color: white;"></div>
-      <div style="display: inline-block;">Offline</div>
-    </div>
-    <br>
-    <br>
-    <% else %>
-    Game
-    <br>
-    <%= stream_channel["stream"]["game"] %>
-    <div>
+    <% if c.name == "youtube"%>
+      <% if stream_channel != nil && stream_channel["concurrentViewers"] %>
       <div id="circle_live" style="display: inline-block;"></div>
-      <div style="display: inline-block;">Live <%= stream_channel["stream"]["viewers"] %> watching</div>
-    </div>
+      <div style="display: inline-block;">
+        Live <%= stream_channel["concurrentViewers"]%> watching
+      </div>
+      <br>
+      <br>
+      <br>
+      <% else  %>
+        <div>
+          <div id="circle_live" style="display: inline-block; background-color: white;"></div>
+          <div style="display: inline-block;">Offline</div>
+        </div>
+        <br>
+        <br>
+      <% end %>
+    <% elsif c.name == "twitch"%>
+      <% if stream_channel %>
+        Game
+        <br>
+        <%= stream_channel["game"] %>
+        <div>
+          <div id="circle_live" style="display: inline-block;"></div>
+          <div style="display: inline-block;">Live <%= stream_channel["viewers"] %> watching</div>
+        </div>
+        <% else  %>
+          <div>
+            <div id="circle_live" style="display: inline-block; background-color: white;"></div>
+            <div style="display: inline-block;">Offline</div>
+          </div>
+          <br>
+          <br>
+        <% end %>
     <% end %>
   </ul>
 </div>

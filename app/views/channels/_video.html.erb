@@ -1,4 +1,10 @@
 <div id="IframeWrapper" style="position: relative;">
-  <div id="iframeBlocker" style="position: absolute; top: 0; left: 0; width: 940px; height: 565px"></div>
-  <iframe src="http://www.twitch.tv/<%= url %>/embed" frameborder="1" scrolling="no" height="565" width="940" allowfullscreen="false"></iframe>
+  <div id="iframeBlocker" style="position: absolute; top: 0; left: 0; width: 940px; height: 0px"></div>
+  <% if provider == "twitch" %>
+    <iframe src="http://www.twitch.tv/<%= url %>/embed" frameborder="1" scrolling="no" width="940" height="565"  allowfullscreen></iframe>
+  <% elsif provider == "youtube" %>
+    <iframe src="https://www.youtube.com/embed/<%= url %>?autoplay=1" frameborder="1" scrolling="no"  width="940" height="565" allowfullscreen></iframe>
+  <% else %>
+    <h1>Nothing here</h1>
+  <% end %>
 </div>
