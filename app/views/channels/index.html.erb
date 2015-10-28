@@ -19,12 +19,11 @@
           </div>
         </div>
       <% else  %>
+        <p>Youtube Live</p>
         <div>
           <div id="circle_live" style="display: inline-block; background-color: white;"></div>
           <div style="display: inline-block;">Offline</div>
         </div>
-        <br>
-        <br>
       <% end %>
     <% elsif c.name == "twitch"%>
       <% if stream_channel %>
@@ -36,12 +35,11 @@
           <div style="display: inline-block;">Live <%= stream_channel["viewers"] %> watching</div>
         </div>
         <% else  %>
+          <p>Twitch Live</p>
           <div>
             <div id="circle_live" style="display: inline-block; background-color: white;"></div>
             <div style="display: inline-block;">Offline</div>
           </div>
-          <br>
-          <br>
         <% end %>
     <% end %>
   </ul>
