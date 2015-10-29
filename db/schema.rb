@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028102612) do
+ActiveRecord::Schema.define(version: 20151028175936) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 20151028102612) do
     t.string   "fans",                   limit: 255
     t.string   "master",                 limit: 255
     t.string   "friendly_id",            limit: 255
+    t.string   "twitch_account_url",     limit: 255
+    t.string   "youtube_account_url",    limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

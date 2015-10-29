@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :nickname
-    devise_parameter_sanitizer.for(:account_update) << :nickname
+    devise_parameter_sanitizer.for(:sign_up) << [:nickname, :twitch_account_url, :youtube_account_url]
+    devise_parameter_sanitizer.for(:account_update) << [:nickname, :twitch_account_url, :youtube_account_url]
   end
 end

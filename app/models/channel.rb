@@ -19,11 +19,15 @@ class Channel < ActiveRecord::Base
       if provider == "twitch"
         if @data["stream"] && @data["stream"]["viewers"]
           self.update!(viewers: @data["stream"]["viewers"])
+        else
+          self.update!(viewers: 0)
         end
         @data["stream"]
       elsif provider == "youtube"
         if @data["items"] && @data["items"][0]["liveStreamingDetails"]
           self.update!(viewers: @data["items"][0]["liveStreamingDetails"]["concurrentViewers"])
+        else
+          self.update!(viewers: 0)
         end
         @data["items"][0]["liveStreamingDetails"]
       end

@@ -138,6 +138,8 @@ class Admin::UsersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.require(:admin_user).permit(:email, :name, :nickname, :phone, :address, :bank_account,:bank_name,:bank_name_code)
+      params.require(:admin_user).permit(:email, :name, :nickname, :phone,
+                                         :address, :bank_account,:bank_name,
+                                         :bank_name_code, :twitch_account_url, :youtube_account_url)
     end
 end

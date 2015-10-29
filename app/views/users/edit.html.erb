@@ -30,6 +30,16 @@
       </div>
       <br>
       <div class="field regist_word form-inline">
+        <%= f.label :twitch網址 %>
+        <%= f.text_field :twitch_account_url, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word form-inline">
+        <%= f.label :youtube網址 %>
+        <%= f.text_field :youtube_account_url, autofocus: true, :class => "form-control form_word" %>
+      </div>
+      <br>
+      <div class="field regist_word form-inline">
           <%= f.label :phone %>
           <%= f.text_field :phone, autofocus: true, :class => "form-control form_word" %>
       </div>
