@@ -30,6 +30,8 @@ gem "brakeman", :require => false
 gem 'devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -61,6 +63,7 @@ gem 'paper_trail', '~> 4.0.0.rc'
 # gem 'ahoy_matey'
 # initiate user uuid
 gem 'activeuuid', '>= 0.5.0'
+gem 'bower-rails', '~> 0.10.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -18,3 +18,13 @@
 /public/system/*
 /config/secrets.yml
 /config/database.yml
+/config/admin.yml
+/config/facebook.yml
+/config/google.yml
+/config/youtube.yml
+
+# Ignore application configuration
+/config/application.yml
+/public/uploads*
+/bower_components
+vendor/assets/bower_components
