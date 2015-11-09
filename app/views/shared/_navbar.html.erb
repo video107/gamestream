@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <%= link_to "Brand", root_path, class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center">
+        <li><%= link_to "關於我們", about_path %></li> |
+        <li><%= link_to "直播主招募", recuit_path %></li> |
+        <li><%= link_to "Q&A", qa_path %></li> |
+        <li><%= link_to "聯絡我們", contact_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Hi <%= current_user.user_name %><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><%= link_to "個人資料", user_cases_path(current_user)%></li>
+                <li><%= link_to "推廣後台", menus_path%></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "註冊或登入", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>

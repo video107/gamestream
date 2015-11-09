@@ -1,6 +1,6 @@
 class LandingsController < ApplicationController
 
-  def index
+  def recuit
   end
 
   def about
@@ -10,6 +10,7 @@ class LandingsController < ApplicationController
   end
 
   def contact
+    @feedback = Feedback.new
   end
-  
+
 end

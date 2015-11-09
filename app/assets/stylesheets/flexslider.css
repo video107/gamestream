@@ -78,8 +78,8 @@ html[xmlns] .flexslider .slides {
   margin-left: auto;
   margin-right: auto;
   background: #ffffff;
-  border: 4px solid #ffffff;
-  width: 900px;
+  /*border: 4px solid #ffffff;*/
+  width: 830px;
   position: relative;
   zoom: 1;
   -webkit-border-radius: 4px;
@@ -94,7 +94,8 @@ html[xmlns] .flexslider .slides {
   zoom: 1;
 }
 .flexslider .slides img {
-  height: 300px;
+  width: 830px;
+  height: 460px;
 }
 .flex-viewport {
   max-height: 2000px;

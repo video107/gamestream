@@ -11,16 +11,28 @@
       <div class="container">
         <div class="row">
           <% if flash[:notice] %>
-            <p class="alert alert-info"><%= flash[:notice] %></p>
+            <p class="alert alert-info">
+              <%= flash[:notice] %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </p>
           <% end %>
           <% if flash[:alert] %>
-            <p class="alert alert-warning"><%= flash[:alert] %></p>
+            <p class="alert alert-warning">
+              <%= flash[:alert] %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </p>
           <% end %>
           <% if flash[:success] %>
-            <p class="alert alert-success"><%= flash[:success] %></p>
+            <p class="alert alert-success">
+              <%= flash[:success] %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </p>
           <% end %>
           <% if flash[:danger] %>
-            <p class="alert alert-danger"><%= flash[:danger] %></p>
+            <p class="alert alert-danger">
+              <%= flash[:danger] %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </p>
           <% end %>
           <%= yield %>
         </div>

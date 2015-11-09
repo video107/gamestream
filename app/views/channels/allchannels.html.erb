@@ -1,35 +1,11 @@
-<%= render "shared/navbar" %>
+
 <div class="row">
-  <div class="flexslider">
-    <ul class="slides">
-      <li>
-        <img src="<%= @channel_test.url  %>" />
-      </li>
-      <li>
-        <img src="<%= @channel_test.url  %>" />
-      </li>
-      <li>
-        <img src="<%= @channel_test.url  %>" />
-      </li>
-      <li>
-        <img src="<%= @channel_test.url  %>" />
-      </li>
-      <li>
-        <img src="<%= @channel_test.url  %>" />
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="decoration_bar">
-  <%= link_to image_tag("live_stream.png", alt: "live stream", class: "live_image"), all_path %>
+  <br>
+  <%= image_tag("live_stream.png", alt: "live stream", class: "live_image") %>
   <span class="live_words">Live Streaming</span>
-  <%= link_to  "More", all_path, class: "all_channels" %>
+  <%= link_to  "StreamCircle首頁", root_path, class: "rootpath" %>
 </div>
 <br>
-
 
 <div class="row row_width">
   <% @channels.each do |c| %>
@@ -79,11 +55,3 @@
   </div>
   <% end %>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('.flexslider').flexslider({
-      animation: "slide"
-    });
-  });
-</script>

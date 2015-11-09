@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  # root 'landings#index'
   root 'channels#index'
-  resources :landing, only: [:about, :index, :qa, :contact]
+  get "/about" => "landings#about"
+  get "/recuit" => "landings#recuit"
+  get "/qa" => "landings#qa"
+  get "/contact" => "landings#contact"
+  get "/all" => "channels#allchannels"
   resources :channels
-
+  resources :feedbacks
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :menus do

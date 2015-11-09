@@ -17,15 +17,11 @@
     <%= @menu.menu_url_ios %>
     <div class="spacing"></div>
 
-    <!-- <div class="regist_word">遊戲大頭照：</div> -->
-    <%#= image_tag(@menu.game_image(:thumb)) %>
-
     <div class="regist_word">遊戲icon：</div>
     <%= image_tag(@menu.game_icon(:thumb)) %>
     <div class="spacing"></div>
     <%= form_for @case,:url => menu_cases_path(@menu) do |f| %>
      <%= f.hidden_field :case_url%>
-     <%#= f.hidden_field :owner, :value => "ios" %>
      <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
      <%= f.submit "建立專屬Android連結", :class => "btn btn-primary",:name => "commit" %>
     <% end %>
@@ -35,38 +31,12 @@
     <%= image_tag(@menu.game_pic_2(:small)) %>
     <%= image_tag(@menu.game_pic_3(:small)) %>
 
-    <!-- <div class="regist_word">遊戲圖片2：</div> -->
-    <!-- <div class="regist_word">遊戲圖片3：</div> -->
     <div class="regist_word">遊戲圖片：</div>
     <%= image_tag(@menu.game_pic_4(:small)) %>
     <%= image_tag(@menu.game_pic_5(:small)) %>
 
-    <!-- <div class="regist_word">遊戲圖片5：</div> -->
-         <%#= link_to "#", :data => {:toggle=>"modal", :target => "#myModal"}, :class => "btn btn-primary" do %>
-            <!-- 建立專屬IOS連結 -->
-         <%# end %>
-         <%#= link_to "#", :data => {:toggle=>"modal", :target => "#myModal"}, :class => "btn btn-primary" do %>
-            <!-- 建立專屬Android連結 -->
-         <%# end %>
          <br>
         <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
         </div>
   </div>
 </div>
-
-
-<!--     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="vertical-alignment-helper">
-        <div class="modal-dialog vertical-align-center" role="document">
-          <div class="modal-content">
-            <div class="modal-footer">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <br>
-              <div class="text-center">
-                <button type="button" class="btn btn-primary">確認</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->

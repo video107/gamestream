@@ -8,4 +8,9 @@ module ApplicationHelper
     end
     render :partial => 'channels/video', :locals => {:url => url_exp[1], :provider => provider }
   end
+
+  def icon(name)
+    "<span class=\"glyphicon glyphicon-#{name}\"><span>".html_safe
+  end
+
 end

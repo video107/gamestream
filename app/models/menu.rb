@@ -39,7 +39,10 @@ class Menu < ActiveRecord::Base
 
   before_validation :setup_friendly_id
 
-  attr_accessor :_remove_pic, :_remove_pic_2, :_remove_pic_3, :_remove_pic_4, :_remove_pic_5, :_remove_pic_6, :_remove_icon
+  attr_accessor :_remove_pic, :_remove_pic_2, :_remove_pic_3,
+                :_remove_pic_4, :_remove_pic_5, :_remove_pic_6,
+                :_remove_icon
+                
   before_save :check_remove_pic
   before_save :check_remove_pic_2
   before_save :check_remove_pic_3
