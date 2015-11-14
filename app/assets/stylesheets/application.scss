@@ -83,7 +83,7 @@
 
 .decoration_bar  {
   // position: relative;
-  width: 1230px;
+  width: 100%;
   height: 90px;
   background: #333333;
   line-height: 90px;
@@ -105,7 +105,7 @@
   margin-top: 40px;
 }
 .live_image {
-  margin-left: 120px;
+  margin-left: 230px;
 }
 .live_words {
   color: white;
@@ -130,7 +130,6 @@
   border-radius: 100%;
 }
 
-
 .grid_title {
   font-size: 25px;
   color:darkcyan;
@@ -148,12 +147,13 @@
   left: 0;
   right: 0;
   text-align: center;
-  width: 70%;
+  width: 80%;
 }
 .nav.navbar-center li,.nav.navbar-center li a{
   display: inline;
   float: none;
   line-height: 50px;
+  vertical-align: top;
 }
 
 ul.dropdown-menu > li > a:hover, ul.dropdown-menu > li > a:focus {
@@ -166,7 +166,7 @@ a:hover { color: #2180cc; }
   background: #232323
 }
 .paragraph {
-  margin-left: 50px;
+  // margin-left: 50px;
   margin-top: 50px;
 }
 body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-height:1.75em; color:#666666; background: #232323; background-size: cover; background-attachment: fixed; }
@@ -178,4 +178,30 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
 #banner,h2 { color: gainsboro; font-size: 48px; padding: 0px; margin-top: 40px}
 .qabtn {
   text-decoration: none !important;
+}
+.nav_bar {
+  background: #333333;
+  color: white;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+}
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  color: gray;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a, .channel_name, .user_name {
+  color: white;
+}
+.navbar-brand {
+  margin-left: 20px;
+}
+.login_nav {
+  margin-right: 20px;
+}
+.row_slider {
+  background: black;
+  padding-top: 20px;
+}
+.content_align {
+  margin-left: 350px;
 }
