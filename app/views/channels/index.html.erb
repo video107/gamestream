@@ -2,51 +2,61 @@
 <div class="row row_slider">
   <div class="flexslider">
     <ul class="slides">
-      <li>
-        <% if @channels_top5[0].name == "Twitch" %>
-          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
-        <% elsif @channels_top5[0].name == "Youtube" %>
-          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
-        <% else %>
-          <img src="<%= @channels_top5[0].url  %>" />
-        <% end %>
-      </li>
-      <li>
-        <% if @channels_top5[1].name == "Twitch" %>
-          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
-        <% elsif @channels_top5[1].name == "Youtube" %>
-          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
-        <% else %>
-          <img src="<%= @channels_top5[1].url  %>" />
-        <% end %>
-      </li>
-      <li>
-        <% if @channels_top5[2].name == "Twitch" %>
-          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
-        <% elsif @channels_top5[2].name == "Youtube" %>
-          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
-        <% else %>
-          <img src="<%= @channels_top5[2].url  %>" />
-        <% end %>
-      </li>
-      <li>
-        <% if @channels_top5[3].name == "Twitch" %>
-          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
-        <% elsif @channels_top5[3].name == "Youtube" %>
-          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
-        <% else %>
-          <img src="<%= @channels_top5[3].url  %>" />
-        <% end %>
-      </li>
-      <li>
-        <% if @channels_top5[4].name == "Twitch" %>
-          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
-        <% elsif @channels_top5[4].name == "Youtube" %>
-          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
-        <% else %>
-          <img src="<%= @channels_top5[4].url  %>" />
-        <% end %>
-      </li>
+      <% if !@channels_top5[0].blank? %>
+        <li>
+          <% if @channels_top5[0].name == "Twitch" %>
+            <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+          <% elsif @channels_top5[0].name == "Youtube" %>
+            <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+          <% else %>
+            <img src="<%= @channels_top5[0].url  %>" />
+          <% end %>
+        </li>
+      <% end %>
+      <% if !@channels_top5[1].blank? %>
+        <li>
+          <% if @channels_top5[1].name == "Twitch" %>
+            <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+          <% elsif @channels_top5[1].name == "Youtube" %>
+            <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+          <% else %>
+            <img src="<%= @channels_top5[1].url  %>" />
+          <% end %>
+        </li>
+      <% end %>
+      <% if !@channels_top5[2].blank? %>
+        <li>
+          <% if @channels_top5[2].name == "Twitch" %>
+            <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+          <% elsif @channels_top5[2].name == "Youtube" %>
+            <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+          <% else %>
+            <img src="<%= @channels_top5[2].url  %>" />
+          <% end %>
+        </li>
+      <% end %>
+      <% if !@channels_top5[3].blank? %>
+        <li>
+          <% if @channels_top5[3].name == "Twitch" %>
+            <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+          <% elsif @channels_top5[3].name == "Youtube" %>
+            <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+          <% else %>
+            <img src="<%= @channels_top5[3].url  %>" />
+          <% end %>
+        </li>
+      <% end %>
+      <% if !@channels_top5[4].blank? %>
+        <li>
+          <% if @channels_top5[4].name == "Twitch" %>
+            <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+          <% elsif @channels_top5[4].name == "Youtube" %>
+            <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+          <% else %>
+            <img src="<%= @channels_top5[4].url  %>" />
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
@@ -97,9 +107,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('.flexslider').flexslider({
-      // animation: "slide"
       slideshow: false
-      // controlNav: "thumbnails"
     });
   });
 </script>
