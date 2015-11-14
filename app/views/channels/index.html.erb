@@ -1,21 +1,51 @@
 <%= render "shared/navbar" %>
-<div class="row">
+<div class="row row_slider">
   <div class="flexslider">
     <ul class="slides">
       <li>
-        <img src="<%= @channel_test.url  %>" />
+        <% if @channels_top5[0].name == "Twitch" %>
+          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+        <% elsif @channels_top5[0].name == "Youtube" %>
+          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[0].url, @channels_top5[0].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+        <% else %>
+          <img src="<%= @channels_top5[0].url  %>" />
+        <% end %>
       </li>
       <li>
-        <img src="<%= @channel_test.url  %>" />
+        <% if @channels_top5[1].name == "Twitch" %>
+          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+        <% elsif @channels_top5[1].name == "Youtube" %>
+          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[1].url, @channels_top5[1].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+        <% else %>
+          <img src="<%= @channels_top5[1].url  %>" />
+        <% end %>
       </li>
       <li>
-        <img src="<%= @channel_test.url  %>" />
+        <% if @channels_top5[2].name == "Twitch" %>
+          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+        <% elsif @channels_top5[2].name == "Youtube" %>
+          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[2].url, @channels_top5[2].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+        <% else %>
+          <img src="<%= @channels_top5[2].url  %>" />
+        <% end %>
       </li>
       <li>
-        <img src="<%= @channel_test.url  %>" />
+        <% if @channels_top5[3].name == "Twitch" %>
+          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+        <% elsif @channels_top5[3].name == "Youtube" %>
+          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[3].url, @channels_top5[3].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+        <% else %>
+          <img src="<%= @channels_top5[3].url  %>" />
+        <% end %>
       </li>
       <li>
-        <img src="<%= @channel_test.url  %>" />
+        <% if @channels_top5[4].name == "Twitch" %>
+          <iframe src="http://www.twitch.tv/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>/embed" frameborder="1" scrolling="no" width="830" height="575"  allowfullscreen></iframe>
+        <% elsif @channels_top5[4].name == "Youtube" %>
+          <iframe src="https://www.youtube.com/embed/<%= url_exp(@channels_top5[4].url, @channels_top5[4].name) %>?autoplay=1" frameborder="1" scrolling="no"  width="830" height="575" allowfullscreen></iframe>
+        <% else %>
+          <img src="<%= @channels_top5[4].url  %>" />
+        <% end %>
       </li>
     </ul>
   </div>
@@ -24,7 +54,7 @@
 <div class="clearfix"></div>
 
 <div class="decoration_bar">
-  <%= link_to image_tag("live_stream.png", alt: "live stream", class: "live_image"), all_path %>
+  <%= link_to image_tag("broadcast.png", size: "55x56", alt: "live stream", class: "live_image"), all_path %>
   <span class="live_words">Live Streaming</span>
   <%= link_to  "More", all_path, class: "all_channels" %>
 </div>
@@ -34,44 +64,27 @@
 <div class="row row_width">
   <% @channels.each do |c| %>
   <div class="col-xs-4">
-      <div>頻道: <%= c.name %></div>
       <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
       <% stream_channel = c.get_data_from_twitch(c.name) %>
-      <% if c.name == "youtube"%>
-        <% if stream_channel != nil && stream_channel["concurrentViewers"] %>
-          <p>Youtube Live</p>
-          <div>直播主: <%= c.user.name %></div>
+      <% if c.name == "Youtube"%>
+        <% if stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
+          <p class="channel_name"><%= stream_channel["snippet"]["title"] %></p>
+          <div><%= c.user.name %></div>
           <div>
             <div id="circle_live" style="display: inline-block;"></div>
             <div style="display: inline-block;">
-              Live <%= stream_channel["concurrentViewers"]%> watching
+              <span class="user_name"><%= c.name %> Live</span> <%= stream_channel["liveStreamingDetails"]["concurrentViewers"]%> 觀眾
             </div>
           </div>
           <br>
-        <% else  %>
-          <p>Youtube Live</p>
-          <br>
-          <div>
-            <div id="circle_live" style="display: inline-block; background-color: white;"></div>
-            <div style="display: inline-block;">Offline</div>
-          </div>
-          <br>
         <% end %>
-      <% elsif c.name == "twitch"%>
+      <% elsif c.name == "Twitch"%>
         <% if stream_channel %>
-          <p><%= stream_channel["game"] %></p>
-          <div>直播主: <%= c.user.name %></div>
+          <p class="channel_name"><%= stream_channel["game"] %></p>
+          <div><%= c.user.name %></div>
           <div>
             <div id="circle_live" style="display: inline-block;"></div>
-            <div style="display: inline-block;">Live <%= stream_channel["viewers"] %> watching</div>
-          </div>
-          <br>
-        <% else  %>
-          <p>Twitch Live</p>
-          <br>
-          <div>
-            <div id="circle_live" style="display: inline-block; background-color: white;"></div>
-            <div style="display: inline-block;">Offline</div>
+            <div style="display: inline-block;"><span class="user_name"><%= c.name %> Live </span><%= stream_channel["viewers"] %> 觀眾</div>
           </div>
           <br>
         <% end %>
@@ -80,10 +93,13 @@
   <% end %>
 </div>
 
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('.flexslider').flexslider({
-      animation: "slide"
+      // animation: "slide"
+      slideshow: false
+      // controlNav: "thumbnails"
     });
   });
 </script>

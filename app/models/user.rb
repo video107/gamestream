@@ -85,7 +85,13 @@
 
   def user_name
     if self
-       self.nickname || self.name || self.email.split("@").first
+      if self.nickname.blank?
+        self.name
+      elsif self.nickname.blank? && self.name.blank?
+        self.email.split("@").first
+      else
+        self.nickname
+      end
     else
       "Guest"
     end
