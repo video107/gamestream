@@ -32,25 +32,32 @@
 </div>
 
 <div class="clearfix"></div>
-
-<div class="decoration_bar">
-  <%= link_to image_tag("broadcast.png", size: "55x56", alt: "live stream", class: "live_image"), all_path %>
-  <span class="live_words">Live Streaming</span>
-  <%= link_to  "More", all_path, class: "all_channels" %>
+<div class="row">
+  <div class="decoration_bar">
+    <div class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-pull-1 col-md-2 col-md-offset-2">
+      <%= link_to image_tag("broadcast.png", size: "55x56", alt: "live stream", class: "live_image"), all_path %>
+    </div>
+    <div class=" text-left col-xs-4 col-sm-4 col-sm-pull-1 col-md-4 col-md-pull-2">
+      <span class="live_words">Live Streaming</span>
+    </div>
+    <div class="text-left col-xs-2 col-xs-offset-2 col-md-2 col-md-pull-1">
+      <%= link_to  "More", all_path, class: "all_channels" %>
+    </div>
+  </div>
 </div>
 <br>
 
 
 <div class="row row_width">
   <% @channels.each do |c| %>
-  <div class="col-xs-4">
+  <div class="col-xs-9 col-xs-offset-3 col-sm-3 col-sm-pull-2 col-md-1 col-md-pull-3">
       <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
       <% stream_channel = c.get_data_from_twitch(c.name) %>
       <% if c.name == "Youtube"%>
         <% if stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
-          <p class="channel_name"><%= stream_channel["snippet"]["title"] %></p>
+          <div class="channel_name"><%= stream_channel["snippet"]["title"] %></div>
           <div><%= c.user.name %></div>
-          <div>
+          <div class="channel_name">
             <div id="circle_live" style="display: inline-block;"></div>
             <div style="display: inline-block;">
               <span class="user_name"><%= c.name %> Live</span> <%= stream_channel["liveStreamingDetails"]["concurrentViewers"]%> 觀眾
@@ -60,9 +67,9 @@
         <% end %>
       <% elsif c.name == "Twitch"%>
         <% if stream_channel %>
-          <p class="channel_name"><%= stream_channel["game"] %></p>
+          <div class="channel_name"><%= stream_channel["game"] %></div>
           <div><%= c.user.name %></div>
-          <div>
+          <div class="channel_name">
             <div id="circle_live" style="display: inline-block;"></div>
             <div style="display: inline-block;"><span class="user_name"><%= c.name %> Live </span><%= stream_channel["viewers"] %> 觀眾</div>
           </div>

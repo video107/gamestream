@@ -1,5 +1,5 @@
 <%= render "shared/navbar" %>
-<div class="row">
+<div class="row col-xs-12">
   <h2 id="banner" class="text-center">
     <span>
       Q & A
@@ -7,8 +7,8 @@
   </h2>
 </div>
 
-<div class="row">
-  <div class="paragraph text-left content_align" >
+<div class="row col-xs-11 col-xs-offset-1 col-sm-9 col-sm-offset-2 col-md-7 col-md-offset-3">
+  <div class="paragraph text-left" >
     <font size="5" color="#c23b3b"><span style="line-height: 18px;">Q&#65306;StreamCircle&#36939;&#20316;&#26041;&#24335;&#26159;&#20160;&#40636;&#65311;</span></font>
     <br />
     <font size="5" color="gainsboro"><span style="line-height: 18px;">A&#65306;&#25105;&#20497;&#23559;&#38656;&#35201;&#25512;&#24291;&#30340;&#36938;&#25138;&#24118;&#32102;&#30452;&#25773;&#20027;&#65292;&#35731;&#30452;&#25773;&#20027;&#36914;&#34892;&#30452;&#25773;&#65292;</span></font>
@@ -71,16 +71,14 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="text-left" style="margin-left: 200px;">
-    <div class="col-sm-8">
-      <font size="6" color="gainsboro">&nbsp; &nbsp; &nbsp; &nbsp; &#19981;&#35542;&#24744;&#26377;&#20219;&#20309;&#21839;&#38988;&#65292;&#37117;&#27489;&#36814;&#24744;&#20358;&#20449;&#35426;&#21839;&#65292;<br />&nbsp; &nbsp; &nbsp; &nbsp; &#25105;&#20497;&#26371;&#20760;&#36895;&#32102;&#24744;&#26368;&#28415;&#24847;&#30340;&#31572;&#35206;&#65292;&#35613;&#35613;</font>
+    <div class="row col-xs-12 text-center">
+      <font size="6" color="gainsboro">&nbsp; &nbsp; &nbsp; &nbsp; &#19981;&#35542;&#24744;&#26377;&#20219;&#20309;&#21839;&#38988;&#65292;&#37117;&#27489;&#36814;&#24744;&#20358;&#20449;&#35426;&#21839;
+        <br>&#25105;&#20497;&#26371;&#20760;&#36895;&#32102;&#24744;&#26368;&#28415;&#24847;&#30340;&#31572;&#35206;&#65292;&#35613;&#35613;</font>
     </div>
-    <div class="col-sm-4" style="margin-top:30px; margin-left: -50px;">
+    <div class="row col-xs-12 text-center" style="margin-top:30px;">
       <%= link_to "發送問題", contact_path, class: "btn-lg btn-primary qabtn" %>
     </div>
-  </div>
-</div>
-<div class="spacing_large">
-
-</div>
+    
+<div class="clearfix"></div>
+<br>
+<br>

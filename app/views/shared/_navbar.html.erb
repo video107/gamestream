@@ -1,18 +1,23 @@
   <nav class="navbar navbar-inverse nav_bar">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <%= link_to "Brand", root_path, class: "navbar-brand"%>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-center">
-          <li><%= link_to "關於我們", about_path %>  |</li>
-          <li><%= link_to "直播主招募", recuit_path %>  |</li>
-          <li><%= link_to "Q&A", qa_path %>  |</li>
+        <ul class="nav navbar-nav navbar-nav-customizd">
+          <li><%= link_to "關於我們", about_path %></li>
+          <li><%= link_to "直播主招募", recuit_path %></li>
+          <li><%= link_to "Q&A", qa_path %></li>
           <li><%= link_to "聯絡我們", contact_path %></li>
           <% if current_user %>
-            <li>| <%= link_to "推廣任務", menus_path%></li>
+            <li class="promote_li"><%= link_to "推廣任務", menus_path%></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right login_nav">

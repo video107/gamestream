@@ -82,7 +82,6 @@
 }
 
 .decoration_bar  {
-  // position: relative;
   width: 100%;
   height: 90px;
   background: #333333;
@@ -109,7 +108,6 @@
 }
 .live_words {
   color: white;
-  margin-left: 20px;
 }
 .all_channels {
   margin-left: 52%;
@@ -122,6 +120,7 @@
   color: white;
 }
 .recuit_block {
+  margin-top: 20px;
 }
 .recuit_block_words {
   margin-top: 20px;
@@ -183,7 +182,6 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
   background: #333333;
   color: white;
   margin-bottom: 0px;
-  padding-bottom: 10px;
 }
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus,
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
@@ -192,11 +190,18 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a, .channel_name, .user_name {
   color: white;
 }
+.channel_name {
+  white-space: nowrap; //忽略換行
+  overflow: hidden;
+  text-overflow : ellipsis;
+  width: 300px;
+}
 .navbar-brand {
   margin-left: 2%;
 }
 .login_nav {
   margin-right: 2%;
+  width: 160px;
 }
 .row_slider {
   background: black;
@@ -204,4 +209,35 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
 }
 .content_align {
   margin-left: 25%;
+}
+@media (min-width: 992px) {
+  .col-md-offset-1_5 {
+      margin-left: 12.5%;
+  }
+  .row_witdh {
+    width: 1000px;
+  }
+}
+@media (min-width: 768px) and (max-width:849px) {
+  .navbar-nav-customizd {
+    margin-left: 5%;
+  }
+}
+@media (min-width: 850px) {
+  .navbar-nav-customizd {
+    margin-left: 15%;
+  }
+}
+@media (min-width: 1000px) {
+  .navbar-nav-customizd {
+    margin-left: 20%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .row_width {
+    width: 800px;
+  }
+}
+ .navbar-inverse .navbar-nav > .promote_li > a {
+  color: red
 }

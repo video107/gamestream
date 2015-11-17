@@ -11,8 +11,8 @@ namespace :setup do
         password = "11111111"
         channel_name = %w[ Youtube Twitch]
         # channel_name = %w[ youtube twitch livein streamup]
-        twitch_url_name = %w[wtf_winds123 bebelolz honeyliciousss swordart000 s7735061]
-        youtube_url_name = %w[aV7YDGNZ8Og OWetbXPLVIM XajB5pLGvQc rP-HgWbDC-Q a7_IylrBjqc ]
+        twitch_url_name = %w[tsm_theoddone mushisgosu hail9 wingsofdeath c9sneaky]
+        youtube_url_name = %w[uRtVCeaqzGU sHeBSCBmVmI JHxEfmL-fVQ JQBxG2piyG8 pR-7fRIZZn4]
 
         20.times do
           User.create!(email: Faker::Internet.email, password: password, name: Faker::Internet.user_name )

@@ -1,2 +1,9 @@
 <br>
-<%= video(@channel.url, @channel.name) %>
+<div class="row">
+  <div class="video col-xs-8">
+    <%= video(@channel.url, @channel.name) %>
+  </div>
+  <div class="char col-xs-4">
+    <%= chat(@channel.url, @channel.name) %>
+  </div>
+</div>
