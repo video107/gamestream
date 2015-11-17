@@ -5,9 +5,7 @@
          :recoverable, :rememberable, :trackable
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
-
-  # has_many :menu_users, :dependent => :destroy
-  # has_many :menus, :through => :menu_users, :dependent => :destroy
+  validate :validate_account_url
 
   has_many :cases, :dependent => :destroy
 
@@ -41,6 +39,10 @@
   #   user
   # end
 
+  def find_channel_by_user(user, provider)
+    self.channels.where(user: user, name: provider).first
+  end
+
   def to_param
     self.friendly_id
   end
@@ -58,8 +60,6 @@
       user.google_uid = auth.uid
     end
   end
-
-
 
   def has_right?
     self.role == nil || self.role == "normal"
@@ -100,6 +100,15 @@
   def deposit?
     self.deposit_records.all.map { |x| x.amount}.sum
   end
+
+
+  protected
+
+  def validate_account_url
+    errors.add(:twitch, "twitch帳號格式有誤") unless self.twitch_account_url =~ /http:\/\/www.twitch.tv\/.+/
+    errors.add(:youtube, "youtube帳號格式有誤") unless self.youtube_account_url =~ /https:\/\/gaming.youtube.com\/watch\?v=.+/
+  end
+
 
 
 end

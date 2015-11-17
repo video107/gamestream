@@ -56,7 +56,7 @@
       <% if c.name == "Youtube"%>
         <% if stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
           <div class="channel_name"><%= stream_channel["snippet"]["title"] %></div>
-          <div><%= c.user.name %></div>
+          <div class="channel_name"><%= c.user.name %></div>
           <div class="channel_name">
             <div id="circle_live" style="display: inline-block;"></div>
             <div style="display: inline-block;">
@@ -68,7 +68,7 @@
       <% elsif c.name == "Twitch"%>
         <% if stream_channel %>
           <div class="channel_name"><%= stream_channel["game"] %></div>
-          <div><%= c.user.name %></div>
+          <div class="channel_name"><%= c.user.name %></div>
           <div class="channel_name">
             <div id="circle_live" style="display: inline-block;"></div>
             <div style="display: inline-block;"><span class="user_name"><%= c.name %> Live </span><%= stream_channel["viewers"] %> 觀眾</div>
