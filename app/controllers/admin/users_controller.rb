@@ -13,6 +13,10 @@ class Admin::UsersController < AdminController
     @admin_users = Admin::User.all.where(:fans => "true").page(params[:page]).per(7)
   end
 
+  def valueless
+    @admin_users = Admin::User.all.where(:master => nil, :fans => nil).page(params[:page]).per(7)
+  end
+
   def suspend
     # @user = User.find(params[:id])
     @admin_user.update!(:role => "suspend")

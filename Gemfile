@@ -72,6 +72,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
   gem "rspec-rails"
+  gem 'xray-rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

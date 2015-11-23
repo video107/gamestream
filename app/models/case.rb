@@ -23,6 +23,8 @@ class Case < ActiveRecord::Base
 
   before_validation :setup_friendly_id
 
+
+
   def to_param
     self.friendly_id
   end
@@ -64,12 +66,10 @@ class Case < ActiveRecord::Base
   end
 
   def total_install?(date1,date2)
-  #  self.install_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
      self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def total_excute?(date1,date2)
-  #  self.excute_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
      self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
@@ -96,6 +96,7 @@ class Case < ActiveRecord::Base
       end
     end
   end
+
 
 
 end

@@ -6,7 +6,9 @@ class CasesController < ApplicationController
   before_action :check_rights
 
   def index
-    @cases = current_user.cases.page(params[:page]).order(:id => :desc).per(7)
+    @menus = Menu.joins(:cases).where(:cases =>{user: current_user}).uniq
+    # @cases = Case.joins(:menu).where
+    @cases = current_user.cases.page(params[:page]).order(:id => :desc).per(10)
     @cases_for_profit = current_user.cases
   end
 
@@ -52,20 +54,18 @@ class CasesController < ApplicationController
 
 
   def new
-    @case = @menu.cases.new
+    @case = current_user.cases.new
   end
 
   def create
-    @case = @menu.cases.new(case_params)
-    @case.user = current_user
-    @case.user.uid = current_user.id
+    @case = current_user.cases.new(case_params)
+    @case.menu = @menu
     @case.user.save!
 
     if @case.save!
       flash[:success] = "專屬連結建立成功"
-      # @case.case_url = menu_case_path(@menu,@case)
       current_user.update!(master: "true")
-      @case.case_url = menu_case_url(@menu,@case)
+      @case.case_url = menu_case_url(@menu, @case)
       if params[:commit] == "建立專屬IOS連結"
         @case.update!(:owner => "ios")
       elsif params[:commit] == "建立專屬Android連結"

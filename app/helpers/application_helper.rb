@@ -22,4 +22,8 @@ module ApplicationHelper
     render :partial => 'channels/chat', :locals => {:url => url_exp[1], :provider => provider }
   end
 
+  def already_created_link_by(user, menu, provider)
+    !Case.where(user: user, menu: menu, owner: provider).blank?
+  end
+
 end

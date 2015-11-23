@@ -1,406 +1,269 @@
-<div class="container_fluid" style="background-color:lightyellow;">
+<div class="container">
   <div class="row">
-    <div class="container">
-      <div class="row">
-      <h1>案件獲利總報表</h1>
-      <div class="spacing_large"></div>
-        <div class="row">
-          <div class="col-xs-2 text-left grid  col-xs-offset-2">
-            <span class="text_center_for_grid">案件名稱</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= @case.menu.name %>(<%= @case.owner %>)</span>
-          </div>
-          <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">總獲利</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">報表日期</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">
-              <% if @date %>
-                <%= @date %>
-              <% else  %>
-                <%= @case.to_now? %>
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">
-              $<%= @case.total_profit?("customer",@early_date,@late_date) %>
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-2 text-left grid col-xs-offset-2">
-            <span class="text_center_for_grid">選擇日期</span>
-          </div>
-          <div class="col-xs-2 text-center grid">
-           <%= form_tag case_report_user_case_path(current_user,@case), :method => :get do %>
-            From <%= text_field_tag "date1",nil, class: "form-control"%>
-            To <%= text_field_tag "date2",nil, class: "form-control"%><br>
-            <%= submit_tag "Select", :class => "btn btn-default" %>
-           <% end %>
-          </div>
-        </div>
-        <div class="spacing_large"></div>
-
-        <div class="row text-center grid_double">
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">點擊</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">每點擊支付金額</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">每安裝支付金額</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">每執行支付金額</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.menu.cpc_android_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.menu.cpi_android_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.menu.cpa_android_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                <%= @case.menu.cpc_ios_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                <%= @case.menu.cpi_ios_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                <%= @case.menu.cpa_ios_user %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">不重複點擊數</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">不重複安裝數</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">不重複執行數</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.follower_by_date(@early_date,@late_date) %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.installer_by_date(@early_date,@late_date) %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                <%= @case.excuter_by_date(@early_date,@late_date) %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-             <% if @case.owner == "ios" %>
-                <%= @case.follower_by_date(@early_date,@late_date) %>
-             <% else %>
-                na
-             <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                <%= @case.installer_by_date(@early_date,@late_date) %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                <%= @case.excuter_by_date(@early_date,@late_date) %>
-              <% else %>
-                na
-              <% end %>
-            </span>
-          </div>
-
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">點擊數</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝數(等同於不重複安裝數)</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行數(等同於不重複執行數)</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.total_click?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.installer_by_date(@early_date,@late_date) %>
-                 <%#= @case.total_install?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.excuter_by_date(@early_date,@late_date) %>
-                 <%#= @case.total_excute?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.total_click?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.installer_by_date(@early_date,@late_date) %>
-                 <%#= @case.total_install?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.excuter_by_date(@early_date,@late_date) %>
-                 <%#= @case.total_excute?(@early_date,@late_date) %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">點擊獲利</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">安裝獲利</span>
-          </div>
-          <div class="col-xs-4 grid">
-            <span class="text_center_for_grid">執行獲利</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_android_user  %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_android_user  %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">Android</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "android" %>
-                 <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_android_user  %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_ios_user %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_ios_user %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">IOS</span>
-          </div>
-          <div class="col-xs-2 grid">
-            <span class="text_center_for_grid">
-              <% if @case.owner == "ios" %>
-                 <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_ios_user %>
-              <% else %>
-                 na
-              <% end %>
-            </span>
-          </div>
-        </div>
-
-        <div class="spacing"></div>
-        <%= link_to "回使用者profile", user_cases_path(current_user), :class => "btn btn-primary"  %>
+    <div class="spacing_large"></div>
+    <div class="row">
+      <div class="col-xs-6 grid edit_bar">
+        <span class="text_center_for_grid"><h3>任務詳細報表</h3></span>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-2 grid_small">任務名稱</div>
+      <div class="col-xs-4 grid_small"><%= @case.menu.name %>(<%= @case.owner %>)</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 grid_small">報表區間</div>
+      <div class="col-xs-4 grid_small">
+        <% if @date %>
+          <%= @date %>
+        <% else  %>
+          <%= @case.to_now? %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 grid_small">選擇區間</div>
+      <div class="col-xs-4 grid_small">
+        <%= form_tag case_report_user_case_path(current_user,@case), :method => :get do %>
+        From <%= text_field_tag "date1",nil, class: "form-control-date"%> To <%= text_field_tag "date2",nil, class: "form-control-date"%>
+        <%= submit_tag "Select", :class => "btn btn-default btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 grid_small">區間總獎金</div>
+      <div class="col-xs-4 grid_small">$<%= @case.total_profit?("customer",@early_date,@late_date) %>元</div>
+    </div>
+
+    <div class="spacing_large"></div>
+
+    <div class="row">
+      <div class="col-xs-3 edit_bar grid">
+        <span class="text_center_for_grid"><h3>點擊成效</h3></span>
+      </div>
+      <div class="col-xs-3 col-xs-offset-1 edit_bar grid">
+        <span class="text_center_for_grid"><h3>安裝成效</h3></span>
+      </div>
+      <div class="col-xs-3 col-xs-offset-1 edit_bar grid">
+        <span class="text_center_for_grid"><h3>執行成效</h3></span>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-3 grid_small">每點擊獎金</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">每安裝獎金</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">每執行獎金</div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.menu.cpc_android_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.menu.cpi_android_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.menu.cpa_android_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.menu.cpc_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.menu.cpi_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.menu.cpa_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+    </div>
+    <br>
+
+    <div class="row text-center">
+      <div class="col-xs-3 grid_small">不重複點擊</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">不重複安裝</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">不重複執行</div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.follower_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.installer_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.excuter_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.follower_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.installer_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.excuter_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+    </div>
+    <br>
+
+    <div class="row text-center">
+      <div class="col-xs-3 grid_small">點擊成效獎金</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">安裝成效獎金</div>
+      <div class="col-xs-3 col-xs-offset-1 grid_small">執行成效獎金</div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_android_user  %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_android_user  %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_android_user  %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.follower_by_date(@early_date,@late_date) * @case.menu.cpc_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+    </div>
+
+
+    <div class="spacing"></div>
+    <div class="col-xs-12">
+      <%= link_to "返回成效獎勵", user_cases_path(current_user), :class => "btn btn-default btn-customized"  %>
+    </div>
+
   </div>
 </div>
+</div>
+</div>
 <script type="text/javascript">
-  $('#date1').datepicker({
-     format: "yyyy-mm-dd"
-  });
-  $('#date2').datepicker({
-     format: "yyyy-mm-dd"
-  });
+$('#date1').datepicker({
+  format: "yyyy-mm-dd"
+});
+$('#date2').datepicker({
+  format: "yyyy-mm-dd"
+});
 
 </script>

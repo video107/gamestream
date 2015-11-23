@@ -1,158 +1,123 @@
-<div class="container_fluid" style="background-color:aliceblue;">
+<div class="container">
   <div class="row">
-    <div class="container">
-      <div class="row">
-        <% if current_user.fb_image %>
-          <h2><%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
-        <% else %>
-          <h2><%= current_user.user_name %></h2>
-        <% end %>
-        <div class="row">
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">會員帳號</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.email %></span>
-          </div>
-
-          <div class="col-xs-2 text-left grid col-xs-offset-4">
-            <span class="text_center_for_grid">會員電話</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.phone %></span>
-          </div>
-
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">會員類別</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">ＳＵＣＫ</span>
-          </div>
-
-          <div class="col-xs-2 text-left grid col-xs-offset-4">
-            <span class="text_center_for_grid">會員地址</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.address %></span>
-          </div>
-
-           <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">會員姓名</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.name %></span>
-          </div>
-
-          <div class="col-xs-2 text-left grid col-xs-offset-4">
-            <span class="text_center_for_grid">銀行行庫代碼</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.bank_name_code %></span>
-          </div>
-
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">銀行行庫名稱</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.bank_name %></span>
-          </div>
-
-          <div class="col-xs-2 text-left grid col-xs-offset-4">
-            <span class="text_center_for_grid">銀行代碼</span>
-          </div>
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.bank_account %></span>
-          </div>
-        </div>
-        <div class="spacing"></div>
-
-        <div class="row">
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">Twitch頻道</span>
-          </div>
-          <div class="col-xs-4 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.twitch_account_url %></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-2 text-left grid">
-            <span class="text_center_for_grid">Youtube頻道</span>
-          </div>
-          <div class="col-xs-6 text-left grid">
-            <span class="text_center_for_grid"><%= current_user.youtube_account_url %></span>
-          </div>
-        </div>
-
-        <div class="spacing_large"></div>
-
-        <div class="row">
-         <div class="col-xs-2 text-center grid">
-          <span class="text_center_for_grid">總獲利</span>
-         </div>
-         <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">已領款</span>
-         </div>
-         <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">未領款</span>
-         </div>
-         <div class="col-xs-2 text-center grid">
-          <span class="text_center_for_grid">
-            <% profit = 0 %>
-            <% @cases_for_profit.each do |c| %>
-              <% profit = profit + c.total_profit?("customer",c.created_at.to_date,c.menu.deadline) %>
-              <!-- only cpc -->
-            <% end %>
-            $<%= profit %>
-          </span>
-         </div>
-         <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">
-            $<%= current_user.deposit? %>
-          </span>
-         </div>
-         <div class="col-xs-2 text-center grid col-xs-offset-3">
-          <span class="text_center_for_grid">
-            $<%= profit - current_user.deposit? %>
-          </span>
-         </div>
-        </div>
-
-        <div class="spacing_large"></div>
-        <div class="row">
-          <h3>參與案件</h3>
-        <table class="table table-bordered">
-
-          <tr>
-            <th>案件名稱</th>
-            <th>案件推廣區間</th>
-            <th>Android連結</th>
-            <th>IOS連結</th>
-            <th>案件獲利</th>
-          </tr>
-         <% @cases.each do |c| %>
-          <tr>
-            <td><%= link_to c.menu.name, case_report_user_case_path(current_user, c),:class => "label label-primary" %>  (<%= c.owner %>)</td>
-            <td><%= c.menu.deadline %></td>
-            <% if c.owner == "android" %>
-              <td><%= link_to c.case_url, c.case_url, :target => "_blank" %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <% if c.owner == "ios" %>
-              <td><%= link_to c.case_url, c.case_url, :target => "_blank" %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <td>$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></td>
-          </tr>
-
-          <% end %>
-        </table>
-        <%= paginate @cases %>
-        </div>
-        <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
-        <%= link_to('修改個人資料', edit_user_path(current_user), :class => "btn btn-success") %>
-        </div>
+    <div class="col-xs-12 row">
+      <% if current_user.fb_image %>
+      <h2><%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
+      <% else %>
+      <h2><%= current_user.user_name %></h2>
+      <% end %>
     </div>
+    <div class="row">
+      <div class="col-xs-8 text-left grid edit_bar">
+        <span class="text_center_for_grid"><h3>成效總覽</h3></span>
+      </div>
+      <div class="col-xs-2 col-xs-offset-1"><%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default btn-customized" %></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-2 grid_small">點擊數</div>
+      <div class="col-xs-2 grid_small">安裝數</div>
+      <div class="col-xs-2 grid_small">執行數</div>
+      <div class="col-xs-1 grid_small">獎金</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1 grid_small">今日</div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-2 col-xs-offset-1">
+        <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1 grid_small">昨日</div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-1 grid_small"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1 grid_small">本月</div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-2 grid_small"></div>
+      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-2 col-xs-offset-1">
+        <%= link_to "獎金領取", "", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#deposit_records"}  %>
+      </div>
+    </div>
+
+    <div class="modal fade" id="deposit_records" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <% if current_user.total_profit? == 0 %>
+              <h2>您目前沒有待領款項</h2>
+            <% elsif current_user.total_profit? >= 1 && current_user.total_profit? < 1000 %>
+              <h2>總獎金累積達1000NT才可進行領取</h2>
+            <% else %>
+              <h2>請按確認進行獎金領取</h2>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <% if current_user.total_profit? == 0 %>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">確認</button>
+            <% else %>
+              <%= link_to "確認", new_user_deposit_record(current_user), class: "btn btn-primary"  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-xs-12 text-left grid edit_bar">
+        <span class="text_center_for_grid"><h3>參與任務</h3></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1 grid">任務名稱</div>
+      <div class="col-xs-2 grid">推廣截止日</div>
+      <div class="col-xs-4 grid">Android連結</div>
+      <div class="col-xs-4 grid">IOS連結</div>
+      <div class="col-xs-1 grid">獲得獎金</div>
+    </div>
+    <%# @menus.each do |m| %>
+    <% @cases.each do |c| %>
+    <div class="row">
+      <div class="col-xs-1 grid grid_text">
+        <div>
+          <%= link_to c.menu.name, case_report_user_case_path(current_user, c)%>
+        </div>
+
+      </div>
+      <!-- <div class="col-xs-1 grid"><%#= link_to menu.name, case_report_user_case_path(current_user, c)%></div> -->
+      <% if c.menu.deadline < Time.now %>
+        <div class="col-xs-2 grid grid_text">已過期</div>
+      <% else %>
+        <div class="col-xs-2 grid grid_text"><%= c.menu.deadline %></div>
+      <% end %>
+      <% if c.owner == "android" %>
+        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+      <% else %>
+        <div class="col-xs-4 grid url_text">-</div>
+      <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
+      <% end %>
+      <% if c.owner == "ios" %>
+        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+      <% else %>
+        <div class="col-xs-4 grid url_text">-</div>
+      <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "ios") %></div> -->
+      <% end %>
+      <div class="col-xs-1 grid grid_text">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
+    </div>
+    <% end %>
+    <%# end %>
+    <div class="spacing"></div>
+    <%= paginate @cases %>
+    <div class="spacing_large"></div>
+
   </div>
 </div>

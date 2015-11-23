@@ -17,7 +17,8 @@
           <li><%= link_to "Q&A", qa_path %></li>
           <li><%= link_to "聯絡我們", contact_path %></li>
           <% if current_user %>
-            <li class="promote_li"><%= link_to "推廣任務", menus_path%></li>
+            <li class="promote_li"><%= link_to "推廣任務", menus_path %></li>
+            <li class="promote_li"><%= link_to "推廣成效", user_cases_path(current_user) %></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right login_nav">
@@ -27,14 +28,15 @@
                   Hi <%= current_user.user_name %><span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                  <li><%= link_to "個人資料", user_cases_path(current_user)%></li>
-                  <li><%= link_to "推廣任務", menus_path%></li>
+                  <li><%= link_to "個人資料", edit_user_path(current_user) %></li>
+                  <li><%= link_to "推廣任務", menus_path %></li>
+                  <li><%= link_to "推廣成效", user_cases_path(current_user) %></li>
                   <li role="separator" class="divider"></li>
                   <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "註冊或登入", new_user_session_path, class: "login_nav" %></li>
+            <li><%= link_to "直播主登入", new_user_session_path, class: "login_nav" %></li>
           <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->

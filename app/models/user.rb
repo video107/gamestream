@@ -101,6 +101,10 @@
     self.deposit_records.all.map { |x| x.amount}.sum
   end
 
+  def total_profit?
+    self.cases.all.map { |x| x.total_profit?("customer", x.created_at.to_date, x.menu.deadline)}.sum
+  end
+
 
   protected
 

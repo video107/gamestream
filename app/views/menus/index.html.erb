@@ -33,7 +33,7 @@
     <div class="spacing"></div>
     <table class="table">
       <tr>
-        <th>遊戲icon</th>
+        <th>遊戲圖片</th>
         <th>遊戲名稱</th>
         <th>遊戲類型</th>
         <th>遊戲簡介</th>
@@ -41,7 +41,7 @@
       </tr>
       <% @menus.order(:id => :desc).each do |menu| %>
         <tr>
-          <td style="width:100px"><%= image_tag(menu.game_icon(:thumb)) %></td>
+          <td style="width:100px"><%= image_tag(menu.game_pic(:thumb)) %></td>
           <td style="width:100px"><%= menu.name %></td>
           <td style="width:100px"><%= menu.category.try(:name) %></td>
           <td><%= menu.contents %></td>
@@ -55,11 +55,6 @@
        <%= link_to "回到遊戲選單", root_path, :class => "btn btn-info" %>
     </div>
     <br>
-   <%# else %>
-    <!-- <h1>請先登入系統</h1> -->
-    <%#= link_to('註冊', new_registration_path(:user),:class => "btn btn-success") %>  <%#= link_to('登入', new_session_path(:user),:class => "btn btn-default") %>
-    <%#= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook),:class => "btn btn-primary" %>
-    <%#= link_to "Google 登入", user_omniauth_authorize_path(:google_oauth2),:class => "btn btn-danger btn-google" %>
     <% end %>
   </div>
 </div>

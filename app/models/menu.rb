@@ -5,32 +5,32 @@ class Menu < ActiveRecord::Base
   has_paper_trail
   has_many :cases, :dependent => :destroy
 
-  has_attached_file :game_image, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_image, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_image, :content_type => /\Aimage\/.*\Z/
 
 
-  has_attached_file :game_pic, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_pic, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_pic, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :game_pic_2, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_pic_2, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_pic_2, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :game_pic_3, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_pic_3, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_pic_3, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :game_pic_4, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_pic_4, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_pic_4, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :game_pic_5, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_pic_5, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_pic_5, :content_type => /\Aimage\/.*\Z/
 
-  has_attached_file :game_icon, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "/images/:style/missing.png",
+  has_attached_file :game_icon, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
   validates_attachment_content_type :game_icon, :content_type => /\Aimage\/.*\Z/
 
@@ -42,7 +42,7 @@ class Menu < ActiveRecord::Base
   attr_accessor :_remove_pic, :_remove_pic_2, :_remove_pic_3,
                 :_remove_pic_4, :_remove_pic_5, :_remove_pic_6,
                 :_remove_icon
-                
+
   before_save :check_remove_pic
   before_save :check_remove_pic_2
   before_save :check_remove_pic_3
@@ -50,6 +50,10 @@ class Menu < ActiveRecord::Base
   before_save :check_remove_pic_5
   before_save :check_remove_pic_6
   before_save :check_remove_icon
+
+  def case_url_with_user_and_owner(user, owner)
+    self.cases.where(user: user, owner: owner).first.try(:case_url)
+  end
 
   def to_param
     self.friendly_id
@@ -130,23 +134,14 @@ class Menu < ActiveRecord::Base
 
 
   def total_net_profit?(date1,date2)
-    # only cpc
-    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
-    # self.total_profit?(date1,date2) - profit
     self.total_profit?(date1,date2) - self.total_cost?(date1,date2)
   end
 
   def total_net_profit_no_repeat?(date1,date2)
-    # only cpc
-    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
-    # self.total_profit?(date1,date2) - profit
     self.total_profit_no_repeat?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 
   def total_net_profit_default?(date1,date2)
-    # only cpc
-    # profit = self.cases.map { |cas| cas.total_profit?("customer",date1,date2)}.sum
-    # self.total_profit?(date1,date2) - profit
     self.total_profit?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 

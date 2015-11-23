@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="row">
+    <br>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-8 col-md-offset-2 text-left">
+      <div class="row row_format">
+
+        <div class="row">
+          <h3 class="edit_bar">獎金資料</h3>
+        </div>
+
+        <div class="row row_input">
+          <div class="row user_row">
+            <div class="col-xs-4">
+              未領取獎金:
+            </div>
+            <div class="col-xs-8">
+              <%= current_user.total_profit? - current_user.deposit? %>元
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              已領取獎金:
+            </div>
+            <div class="col-xs-8">
+              <%= current_user.deposit? %>元
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              總獎金
+            </div>
+            <div class="col-xs-8">
+              <%= current_user.total_profit? %>元
+            </div>
+          </div>
+
+          <br>
+        </div>
+        <div class="row">
+          <h3 class="edit_bar">取款資訊</h3>
+        </div>
+        <%= form_for @deposit_record, :url => user_deposit_records_path(current_user), :method => :post do |f| %>
+
+        <div class="row row_input">
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :取款人姓名 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_nanme, autofocus: true, :class => "form-control form_word", value: current_user.name %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :取款人電話 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_phone, autofocus: true, :class => "form-control form_word", value: current_user.phone %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :銀行名稱 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_bank_name, autofocus: true, :class => "form-control form_word", value: current_user.bank_name %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :分行名稱 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_bank_branch_name, autofocus: true, :class => "form-control form_word", value: current_user.bank_branch_name %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :行庫代碼 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_bank_name_code, autofocus: true, :class => "form-control form_word", value: current_user.bank_name_code %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :行庫帳戶 %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :withdrawaler_bank_account, autofocus: true, :class => "form-control form_word", value: current_user.bank_account %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :欲領取金額 %>
+            </div>
+            <div class="col-xs-8">
+              <% if current_user.total_profit? >= 1 && current_user.total_profit? < 1000 %>
+                <%= f.text_field :amount, autofocus: true, :class => "form-control form_word" %>
+              <% else %>
+                <%= f.hidden_field :amount, :class => "form-control form_word" %>
+                總獎金累積達1000 NT才可進行領取
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-12 text-center">
+              <%#= f.submit "確認送出", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>
+              <%= link_to "確認送出","", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>
+
+              <div class="modal fade" id="withdrawal_money" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body text-center">
+                      <h3>
+                        您的取款需求已經送出，我們將在次月15日發放至您指定銀行帳戶，如有任何問題，歡迎隨時和<%= link_to "我們聯絡", qa_path, target: "_blank"  %>
+                      </h3>
+                    </div>
+                    <div class="modal-footer">
+                      <%= f.submit "確認", :class => "btn btn-default btn-customized" %>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="spacing"></div>
+
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

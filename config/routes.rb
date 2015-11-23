@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :cases do
         get :case_report, on: :member
     end
+    resources :deposit_records
   end
 
   get "/suspend" => "menus#suspend"
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
         get :trashcan_fans
         get :regist
         get :fans
+        get :valueless
       end
       member do
         post :recover_delete

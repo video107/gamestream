@@ -7,24 +7,33 @@
     <% end %>
     <div class="regist_word">遊戲名稱：<%= @menu.name %></div>
     <div class="spacing"></div>
+    <%= form_for @case,:url => menu_cases_path(@menu) do |f| %>
+     <%= f.hidden_field :case_url%>
+     <% unless already_created_link_by(current_user, @menu, "ios") %>
+       <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
+     <% else %>
+       <h3 style="color: red;">已建立IOS連結, 請到後台領取</h3>
+       <br>
+     <% end %>
+     <% unless already_created_link_by(current_user, @menu, "android") %>
+       <%= f.submit "建立專屬Android連結", :class => "btn btn-primary",:name => "commit" %>
+     <% else %>
+       <h3 style="color: red;">已建立Android連結, 請到後台領取</h3>
+     <% end %>
+    <% end %>
+    <div class="spacing"></div>
     <div class="regist_word">遊戲簡介：</div>
     <%= @menu.contents %>
     <div class="spacing"></div>
-    <div class="regist_word">遊戲連結android：</div>
+    <div class="regist_word">官方android商店連結：</div>
     <%= @menu.menu_url %>
     <div class="spacing"></div>
-    <div class="regist_word">遊戲連結ios：</div>
+    <div class="regist_word">官方蘋果商店連結：</div>
     <%= @menu.menu_url_ios %>
     <div class="spacing"></div>
 
     <div class="regist_word">遊戲icon：</div>
     <%= image_tag(@menu.game_icon(:thumb)) %>
-    <div class="spacing"></div>
-    <%= form_for @case,:url => menu_cases_path(@menu) do |f| %>
-     <%= f.hidden_field :case_url%>
-     <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
-     <%= f.submit "建立專屬Android連結", :class => "btn btn-primary",:name => "commit" %>
-    <% end %>
     <div class="spacing"></div>
     <div class="regist_word">遊戲圖片：</div>
     <%= image_tag(@menu.game_pic(:small)) %>
@@ -34,9 +43,9 @@
     <div class="regist_word">遊戲圖片：</div>
     <%= image_tag(@menu.game_pic_4(:small)) %>
     <%= image_tag(@menu.game_pic_5(:small)) %>
+    <div class="spacing"></div>
 
-         <br>
-        <%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default" %>
-        </div>
+    <%= link_to "回到主頁面",root_path,:class => "btn btn-default" %>
+    <%= link_to "回到推廣任務頁面",menus_path,:class => "btn btn-primary" %>
   </div>
 </div>

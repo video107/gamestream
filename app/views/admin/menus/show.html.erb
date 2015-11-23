@@ -81,21 +81,15 @@
     </table>
     <p>
       <strong>遊戲圖片:</strong> <br>
-      <%#= link_to, image_tag(@menu.game_pic(:thumb)),  %>
       <%= link_to image_tag(@menu.game_pic(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic1"} %>
-      <%#= image_tag(@menu.game_pic_2(:thumb)) %>
       <%= link_to image_tag(@menu.game_pic_2(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic2"} %>
-      <%#= image_tag(@menu.game_pic_3(:thumb)) %>
       <%= link_to image_tag(@menu.game_pic_3(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic3"} %>
     </p>
     <p>
       <strong>遊戲圖片2:</strong> <br>
       <%= link_to image_tag(@menu.game_pic_4(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic4"} %>
-      <%#= image_tag(@menu.game_pic_4(:thumb)) %>
       <%= link_to image_tag(@menu.game_pic_5(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic5"} %>
-      <%#= image_tag(@menu.game_pic_5(:thumb)) %>
       <%= link_to image_tag(@menu.game_image(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic6"} %>
-      <%#= image_tag(@menu.game_image(:thumb)) %>
     </p>
 
     <p>
@@ -114,18 +108,10 @@
 <div class="modal fade" id="pic1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_pic(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -134,18 +120,10 @@
 <div class="modal fade" id="pic2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_pic_2(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -153,18 +131,10 @@
 <div class="modal fade" id="pic3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_pic_3(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -172,18 +142,10 @@
 <div class="modal fade" id="pic4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_pic_4(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -191,18 +153,10 @@
 <div class="modal fade" id="pic5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_pic_5(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -210,18 +164,10 @@
 <div class="modal fade" id="pic6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_image(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -229,18 +175,10 @@
 <div class="modal fade" id="icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"></h2>
-      </div> -->
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= image_tag( @menu.game_icon(:large)) %>
         </div>
-      <!-- <div class="modal-footer">
-        <div class="text-left">
-          <span class="h2"></span>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

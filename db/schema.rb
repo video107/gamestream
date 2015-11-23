@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109030111) do
+ActiveRecord::Schema.define(version: 20151121162043) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -88,10 +88,16 @@ ActiveRecord::Schema.define(version: 20151109030111) do
   add_index "channels", ["user_id"], name: "index_channels_on_user_id", using: :btree
 
   create_table "deposit_records", force: :cascade do |t|
-    t.integer  "amount",     limit: 4, default: 0
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "amount",                        limit: 4,   default: 0
+    t.integer  "user_id",                       limit: 4
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.string   "withdrawaler_nanme",            limit: 255
+    t.string   "withdrawaler_phone",            limit: 255
+    t.string   "withdrawaler_bank_name",        limit: 255
+    t.string   "withdrawaler_bank_branch_name", limit: 255
+    t.string   "withdrawaler_bank_name_code",   limit: 255
+    t.string   "withdrawaler_bank_account",     limit: 255
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -208,7 +214,7 @@ ActiveRecord::Schema.define(version: 20151109030111) do
     t.string   "fb_image",               limit: 255
     t.string   "role",                   limit: 255
     t.string   "bank_name",              limit: 255
-    t.integer  "bank_name_code",         limit: 4
+    t.string   "bank_name_code",         limit: 255
     t.string   "google_uid",             limit: 255
     t.string   "uid",                    limit: 255
     t.string   "fans",                   limit: 255
@@ -216,6 +222,7 @@ ActiveRecord::Schema.define(version: 20151109030111) do
     t.string   "friendly_id",            limit: 255
     t.string   "twitch_account_url",     limit: 255
     t.string   "youtube_account_url",    limit: 255
+    t.string   "bank_branch_name",       limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
