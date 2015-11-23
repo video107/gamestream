@@ -225,16 +225,6 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
     width: 1000px;
   }
 }
-// @media (min-width: 768px) and (max-width:849px) {
-//   .navbar-nav-customizd {
-//     margin-left: 1%;
-//   }
-// }
-// @media (min-width: 850px) {
-//   .navbar-nav-customizd {
-//     margin-left: 5%;
-//   }
-// }
 @media (min-width: 1000px) {
   .navbar-nav-customizd {
     margin-left: 18%;
@@ -322,4 +312,11 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
   height: 30px;
   margin-top: 4px;
   line-height: 30px;
+}
+.overflow_name {
+  white-space: nowrap; //忽略換行
+  overflow: hidden;
+  text-overflow : ellipsis;
+  width: 170px;
+  height: 60px;
 }

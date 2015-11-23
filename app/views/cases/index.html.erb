@@ -78,26 +78,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-1 grid">任務名稱</div>
-      <div class="col-xs-2 grid">推廣截止日</div>
-      <div class="col-xs-4 grid">Android連結</div>
-      <div class="col-xs-4 grid">IOS連結</div>
-      <div class="col-xs-1 grid">獲得獎金</div>
+      <div class="col-xs-2 grid grid_text">任務名稱</div>
+      <div class="col-xs-1 grid grid_text">推廣截止</div>
+      <div class="col-xs-4 grid grid_text">Android連結</div>
+      <div class="col-xs-4 grid grid_text">IOS連結</div>
+      <div class="col-xs-1 grid grid_text">獲得獎金</div>
     </div>
     <%# @menus.each do |m| %>
     <% @cases.each do |c| %>
     <div class="row">
-      <div class="col-xs-1 grid grid_text">
-        <div>
+      <div class="col-xs-2 grid grid_text">
+        <div class="overflow_name">
           <%= link_to c.menu.name, case_report_user_case_path(current_user, c)%>
         </div>
 
       </div>
       <!-- <div class="col-xs-1 grid"><%#= link_to menu.name, case_report_user_case_path(current_user, c)%></div> -->
       <% if c.menu.deadline < Time.now %>
-        <div class="col-xs-2 grid grid_text">已過期</div>
+        <div class="col-xs-1 grid grid_text url_text">已過期</div>
       <% else %>
-        <div class="col-xs-2 grid grid_text"><%= c.menu.deadline %></div>
+        <div class="col-xs-1 grid grid_text url_text"><%= c.menu.deadline %></div>
       <% end %>
       <% if c.owner == "android" %>
         <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
