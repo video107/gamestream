@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 row">
       <% if current_user.fb_image %>
-      <h2><%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
+      <h2><%= image_tag(current_user.fb_image, size: "60x60", :class => "img-circle") %></h2>
       <% else %>
       <h2><%= current_user.user_name %></h2>
       <% end %>

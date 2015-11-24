@@ -1,34 +1,52 @@
 <div class="container">
- <div class="row">
-   <% if current_user %>
-    <div class="col-xs-12">
-      <% if current_user.fb_image %>
-        <h2>Hi <%=image_tag(current_user.fb_image,:class => "img-circle") %></h2>
-      <% else %>
-        <h2>Hi <%= current_user.user_name %></h2>
-      <% end %>
-      <%= link_to "Profile", user_cases_path(current_user),:class => "btn btn-danger" %>
-      <%= link_to('登出', destroy_user_session_path, :method => :delete,:class => "btn btn-success") %>
-    </div>
+  <div class="row">
+    <nav class="navbr" role="navigation">
+      <ul class="nav navbar navbar-left">
+        <br>
+        <% if current_user %>
+        <li class="dropdown">
+          <span style="font-size:40px;">Hi</span>
+          <a href="#" style="display:inline-block;" class="dropdown-toggle" data-toggle="dropdown">
+            <% if current_user.fb_image %>
+              <%= image_tag(current_user.fb_image,size: "60x60", :class => "img-circle") %>
+            <% else %>
+              <%= current_user.user_name %>
+            <% end %>
+            <b class="downArrow"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to "編輯個人檔案", edit_user_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "我的推廣連結", user_cases_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
     <div class="clearfix"></div>
-    <div class="spacing"></div>
+    <div class="spacing_large"></div>
     <ul class="nav nav-pills">
       <div class="text-right form-inline">
         <%= search_form_for @q do |f| %>
-          <%= f.label :name_or_contents,"遊戲名或簡介" %>
-          <%= f.search_field :name_or_contents_cont, :class => "form-control form_word" %>
-          <%= f.submit "Search", :class=>"btn btn-default"%>
-      <% end %>
+        <%= f.label :name_or_contents,"遊戲名或簡介" %>
+        <%= f.search_field :name_or_contents_cont, :class => "form-control form_word" %>
+        <%= f.submit "Search", :class=>"btn btn-default"%>
+        <% end %>
       </div>
       <% Category.all.each do |c| %>
-        <li role="presentation" class="<%= (params[:cid] == c.id.to_s)? "active" : "" %>">
-          <%= link_to c.name, menus_path( :cid => c ) %>
-        </li>
+      <li role="presentation" class="<%= (params[:cid] == c.id.to_s)? "active" : "" %>">
+        <%= link_to c.name, menus_path( :cid => c ) %>
+      </li>
       <% end %>
-        <li role="presentation" class="<%= (params[:cid] == nil)? "active" : "" %>">
-          <%= link_to "全部遊戲", menus_path %>
-        </li>
+      <li role="presentation" class="<%= (params[:cid] == nil)? "active" : "" %>">
+        <%= link_to "全部遊戲", menus_path %>
+      </li>
     </ul>
     <div class="spacing"></div>
     <table class="table">
@@ -36,23 +54,27 @@
         <th>遊戲圖片</th>
         <th>遊戲名稱</th>
         <th>遊戲類型</th>
-        <th>遊戲簡介</th>
+        <th>截止推廣時間</th>
+        <th>推廣獎勵模式</th>
         <th></th>
       </tr>
       <% @menus.order(:id => :desc).each do |menu| %>
-        <tr>
-          <td style="width:100px"><%= image_tag(menu.game_pic(:thumb)) %></td>
-          <td style="width:100px"><%= menu.name %></td>
-          <td style="width:100px"><%= menu.category.try(:name) %></td>
-          <td><%= menu.contents %></td>
-          <td><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-warning" %></td>
-        </tr>
+      <tr>
+        <td style="width:100px"><%= image_tag(menu.game_pic(:thumb)) %></td>
+        <td style="width:100px"><%= menu.name %></td>
+        <td style="width:100px"><%= menu.category.try(:name) %></td>
+        <td><%= menu.try(:deadline) %></td>
+        <td></td>
+        <td><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-danger" %></td>
+      </tr>
       <% end %>
     </table>
     <div class="clearfix"></div>
     <div class="row">
-       <%= paginate @menus %> <br>
-       <%= link_to "回到遊戲選單", root_path, :class => "btn btn-info" %>
+      <%= paginate @menus %> <br>
+      <%= link_to "回到首頁", root_path, :class => "btn btn-default btn-customized" %>
+      <%= link_to "我的推廣成效", user_cases_path(current_user), :class => "btn btn-default btn-customized" %>
+      <%= link_to "我的推廣連結", user_cases_path(current_user), :class => "btn btn-default btn-customized" %>
     </div>
     <br>
     <% end %>

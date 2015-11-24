@@ -52,9 +52,9 @@
   <% @channels.each do |c| %>
   <div class="col-xs-9 col-xs-offset-3 col-sm-3 col-sm-pull-2 col-md-1 col-md-pull-3">
       <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
-      <% stream_channel = c.get_data_from_twitch(c.name) %>
+      <% stream_channel = c.get_data_from_media(c.name) %>
       <% if c.name == "Youtube"%>
-        <% if stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
+        <% if stream_channel && ["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
           <div class="channel_name"><%= stream_channel["snippet"]["title"] %></div>
           <div class="channel_name"><%= c.user.name %></div>
           <div class="channel_name">

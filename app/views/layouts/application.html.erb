@@ -10,25 +10,25 @@
 
       <div class="container-fluid">
         <div class="row">
-          <% if flash[:notice] %>
+          <% if (flash[:notice] && !flash[:notice].empty?) %>
             <p class="alert alert-info">
               <%= flash[:notice] %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </p>
           <% end %>
-          <% if flash[:alert] %>
+          <% if (flash[:alert] && !flash[:alert].empty?) %>
             <p class="alert alert-warning">
               <%= flash[:alert] %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </p>
           <% end %>
-          <% if flash[:success] %>
+          <% if (flash[:success] && !flash[:success].empty?) %>
             <p class="alert alert-success">
               <%= flash[:success] %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </p>
           <% end %>
-          <% if flash[:danger] %>
+          <% if (flash[:danger] && !flash[:danger].empty?) %>
             <p class="alert alert-danger">
               <%= flash[:danger] %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

@@ -1,3 +1,4 @@
+require 'uri'
 class CasesController < ApplicationController
 
 
@@ -65,7 +66,12 @@ class CasesController < ApplicationController
     if @case.save!
       flash[:success] = "專屬連結建立成功"
       current_user.update!(master: "true")
+      # ttt = URI(menu_case_url(@menu, @case)).host
+      # ttt2 = URI(menu_case_url(@menu, @case)).path
+      # @case.case_url = ttt + ttt2
       @case.case_url = menu_case_url(@menu, @case)
+
+
       if params[:commit] == "建立專屬IOS連結"
         @case.update!(:owner => "ios")
       elsif params[:commit] == "建立專屬Android連結"

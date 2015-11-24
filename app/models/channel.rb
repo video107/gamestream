@@ -1,7 +1,7 @@
 class Channel < ActiveRecord::Base
   belongs_to :user
 
-  def get_data_from_twitch(provider)
+  def get_data_from_media(provider)
     youtube_config = YAML.load(File.read("#{Rails.root}/config/youtube.yml"))[Rails.env]
     if provider == "Twitch"
       user_channel = self.url.match /.*live_user_(.*)-.*/
