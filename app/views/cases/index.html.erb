@@ -1,17 +1,15 @@
+<%= render "shared/navbar" %>
+<br>
+<br>
+<br>
+<div class="spacing_large"></div>
+<div class="spacing"></div>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 row">
-      <% if current_user.fb_image %>
-      <h2><%= image_tag(current_user.fb_image, size: "60x60", :class => "img-circle") %></h2>
-      <% else %>
-      <h2><%= current_user.user_name %></h2>
-      <% end %>
-    </div>
     <div class="row">
       <div class="col-xs-8 text-left grid edit_bar">
         <span class="text_center_for_grid"><h3>成效總覽</h3></span>
       </div>
-      <div class="col-xs-2 col-xs-offset-1"><%= link_to "回到遊戲頁面",root_path,:class => "btn btn-default btn-customized" %></div>
     </div>
     <div class="row">
       <div class="col-xs-1 grid_small"></div>
@@ -53,18 +51,18 @@
         <div class="modal-content">
           <div class="modal-body text-center">
             <% if current_user.total_profit? == 0 %>
-              <h2>您目前沒有待領款項</h2>
+            <h2>您目前沒有待領款項</h2>
             <% elsif current_user.total_profit? >= 1 && current_user.total_profit? < 1000 %>
-              <h2>總獎金累積達1000NT才可進行領取</h2>
+            <h2>總獎金累積達1000NT才可進行領取</h2>
             <% else %>
-              <h2>請按確認進行獎金領取</h2>
+            <h2>請按確認進行獎金領取</h2>
             <% end %>
           </div>
           <div class="modal-footer">
             <% if current_user.total_profit? == 0 %>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">確認</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">確認</button>
             <% else %>
-              <%= link_to "確認", new_user_deposit_record(current_user), class: "btn btn-primary"  %>
+            <%= link_to "確認", new_user_deposit_record(current_user), class: "btn btn-primary"  %>
             <% end %>
           </div>
         </div>
@@ -95,20 +93,20 @@
       </div>
       <!-- <div class="col-xs-1 grid"><%#= link_to menu.name, case_report_user_case_path(current_user, c)%></div> -->
       <% if c.menu.deadline < Time.now %>
-        <div class="col-xs-1 grid grid_text url_text">已過期</div>
+      <div class="col-xs-1 grid grid_text url_text">已過期</div>
       <% else %>
-        <div class="col-xs-1 grid grid_text url_text"><%= c.menu.deadline %></div>
+      <div class="col-xs-1 grid grid_text url_text"><%= c.menu.deadline %></div>
       <% end %>
       <% if c.owner == "android" %>
-        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+      <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text">-</div>
+      <div class="col-xs-4 grid url_text">-</div>
       <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
       <% end %>
       <% if c.owner == "ios" %>
-        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+      <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text">-</div>
+      <div class="col-xs-4 grid url_text">-</div>
       <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "ios") %></div> -->
       <% end %>
       <div class="col-xs-1 grid grid_text">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
@@ -118,6 +116,5 @@
     <div class="spacing"></div>
     <%= paginate @cases %>
     <div class="spacing_large"></div>
-
   </div>
 </div>

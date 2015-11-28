@@ -1,5 +1,6 @@
 class Channel < ActiveRecord::Base
   belongs_to :user
+  scope :alive, -> { where.not(viewers: 0) }
 
   def get_data_from_media(provider)
     youtube_config = YAML.load(File.read("#{Rails.root}/config/youtube.yml"))[Rails.env]

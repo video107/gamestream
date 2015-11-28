@@ -58,6 +58,9 @@
       user.name = auth.info.name   # assuming the user model has a name
       user.fb_image = auth.info.image # assuming the user model has an image
       user.google_uid = auth.uid
+      user.twitch_account_url = "http://www.twitch.tv/example"
+      user.youtube_account_url = "https://www.youtube.com/watch?v=example"
+      user.save!
     end
   end
 
@@ -109,8 +112,8 @@
   protected
 
   def validate_account_url
-    errors.add(:twitch, "twitch帳號格式有誤") unless self.twitch_account_url =~ /http:\/\/www.twitch.tv\/.+/
-    errors.add(:youtube, "youtube帳號格式有誤") unless self.youtube_account_url =~ /https:\/\/gaming.youtube.com\/watch\?v=.+/
+    errors.add(:twitch, "twitch帳號格式有誤") unless self.twitch_account_url =~ /http:\/\/www.twitch.tv\/.+/ || self.twitch_account_url == ""
+    errors.add(:youtube, "youtube帳號格式有誤") unless self.youtube_account_url =~ /https:\/\/www.youtube.com\/watch\?v=.+/ || /https:\/\/gaming.youtube.com\/watch\?v=.+/ || self.youtube_account_url == ""
   end
 
 

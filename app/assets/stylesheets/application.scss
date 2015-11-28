@@ -62,19 +62,19 @@
   background-color: white;
 }
 .grid {
-  border: 1px solid #76933C;
+  border: 2px solid #76933C;
   min-height:62px;
   vertical-align: middle;
   color: #76933C;
   background-color: white;
 }
 .grid_small {
-  border: 1px solid #76933C;
+  border: 2px solid #76933C;
   min-height: 42px;
   vertical-align: middle;
   color: #76933C;
   background-color: white;
-  line-height: 40px;
+  line-height: 38px;
 }
 .text_center_for_grid {
   margin-top: 7px;
@@ -192,6 +192,9 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a, .channel_name, .user_name {
   color: white;
 }
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+  line-height: 50px;
+}
 .channel_name {
   white-space: nowrap; //忽略換行
   overflow: hidden;
@@ -273,7 +276,7 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
   padding-left: 20px;
   margin-top: 0px;
   margin-bottom: 0px;
-  border: 1px solid white;
+  border: 2px solid #76933C;
 }
 .row_format {
   color: #76933C;
@@ -346,9 +349,15 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
   display: inline-block;
   margin-left: 3px;
 }
-// .dropdown-toggle a:hover {
-//   background-color: blue;
-// }
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus,.nav > li > a:hover, .nav > li > a:focus {
-  background-color: #232323;
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #333333;
+}
+.form-line {
+  display: inline-block;
+}
+@media (max-width: 991px) {
+  .form-media {
+    margin-bottom: 30px;
+  }
 }

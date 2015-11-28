@@ -4,6 +4,10 @@ class Menu < ActiveRecord::Base
 
   has_paper_trail
   has_many :cases, :dependent => :destroy
+  scope :cpc, -> { where("cpc_ios_user != ? or cpc_android_user != ?", 0.0, 0.0)}
+  scope :cpi, -> { where("cpi_ios_user != ? or cpi_android_user != ?", 0.0, 0.0)}
+  scope :cpa, -> { where("cpa_ios_user != ? or cpa_android_user != ?", 0.0, 0.0)}
+
 
   has_attached_file :game_image, :styles => { :large => "600x600>", :medium => "300x300>", :small => "250x250>", :thumb => "100x100>",:special => "70x70>" }, :default_url => "no_image.png",
   :path => ":rails_root/public/system/menus/:attachment/:id_partition/:style/:filename"
@@ -145,6 +149,10 @@ class Menu < ActiveRecord::Base
     self.total_profit?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 
+  def promote?(type)
+      self.send("#{type}_android") != 0.0 || self.send("#{type}_ios") != 0.0
+  end
+
   private
 
   def check_remove_pic
@@ -188,4 +196,5 @@ class Menu < ActiveRecord::Base
       self.game_icon = nil
     end
   end
+
 end

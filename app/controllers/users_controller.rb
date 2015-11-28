@@ -9,14 +9,17 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:success] = "更新成功"
-
-        url_exp_twitch = @user.twitch_account_url.match /.*tv\/(.*)/
+      url_exp_twitch = @user.twitch_account_url.match /.*tv\/(.*)/
+      unless url_exp_twitch == nil
         @user.channels.create!(name: "Twitch",
                                url: "http://static-cdn.jtvnw.net/previews-ttv/live_user_#{url_exp_twitch[1]}-900x600.jpg")
+      end
 
-        url_exp_youtube = @user.youtube_account_url.match /.*watch\?v=(.*)/
+      url_exp_youtube = @user.youtube_account_url.match /.*watch\?v=(.*)/
+      unless url_exp_youtube == nil
         @user.channels.create!(name: "Youtube",
                                url: "https://i.ytimg.com/vi/#{url_exp_youtube[1]}/hqdefault_live.jpg")
+      end
       redirect_to user_cases_path(current_user)
 
     else
