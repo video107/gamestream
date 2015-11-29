@@ -9,7 +9,7 @@ class Channel < ActiveRecord::Base
       conn = Faraday.new(:url => 'https://api.twitch.tv')
       response = conn.get "/kraken/streams/#{user_channel[1]}"
     elsif provider == "Youtube"
-      user_channel = self.url.match /.*vi\/(.*)\/hqdefault.*/
+      user_channel = self.url.match /.*vi\/(.*)\/.*default.*/
       conn = Faraday.new(:url => 'https://www.googleapis.com/youtube/v3/videos')
       response = conn.get "?id=#{user_channel[1]}&key=#{youtube_config["key"]}&part=snippet, liveStreamingDetails"
     end

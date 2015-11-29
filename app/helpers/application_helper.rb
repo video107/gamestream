@@ -4,7 +4,7 @@ module ApplicationHelper
     if provider == "Twitch"
       url_exp = url.match /.*live_user_(.*)-.*/
     elsif provider == "Youtube"
-      url_exp = url.match /.*vi\/(.*)\/hqdefault.*/
+      url_exp = url.match /.*vi\/(.*)\/.*default.*/
     end
     render :partial => 'channels/video', :locals => {:url => url_exp[1], :provider => provider }
   end
@@ -17,7 +17,7 @@ module ApplicationHelper
     if provider == "Twitch"
       url_exp = url.match /.*live_user_(.*)-.*/
     elsif provider == "Youtube"
-      url_exp = url.match /.*vi\/(.*)\/hqdefault.*/
+      url_exp = url.match /.*vi\/(.*)\/.*default.*/
     end
     render :partial => 'channels/chat', :locals => {:url => url_exp[1], :provider => provider }
   end

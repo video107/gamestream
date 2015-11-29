@@ -15,15 +15,15 @@ namespace :setup do
         youtube_url_name = %w[uRtVCeaqzGU sHeBSCBmVmI JHxEfmL-fVQ JQBxG2piyG8 pR-7fRIZZn4]
 
         20.times do
-          User.create!(email: Faker::Internet.email, password: password, name: Faker::Internet.user_name )
+          User.create!(email: Faker::Internet.email, password: password, name: Faker::Internet.user_name, twitch_account_url: "", youtube_account_url: "" )
         end
 
         5.times do |i|
-          Channel.create!(name: "Twitch", user: User.all.sample, url: "http://static-cdn.jtvnw.net/previews-ttv/live_user_#{twitch_url_name[i]}-300x180.jpg")
+          Channel.create!(name: "Twitch", user: User.all.sample, url: "http://static-cdn.jtvnw.net/previews-ttv/live_user_#{twitch_url_name[i]}-900x600.jpg")
         end
 
         5.times do |i|
-          Channel.create!(name: "Youtube", user: User.all.sample, url: "https://i.ytimg.com/vi/#{youtube_url_name[i]}/hqdefault_live.jpg")
+          Channel.create!(name: "Youtube", user: User.all.sample, url: "https://i.ytimg.com/vi/#{youtube_url_name[i]}/maxresdefault_live.jpg")
         end
     end
 end

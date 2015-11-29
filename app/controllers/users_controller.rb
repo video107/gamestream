@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       url_exp_youtube = @user.youtube_account_url.match /.*watch\?v=(.*)/
       unless url_exp_youtube == nil
         @user.channels.create!(name: "Youtube",
-                               url: "https://i.ytimg.com/vi/#{url_exp_youtube[1]}/hqdefault_live.jpg")
+                               url: "https://i.ytimg.com/vi/#{url_exp_youtube[1]}/maxresdefault_live.jpg")
       end
       redirect_to user_cases_path(current_user)
 
