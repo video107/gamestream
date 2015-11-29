@@ -55,7 +55,6 @@ gem 'paperclip'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem "letter_opener", :group => :development
-gem 'rack-mini-profiler', require: false
 
 # Soft deletion gem
 gem 'paper_trail', '~> 4.0.0.rc'
@@ -69,6 +68,7 @@ gem 'bower-rails', '~> 0.10.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rack-mini-profiler'
   gem 'sqlite3'
   gem 'byebug'
   gem "rspec-rails"

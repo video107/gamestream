@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def already_created_link_by(user, menu, provider)
-    !Case.where(user: user, menu: menu, owner: provider).blank?
+    Case.where(user: user, menu: menu, owner: provider).present?
   end
 
 end

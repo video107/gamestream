@@ -10,9 +10,8 @@ namespace :setup do
         User.delete_all
         password = "11111111"
         channel_name = %w[ Youtube Twitch]
-        # channel_name = %w[ youtube twitch livein streamup]
-        twitch_url_name = %w[tsm_theoddone mushisgosu hail9 wingsofdeath c9sneaky]
-        youtube_url_name = %w[uRtVCeaqzGU sHeBSCBmVmI JHxEfmL-fVQ JQBxG2piyG8 pR-7fRIZZn4]
+        twitch_url_name = %w[arteezy illidanstrdoto riotgames tsm_doublelift c9sneaky]
+        youtube_url_name = %w[b8xlScLJpQw gjS8zQrEzeg 6bFZO-F1ZD8 cUP05VT6JJ4 gcCnlr8A54I]
 
         20.times do
           User.create!(email: Faker::Internet.email, password: password, name: Faker::Internet.user_name, twitch_account_url: "", youtube_account_url: "" )
