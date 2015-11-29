@@ -6,15 +6,16 @@
     <div class="spacing"></div>
     <%= form_for @case,:url => menu_cases_path(@menu) do |f| %>
      <%= f.hidden_field :case_url%>
-     <% if @menu.menu_url.blank? %>
+     <% if @menu.menu_url_ios.blank? %>
      <% elsif already_created_link_by(current_user, @menu, "ios") %>
        <h3 style="color: red;">已建立IOS連結, 請到後台領取</h3>
        <%= link_to "我的連結", user_cases_path(current_user), class: "btn btn-primary" %>
      <% else %>
        <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
-       <br>
      <% end %>
-     <% if @menu.menu_url_ios.blank? %>
+     <div class="clearfix"></div>
+     <div class="spacing"></div>
+     <% if @menu.menu_url.blank? %>
      <% elsif already_created_link_by(current_user, @menu, "android") %>
        <h3 style="color: red;">已建立Android連結, 請到後台領取</h3>
        <%= link_to "我的連結", user_cases_path(current_user), class: "btn btn-primary" %>

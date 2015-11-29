@@ -2,27 +2,27 @@
 <div class="row row_slider">
   <div class="flexslider">
     <ul class="slides">
-      <% if !@channels_top5[0].blank? %>
+      <% if @channels_top5[0].present? %>
         <li>
           <%= link_to image_tag(@channels_top5[0].url), @channels_top5[0], target: "_blank"  %>
         </li>
       <% end %>
-      <% if !@channels_top5[1].blank? %>
+      <% if @channels_top5[1].present? %>
         <li>
           <%= link_to image_tag(@channels_top5[1].url), @channels_top5[1], target: "_blank"  %>
         </li>
       <% end %>
-      <% if !@channels_top5[2].blank? %>
+      <% if @channels_top5[2].present? %>
         <li>
           <%= link_to image_tag(@channels_top5[2].url), @channels_top5[2], target: "_blank"  %>
         </li>
       <% end %>
-      <% if !@channels_top5[3].blank? %>
+      <% if @channels_top5[3].present? %>
         <li>
           <%= link_to image_tag(@channels_top5[3].url), @channels_top5[3], target: "_blank"  %>
         </li>
       <% end %>
-      <% if !@channels_top5[4].blank? %>
+      <% if @channels_top5[4].present? %>
         <li>
           <%= link_to image_tag(@channels_top5[4].url), @channels_top5[4], target: "_blank"  %>
         </li>
