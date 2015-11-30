@@ -4,7 +4,7 @@ namespace :cron do
       puts "channel update"
       stream_channel = c.get_data_from_media(c.name)
       if c.name == "Youtube"
-        if stream_channel && ["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"]
+        if stream_channel && stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"]
            c.update!(:channel_title => stream_channel["snippet"]["title"])
            c.update!(:viewers => stream_channel["liveStreamingDetails"]["concurrentViewers"])
         end
