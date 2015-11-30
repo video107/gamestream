@@ -1,9 +1,9 @@
 <div id="IframeWrapper" style="position: relative;">
   <div id="iframeBlocker" style="position: absolute; top: 0; left: 0; width: 940px; height: 0px"></div>
   <% if provider == "Twitch" %>
-    <iframe src="http://player.twitch.tv/?channel=<%= url %>" frameborder="1" scrolling="no" width="940" height="565" allowfullscreen></iframe>
+    <iframe src="http://player.twitch.tv/?channel=<%= url %>" frameborder="1" scrolling="no" width="100%" height="565" allowfullscreen></iframe>
   <% elsif provider == "Youtube" %>
-    <iframe src="https://www.youtube.com/embed/<%= url %>?autoplay=1" frameborder="1" scrolling="no"  width="940" height="565" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/<%= url %>?autoplay=1" frameborder="1" scrolling="no"  width="100%" height="565" allowfullscreen></iframe>
   <% else %>
     <h1>Nothing here</h1>
   <% end %>
