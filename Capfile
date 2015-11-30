@@ -16,6 +16,7 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/passenger
 require 'capistrano/rails'
 require 'capistrano/passenger'
+require "whenever/capistrano"
 
 
 # require 'capistrano/rvm'

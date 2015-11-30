@@ -9,48 +9,27 @@
 
 <div class="row row_width">
   <% @channels.each do |c| %>
-  <div class="col-xs-4">
-      <div><%= link_to image_tag(c.url,size: "300x180"), c, target: "_blank" %></div>
-      <% stream_channel = c.get_data_from_media(c.name) %>
-      <% if c.name == "Youtube"%>
-        <% if stream_channel && stream_channel["liveStreamingDetails"] != nil && stream_channel["liveStreamingDetails"]["concurrentViewers"] %>
-          <p class="channel_name"><%= stream_channel["snippet"]["title"] %></p>
-          <div><%= c.user.name %></div>
-          <div>
-            <div id="circle_live" style="display: inline-block;"></div>
-            <div style="display: inline-block;">
-              <span class="user_name"><%= c.name %> Live</span> <%= stream_channel["liveStreamingDetails"]["concurrentViewers"]%> 觀眾
-            </div>
-          </div>
-          <br>
-          <% else  %>
-          <p><%= c.name %></p>
-          <br>
-          <div>
-            <div id="circle_live" style="display: inline-block; background-color: white;"></div>
-            <div style="display: inline-block;">Offline</div>
-          </div>
-          <br>
-        <% end %>
-      <% elsif c.name == "Twitch"%>
-        <% if stream_channel %>
-          <p class="channel_name"><%= stream_channel["game"] %></p>
-          <div><%= c.user.name %></div>
-          <div>
-            <div id="circle_live" style="display: inline-block;"></div>
-            <div style="display: inline-block;"><span class="user_name"><%= c.name %> Live </span><%= stream_channel["viewers"] %> 觀眾</div>
-          </div>
-          <br>
-          <% else  %>
-          <p><%= c.name %></p>
-          <br>
-          <div>
-            <div id="circle_live" style="display: inline-block; background-color: white;"></div>
-            <div style="display: inline-block;">Offline</div>
-          </div>
-          <br>
-        <% end %>
-      <% end %>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <div><%= link_to image_tag(c.url,size: "300x180"), c, target: "_blank" %></div>
+    <% if c.viewers == 0 || c.viewers.blank? %>
+      <div class="channel_name"><%= c.name %></div>
+      <br>
+      <div class="channel_name">
+        <div id="circle_live" style="display: inline-block; background-color: white;"></div>
+        <div style="display: inline-block;">Offline</div>
+      </div>
+      <br>
+    <% else %>
+      <div class="channel_name"><%= c.channel_title %></div>
+      <div class="channel_name"><%= c.user.name %></div>
+      <div class="channel_name">
+        <div id="circle_live" style="display: inline-block;"></div>
+        <div style="display: inline-block;">
+          <span class="user_name"><%= c.name %> Live</span> <%= c.viewers %> 觀眾
+        </div>
+      </div>
+      <br>
+    <% end %>
   </div>
   <% end %>
 </div>

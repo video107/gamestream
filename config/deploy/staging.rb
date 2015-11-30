@@ -8,7 +8,10 @@ server '139.162.3.89', user: 'deploy', roles: %w{app db web}, my_property: :my_v
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 set :deploy_to, '/home/deploy/gamestream_staging'
-
+set :rails_env, 'staging'
+set :stage, :staging
+set :whenever_environment, -> { fetch(:stage) }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # role-based syntax
 # ==================

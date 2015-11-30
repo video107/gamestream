@@ -64,6 +64,7 @@ gem 'paper_trail', '~> 4.0.0.rc'
 # initiate user uuid
 gem 'activeuuid', '>= 0.5.0'
 gem 'bower-rails', '~> 0.10.0'
+gem 'whenever', :require => false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
