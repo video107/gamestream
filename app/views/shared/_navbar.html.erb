@@ -12,9 +12,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-nav-customizd">
-          <li><%= link_to "關於我們", about_path %></li>
           <li><%= link_to "直播主招募", recuit_path %></li>
           <li><%= link_to "Q&A", qa_path %></li>
+          <li><%= link_to "關於我們", about_path %></li>
           <% if current_user %>
             <li class="promote_li"><%= link_to "推廣任務", menus_path %></li>
             <li class="promote_li"><%= link_to "推廣成效", user_cases_path(current_user) %></li>

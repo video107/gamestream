@@ -12,38 +12,38 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-1 grid_small grid_boundary_left"></div>
       <div class="col-xs-2 grid_small">點擊數</div>
       <div class="col-xs-2 grid_small">安裝數</div>
       <div class="col-xs-2 grid_small">執行數</div>
-      <div class="col-xs-1 grid_small">獎金</div>
+      <div class="col-xs-1 grid_small grid_boundary_right">獎金</div>
     </div>
     <div class="row">
-      <div class="col-xs-1 grid_small">今日</div>
+      <div class="col-xs-1 grid_small grid_boundary_left">今日</div>
       <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today, Date.today) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.today, Date.today) %></div>
-      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.today, Date.today) %></div>
+      <div class="col-xs-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.today, Date.today) %></div>
       <div class="col-xs-2 col-xs-offset-1">
         <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized btn-block" %>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-1 grid_small">昨日</div>
+      <div class="col-xs-1 grid_small grid_boundary_left">昨日</div>
       <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.yesterday, Date.yesterday) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.yesterday, Date.yesterday) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.yesterday, Date.yesterday) %></div>
-      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.yesterday, Date.yesterday) %></div>
       <div class="col-xs-2 col-xs-offset-1">
         <%= link_to "獎金領取", "", :class => "btn btn-default btn-customized btn-block", :data => {:toggle=>"modal", :target => "#deposit_records"}  %>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-1 grid_small">本月</div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-1 grid_small grid_boundary_left grid_boundary_bottom">本月</div>
+      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_excute?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-1 grid_small grid_boundary_right grid_boundary_bottom"><%= current_user.total_profit_by_date?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
     </div>
 
     <div class="modal fade" id="deposit_records" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -76,40 +76,40 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-2 grid grid_text">任務名稱</div>
-      <div class="col-xs-1 grid grid_text">推廣截止</div>
-      <div class="col-xs-4 grid grid_text">Android連結</div>
-      <div class="col-xs-4 grid grid_text">IOS連結</div>
-      <div class="col-xs-1 grid grid_text">獲得獎金</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom">任務名稱</div>
+      <div class="col-xs-1 grid grid_text grid_boundary_bottom">推廣截止</div>
+      <div class="col-xs-4 grid grid_text grid_boundary_bottom">Android連結</div>
+      <div class="col-xs-4 grid grid_text grid_boundary_bottom">IOS連結</div>
+      <div class="col-xs-1 grid grid_text grid_boundary_right grid_boundary_bottom">獲得獎金</div>
     </div>
     <%# @menus.each do |m| %>
     <% @cases.each do |c| %>
     <div class="row">
-      <div class="col-xs-2 grid grid_text">
+      <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom_loop">
         <div class="overflow_name">
-          <%= link_to c.menu.name, case_report_user_case_path(current_user, c)%>
+          <%= link_to c.menu.name, case_report_user_case_path(current_user, c), class: "btn btn-primary"%>
         </div>
 
       </div>
       <!-- <div class="col-xs-1 grid"><%#= link_to menu.name, case_report_user_case_path(current_user, c)%></div> -->
       <% if c.menu.deadline < Time.now %>
-        <div class="col-xs-1 grid grid_text url_text">已過期</div>
+        <div class="col-xs-1 grid grid_text url_text grid_boundary_bottom_loop">已過期</div>
       <% else %>
-        <div class="col-xs-1 grid grid_text url_text"><%= c.menu.deadline %></div>
+        <div class="col-xs-1 grid grid_text url_text grid_boundary_bottom_loop"><%= c.menu.deadline %></div>
       <% end %>
       <% if c.owner == "android" %>
-        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text">-</div>
-      <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
+        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop">-</div>
+      <!-- <div class="col-xs-4 grid url_text"><%#= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
       <% end %>
       <% if c.owner == "ios" %>
-        <div class="col-xs-4 grid url_text"><%= c.case_url %></div>
+        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text">-</div>
-      <!-- <div class="col-xs-4 grid url_text"><%= c.menu.case_url_with_user_and_owner(current_user, "ios") %></div> -->
+        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop">-</div>
+      <!-- <div class="col-xs-4 grid url_text"><%#= c.menu.case_url_with_user_and_owner(current_user, "ios") %></div> -->
       <% end %>
-      <div class="col-xs-1 grid grid_text">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
+      <div class="col-xs-1 grid grid_text grid_boundary_right grid_boundary_bottom_loop">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
     </div>
     <% end %>
     <%# end %>

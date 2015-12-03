@@ -76,6 +76,19 @@
   background-color: white;
   line-height: 38px;
 }
+.grid_boundary_left {
+  border-left: 4px solid #76933C;
+}
+.grid_boundary_right {
+  border-right: 4px solid #76933C;
+}
+.grid_boundary_bottom {
+  border-bottom: 4px solid #76933C;
+}
+.grid_boundary_bottom_loop {
+  border-top: 0px;
+  border-bottom: 4px solid #76933C;
+}
 .text_center_for_grid {
   margin-top: 7px;
 }
