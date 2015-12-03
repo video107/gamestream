@@ -65,7 +65,7 @@ class CasesController < ApplicationController
 
     if @case.save!
       flash[:success] = "專屬連結建立成功"
-      current_user.update!(master: "true")
+      current_user.update!(uid: current_user.id, master: "true")
       # ttt = URI(menu_case_url(@menu, @case)).host
       # ttt2 = URI(menu_case_url(@menu, @case)).path
       # @case.case_url = ttt + ttt2

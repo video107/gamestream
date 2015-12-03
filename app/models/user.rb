@@ -25,22 +25,24 @@
 
   before_validation :setup_friendly_id
 
-  # def self.from_omniauth(auth)
-  #   user = where(provider: auth.provider, google_uid: auth.uid).first
-  #   unless user
-  #     user = self.new
-  #     user.fb_uid = auth.uid
-  #     user.email = auth.info.email
-  #     user.password = Devise.friendly_token[0,20]
-  #     # user.name = auth.info.name # assuming the user model has a name
-  #     user.fb_image = auth.info.image # assuming the user model has an image
-  #     user.save!
-  #   end
-  #   user
-  # end
+  def total_click?(date1, date2) # clicks of all cases under user
+    self.cases.map { |x| x.follower_by_date(date1, date2)}.sum
+  end
 
-  def find_channel_by_user(user, provider)
-    self.channels.where(user: user, name: provider).first
+  def total_install?(date1, date2) # clicks of all cases under user
+    self.cases.map { |x| x.installer_by_date(date1, date2)}.sum
+  end
+
+  def total_excute?(date1, date2) # clicks of all cases under user
+    self.cases.map { |x| x.excuter_by_date(date1, date2)}.sum
+  end
+
+  def total_profit? # all profits (cpc/cpi/cpa) of cases under user from created day to deadline
+    self.cases.map { |x| x.total_profit?("customer", x.created_at.to_date, x.menu.deadline)}.sum
+  end
+
+  def total_profit_by_date?(date1, date2) # all profits (cpc/cpi/cpa) of cases under user from date1 to date2
+    self.cases.map { |x| x.total_profit?("customer", date1, date2)}.sum
   end
 
   def to_param
@@ -68,22 +70,12 @@
     self.role == nil || self.role == "normal"
   end
 
-  def self.emails_all
-    emails = []
-    all.each do |user|
-      emails << user.email
-    end
-    emails
-  end
-
-
-
   def self.new_with_session(params, session)
-      super.tap do |user|
-        if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
-          user.email = data["email"] if user.email.blank?
-        end
+    super.tap do |user|
+      if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
       end
+    end
   end
 
   def user_name
@@ -104,9 +96,7 @@
     self.deposit_records.all.map { |x| x.amount}.sum
   end
 
-  def total_profit?
-    self.cases.all.map { |x| x.total_profit?("customer", x.created_at.to_date, x.menu.deadline)}.sum
-  end
+
 
 
   protected

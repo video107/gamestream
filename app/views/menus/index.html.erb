@@ -32,31 +32,33 @@
     <div class="spacing"></div>
     <table class="table">
       <tr>
-        <th>遊戲圖片</th>
-        <th>遊戲名稱</th>
-        <th>遊戲類型</th>
-        <th>截止推廣時間</th>
-        <th>推廣獎勵模式</th>
+        <th class="text-center">遊戲圖片</th>
+        <th class="text-center">遊戲名稱</th>
+        <th class="text-center">遊戲類型</th>
+        <th class="text-center">截止推廣時間</th>
+        <th class="text-center">推廣獎勵</th>
         <th></th>
       </tr>
       <% @menus.order(:id => :desc).each do |menu| %>
       <tr>
-        <td style="width:100px;"><div style="line-height:128px; min-height:128px;"><%= image_tag(menu.game_pic(:thumb)) %></div></td>
-        <td style="width:100px;"><%= menu.name %></td>
-        <td style="width:100px;"><%= menu.category.try(:name) %></td>
-        <td><%= menu.try(:deadline) %></td>
+        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= image_tag(menu.game_pic(:special)) %></div></td>
+        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= menu.name %></div></td>
+        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= menu.category.try(:name) %></div></td>
+        <td style="width:160px;" class="text-center"><div class="td_vertical_middle"><%= menu.try(:deadline) %></div></td>
         <td>
-          <% if menu.promote?("cpc") %>
-            <h4><span class="label label-success">CPC</span></h4>
-          <% end %>
-          <% if menu.promote?("cpi") %>
-            <h4><span class="label label-primary">CPI</span></h4>
-          <% end %>
-          <% if menu.promote?("cpa") %>
-            <h4><span class="label label-warning">CPA</span></h4>
-          <% end %>
+          <div style="vertical-align:middle; line-height:70px;" class="text-center">
+            <% if menu.promote?("cpc") %>
+              <div class="form-line"><h4 class="promote_tag_cpc text-center form-line">點擊獎勵<%= menu.promote_higher("cpc") %>元</h4></div>
+            <% end %>
+            <% if menu.promote?("cpi") %>
+              <div class="form-line"><h4 class="promote_tag_cpi text-center form-line">安裝獎勵<%= menu.promote_higher("cpi") %>元</h4></div>
+            <% end %>
+            <% if menu.promote?("cpa") %>
+              <div class="form-line"><h4 class="promote_tag_cpa text-center">執行獎勵<%= menu.promote_higher("cpa") %>元</h4></div>
+            <% end %>
+          </div>
         </td>
-        <td><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-danger" %></td>
+        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-danger" %></div></td>
       </tr>
       <% end %>
     </table>

@@ -361,3 +361,37 @@ body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-
     margin-bottom: 30px;
   }
 }
+.td_vertical_middle {
+  line-height: 70px;
+  min-height: 70px;
+}
+.promote_tag_cpc {
+  height: 30px;
+  line-height: 30px;
+  width: 140px;
+  border: 1px solid #78B05C;
+  border-radius: 5px;
+  background-color: #78B05C;
+  color: white;
+  font-size: 14px;
+}
+.promote_tag_cpi {
+  height: 30px;
+  line-height: 30px;
+  width: 140px;
+  border: 1px solid #417DB4;
+  border-radius: 5px;
+  background-color: #417DB4;
+  color: white;
+  font-size: 14px;
+}
+.promote_tag_cpa {
+  height: 30px;
+  line-height: 30px;
+  width: 140px;
+  border: 1px solid #E7AD5A;
+  border-radius: 5px;
+  background-color: #E7AD5A;
+  color: white;
+  font-size: 14px;
+}

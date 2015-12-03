@@ -55,6 +55,14 @@ class Menu < ActiveRecord::Base
   before_save :check_remove_pic_6
   before_save :check_remove_icon
 
+  def promote_higher(type)
+    self.public_send("#{type}_ios_user") > self.public_send("#{type}_android_user") ? self.public_send("#{type}_ios_user") : self.public_send("#{type}_android_user")
+  end
+  
+  def promote?(type)
+      self.public_send("#{type}_android") != 0.0 || self.public_send("#{type}_ios") != 0.0
+  end
+
   def case_url_with_user_and_owner(user, owner)
     self.cases.where(user: user, owner: owner).first.try(:case_url)
   end
@@ -149,9 +157,6 @@ class Menu < ActiveRecord::Base
     self.total_profit?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 
-  def promote?(type)
-      self.send("#{type}_android") != 0.0 || self.send("#{type}_ios") != 0.0
-  end
 
   private
 

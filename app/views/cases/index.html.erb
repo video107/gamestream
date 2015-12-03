@@ -20,30 +20,30 @@
     </div>
     <div class="row">
       <div class="col-xs-1 grid_small">今日</div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today, Date.today) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.today, Date.today) %></div>
+      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.today, Date.today) %></div>
       <div class="col-xs-2 col-xs-offset-1">
-        <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized" %>
+        <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized btn-block" %>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-1 grid_small">昨日</div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-1 grid_small"></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 col-xs-offset-1">
+        <%= link_to "獎金領取", "", :class => "btn btn-default btn-customized btn-block", :data => {:toggle=>"modal", :target => "#deposit_records"}  %>
+      </div>
     </div>
     <div class="row">
       <div class="col-xs-1 grid_small">本月</div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-2 grid_small"></div>
-      <div class="col-xs-1 grid_small"></div>
-      <div class="col-xs-2 col-xs-offset-1">
-        <%= link_to "獎金領取", "", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#deposit_records"}  %>
-      </div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-1 grid_small"><%= current_user.total_profit_by_date?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
     </div>
 
     <div class="modal fade" id="deposit_records" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

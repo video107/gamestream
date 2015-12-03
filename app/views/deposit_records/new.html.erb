@@ -114,30 +114,36 @@
           </div>
 
           <div class="row user_row">
-            <div class="col-xs-12 text-center">
-              <%#= f.submit "確認送出", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>
-              <%= link_to "確認送出","", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>
+            <div class="col-xs-2 col-sm-2 col-sm-offset-1">
+              <%= link_to "回到推廣成效",user_cases_path(current_user), :class => "btn btn-default btn-customized" %>
+            </div>
 
-              <div class="modal fade" id="withdrawal_money" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body text-center">
-                      <h3>
-                        您的取款需求已經送出，我們將在次月15日發放至您指定銀行帳戶，如有任何問題，歡迎隨時和<%= link_to "我們聯絡", qa_path, target: "_blank"  %>
-                      </h3>
-                    </div>
-                    <div class="modal-footer">
-                      <%= f.submit "確認", :class => "btn btn-default btn-customized" %>
-                    </div>
+            <div class="col-xs-7 col-xs-offset-1 col-sm-6 col-sm-offset-1">
+              <% if current_user.total_profit? < 1000 %>
+                <%= link_to "確認送出","", :class => "btn btn-customized", :disabled => "disabled" %>
+                未達1000元, 不能領取
+              <% else %>
+                <%= link_to "確認送出","", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>
+              <% end %>
+            </div>
 
-                  </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="spacing"></div>
+          <div class="modal fade" id="withdrawal_money" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body text-center">
+                  <h3>
+                    您的取款需求已經送出，我們將在次月15日發放至您指定銀行帳戶，如有任何問題，歡迎隨時和<%= link_to "我們聯絡", qa_path, target: "_blank"  %>
+                  </h3>
+                </div>
+                <div class="modal-footer">
+                  <%= f.submit "確認", :class => "btn btn-default btn-customized" %>
                 </div>
               </div>
-
             </div>
           </div>
-          <div class="spacing"></div>
-
         </div>
       </div>
     </div>
