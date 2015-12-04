@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         c.get_data_from_media(c.name)
       end
 
-      url_exp_youtube = @user.youtube_account_url.match /.*watch\?v=(.*)/
+      url_exp_youtube = @user.youtube_account_url.match /.*watch\?v=(.*)&feature=share/
       unless url_exp_youtube == nil
         c = @user.channels.create!(name: "Youtube",
                                url: "https://i.ytimg.com/vi/#{url_exp_youtube[1]}/maxresdefault_live.jpg")
