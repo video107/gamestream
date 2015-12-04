@@ -75,7 +75,9 @@
               <%= f.text_field :youtube_account_url, autofocus: true, :class => "form-control form_word_address" %>
               <div>
                 範例: https://gaming.youtube.com/watch?v=yourchannel
-                     https://www.youtube.com/watch?v=yourchannel
+              </div>
+              <div>
+                <%= link_to "新版youtube直播連結取得教學", "", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#link_access"}  %>
               </div>
             </div>
           </div>
@@ -129,10 +131,53 @@
         <br>
       </div>
     </div>
-
-
-
     <% end %>
+  </div>
+</div>
 
+<div class="modal fade" id="link_access" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>新版Youtube直播網址取得教學</h3>
+      </div>
+      <div class="modal-body">
+        <div>
+          Step1.
+          前往youtube網站（http://www.youtube.com）
+          點擊右上方自己的帳號圖示，前往「創作者工作室」
+          <div class="text-center"><%= image_tag("link_access_step1.jpg", alt: "前往創作者工作室")%></div>
+        </div>
+        <br><br>
+        <div>
+          Step2.
+          左側功能列點選「即時串流」
+          <div class="text-center"><%= image_tag("link_access_step2.jpg", alt: "左側即時串流")%></div>
+        </div>
+        <br><br>
+        <div>
+          Step3.
+          即時串流裡面找到「分享」的欄位
+          將連結到設定成「Youtube遊戲」接著前往產出的連結
+         （注意！該連結並非實際直播頁面網址）
+          <div><%= image_tag("link_access_step3.jpg", width: "560px", height: "198px", alt: "分享設定成youtube遊戲,並前往該連結網址")%></div>
+        </div>
+        <br><br>
+        <div>
+          Step4.
+          點擊下方的「分享」按鈕（紅色框箭頭符號）
+          <div><%= image_tag("link_access_step4.jpg", width: "560px", height: "310px", alt: "點擊下方分享按鈕")%></div>
+        </div>
+        <br><br>
+        <div>
+          Step5.
+          此時產出的連結，才是您的真實youtube直播連結
+         （後半段必定有/watch? 作為開頭）
+          請複製此段連結，貼到StreamCircle個人資訊頁面
+          <div><%= image_tag("link_access_step5.jpg", alt: "您的真實連結")%></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
