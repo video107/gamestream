@@ -72,7 +72,7 @@ class Menu < ActiveRecord::Base
   end
 
   def setup_friendly_id
-    self.friendly_id ||= SecureRandom.hex(5)
+    self.friendly_id ||= SecureRandom.hex(3)
   end
 
   def followers?(owner,date1,date2)
