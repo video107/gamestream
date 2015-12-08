@@ -58,7 +58,7 @@ class Menu < ActiveRecord::Base
   def promote_higher(type)
     self.public_send("#{type}_ios_user") > self.public_send("#{type}_android_user") ? self.public_send("#{type}_ios_user") : self.public_send("#{type}_android_user")
   end
-  
+
   def promote?(type)
       self.public_send("#{type}_android") != 0.0 || self.public_send("#{type}_ios") != 0.0
   end
@@ -72,7 +72,7 @@ class Menu < ActiveRecord::Base
   end
 
   def setup_friendly_id
-    self.friendly_id ||= SecureRandom.hex(6)
+    self.friendly_id ||= SecureRandom.hex(5)
   end
 
   def followers?(owner,date1,date2)
