@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   get "/qa" => "landings#qa"
   get "/contact" => "landings#contact"
   get "/all" => "channels#allchannels"
+  get "/suspend" => "menus#suspend"
   resources :channels
   resources :feedbacks
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :menus do
-    resources :cases
+  resources :menus, path: :m do
+    resources :cases, path: :c
   end
 
   resources :users do
@@ -20,8 +21,6 @@ Rails.application.routes.draw do
     end
     resources :deposit_records
   end
-
-  get "/suspend" => "menus#suspend"
 
   get 'admin/index' => "admin#index"
   namespace :admin do
