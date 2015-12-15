@@ -7,7 +7,6 @@ namespace :setup do
 
     task :user => :environment do
         Channel.delete_all
-        User.delete_all
         password = "11111111"
         channel_name = %w[ Youtube Twitch]
         twitch_url_name = %w[imaqtpie c9Rush lilballzlolz reckful iLoveCookiiezz]
