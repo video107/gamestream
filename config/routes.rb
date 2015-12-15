@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     resources :cases, path: :c
   end
 
-  resources :users do
-    resources :cases do
+  resources :users, path: :u do
+    resources :cases, path: :c do
         get :case_report, on: :member
     end
     resources :deposit_records

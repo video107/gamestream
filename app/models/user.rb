@@ -50,7 +50,7 @@
   end
 
   def setup_friendly_id
-    self.friendly_id ||= SecureRandom.hex(5)
+    self.friendly_id ||= SecureRandom.hex(3)
   end
 
   def self.from_omniauth(auth)
