@@ -41,7 +41,7 @@
       </tr>
       <% @menus.order(:id => :desc).each do |menu| %>
       <tr>
-        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= image_tag(menu.game_pic(:special)) %></div></td>
+        <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= image_tag(menu.game_icon(:special),class: "icon_radius" )%></div></td>
         <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= menu.name %></div></td>
         <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= menu.category.try(:name) %></div></td>
         <td style="width:160px;" class="text-center"><div class="td_vertical_middle"><%= menu.try(:deadline) %></div></td>

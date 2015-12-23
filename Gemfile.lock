@@ -115,6 +115,7 @@ GEM
     hashie (3.4.1)
     highline (1.6.21)
     i18n (0.7.0)
+    ionicons-rails (2.0.0)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -306,6 +307,7 @@ DEPENDENCIES
   devise
   faker
   faraday
+  ionicons-rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

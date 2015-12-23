@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "bootstrap-datepicker3";
 @import "flexslider";
+@import 'ionicons';
 
 .regist_word {
   font-size: 18px;
@@ -26,6 +27,9 @@
 }
 .img_circle {
   border-radius: 50%;
+}
+.icon_radius {
+  border-radius: 10px;
 }
 .table_header {
   font-size: 18px;
@@ -115,6 +119,14 @@
   width: 250px !important;
   text-decoration: none !important;
 }
+.btn-size {
+  font-size: 32px;
+  background-color: red;
+  color: gainsboro;
+}
+.nav-font {
+  font-size: 20px;
+}
 .row_contact {
   margin-top: 40px;
 }
@@ -183,7 +195,16 @@ a:hover { color: #2180cc; }
   // margin-left: 50px;
   margin-top: 50px;
 }
-body { height: 100%; font-family: 'Open Sans', sans-serif; font-size:16px; line-height:1.75em; color:#666666; background: #232323; background-size: cover; background-attachment: fixed; }
+body {
+  height: 100%;
+  font-family: "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height:1.75em;
+  color:#666666;
+  background: #232323;
+  background-size: cover;
+  background-attachment: fixed;
+}
 .about_title {
   margin-top: 60px;
   color: gainsboro;

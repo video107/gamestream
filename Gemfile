@@ -46,6 +46,7 @@ gem 'bootstrap-datepicker-rails'
 # gem 'bcrypt', '~> 3.1.7'
 # another pagenate for rails
 #gem "omniauth-facebook"
+gem 'ionicons-rails'
 
 # gem "omniauth-google"
 gem 'omniauth-google-oauth2'
