@@ -110,7 +110,7 @@ var $ = jQuery.noConflict();
 //
 
   function fn_siteLoader() {
-    var id;    
+    var id;
 
     id = '#' + $('.section').filter('.is-active').attr('id');
     $('a[href="' + id + '"]').addClass('is-active');

@@ -1,33 +1,23 @@
 <%= render "shared/navbar" %>
-<div class="row row_slider">
-  <div class="flexslider">
-    <ul class="slides">
-      <% if @channels_top5[0].present? %>
-        <li>
-          <%= link_to image_tag(@channels_top5[0].url), @channels_top5[0], target: "_blank"  %>
-        </li>
-      <% end %>
-      <% if @channels_top5[1].present? %>
-        <li>
-          <%= link_to image_tag(@channels_top5[1].url), @channels_top5[1], target: "_blank"  %>
-        </li>
-      <% end %>
-      <% if @channels_top5[2].present? %>
-        <li>
-          <%= link_to image_tag(@channels_top5[2].url), @channels_top5[2], target: "_blank"  %>
-        </li>
-      <% end %>
-      <% if @channels_top5[3].present? %>
-        <li>
-          <%= link_to image_tag(@channels_top5[3].url), @channels_top5[3], target: "_blank"  %>
-        </li>
-      <% end %>
-      <% if @channels_top5[4].present? %>
-        <li>
-          <%= link_to image_tag(@channels_top5[4].url), @channels_top5[4], target: "_blank"  %>
-        </li>
-      <% end %>
-    </ul>
+<div class="row">
+  <div id="wrapper">
+    <div id="myCarousel" data-carousel-3d>
+        <% if @channels_top5[0].present? %>
+          <%= link_to image_tag(@channels_top5[0].url,size: "685x455"), @channels_top5[0], target: "_blank"  %>
+        <% end %>
+        <% if @channels_top5[1].present? %>
+            <%= link_to image_tag(@channels_top5[1].url,size: "685x455"), @channels_top5[1], target: "_blank"  %>
+        <% end %>
+        <% if @channels_top5[2].present? %>
+            <%= link_to image_tag(@channels_top5[2].url,size: "685x455"), @channels_top5[2], target: "_blank"  %>
+        <% end %>
+        <% if @channels_top5[3].present? %>
+            <%= link_to image_tag(@channels_top5[3].url,size: "685x455"), @channels_top5[3], target: "_blank"  %>
+        <% end %>
+        <% if @channels_top5[4].present? %>
+            <%= link_to image_tag(@channels_top5[4].url,size: "685x455"), @channels_top5[4], target: "_blank"  %>
+        <% end %>
+    </div>
   </div>
 </div>
 
@@ -50,7 +40,7 @@
 
 <div class="row row_width">
   <% @channels.each do |c| %>
-  <div class="col-xs-9 col-xs-offset-3 col-sm-3 col-sm-pull-2 col-md-1 col-md-pull-3">
+  <div class="col-xs-8 col-sm-6 col-md-4">
     <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
     <div class="channel_name"><%= c.channel_title %></div>
     <div class="channel_name"><%= c.broadcaster_name %></div>
@@ -64,12 +54,3 @@
   </div>
   <% end %>
 </div>
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('.flexslider').flexslider({
-      // slideshow: false
-    });
-  });
-</script>

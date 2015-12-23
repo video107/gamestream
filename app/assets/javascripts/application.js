@@ -9,11 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
+//= require jquery.resize
+//= require jquery.waitforimages
+//= require modernizr-2.8.3.min
+//= require jquery.carousel-3d
 //= require jquery_ujs
-//= require jquery.flexslider-min
 //= require bootstrap-sprockets
-//= require turbolinks
+//= require plugin
+//= require variable
+// = require main
 //= require bootstrap-datepicker
 //= require_tree .

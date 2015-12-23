@@ -1,9 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-datepicker3";
-@import "flexslider";
 @import 'ionicons';
+@import "vendor";
+@import "theme_black_red.css";
+@import "jquery.carousel-3d.default.css";
 
+.img_border {
+  border: 5px solid #ffffff;
+}
 .regist_word {
   font-size: 18px;
 }
