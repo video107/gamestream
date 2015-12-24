@@ -3,8 +3,8 @@
 @import "bootstrap-datepicker3";
 @import 'ionicons';
 @import "vendor";
-@import "theme_black_red";
-@import "jquery.carousel-3d.default";
+@import "theme_black_red.css";
+@import "jquery.carousel-3d.default.css";
 
 .img_border {
   border: 5px solid #ffffff;
@@ -125,9 +125,9 @@
   text-decoration: none !important;
 }
 .btn-size {
-  font-size: 32px;
+  font-size: 24px;
   background-color: red;
-  color: gainsboro;
+  color: white;
 }
 .nav-font {
   font-size: 20px;
@@ -203,6 +203,7 @@ a:hover { color: #2180cc; }
 body {
   height: 100%;
   font-family: "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: regular;
   font-size: 16px;
   line-height:1.75em;
   color:#666666;
@@ -262,6 +263,9 @@ body {
     width: 1000px;
   }
 }
+.navbar-nav-customizd {
+  font-size: 20px;
+}
 @media (min-width: 1000px) {
   .navbar-nav-customizd {
     margin-left: 18%;
@@ -308,6 +312,16 @@ body {
   background: #76933C;
   border: none;
   color: white;
+}
+.btn-default-customized {
+  background: lightslategray;
+  border: none;
+  color: white;
+}
+.btn-default-customized:hover {
+  background: gainsboro;
+  border: none;
+  color: black;
 }
 .edit_bar {
   background: #76933C;

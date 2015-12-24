@@ -77,10 +77,10 @@
     </div>
     <div class="row">
       <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom">任務名稱</div>
-      <div class="col-xs-1 grid grid_text grid_boundary_bottom">推廣截止</div>
-      <div class="col-xs-4 grid grid_text grid_boundary_bottom">Android連結</div>
-      <div class="col-xs-4 grid grid_text grid_boundary_bottom">IOS連結</div>
-      <div class="col-xs-1 grid grid_text grid_boundary_right grid_boundary_bottom">獲得獎金</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_bottom">推廣截止</div>
+      <div class="col-xs-3 grid grid_text grid_boundary_bottom">Android連結</div>
+      <div class="col-xs-3 grid grid_text grid_boundary_bottom">IOS連結</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_right grid_boundary_bottom">獲得獎金</div>
     </div>
     <%# @menus.each do |m| %>
     <% @cases.each do |c| %>
@@ -93,23 +93,23 @@
       </div>
       <!-- <div class="col-xs-1 grid"><%#= link_to menu.name, case_report_user_case_path(current_user, c)%></div> -->
       <% if c.menu.deadline < Time.now %>
-        <div class="col-xs-1 grid grid_text url_text grid_boundary_bottom_loop">已過期</div>
+        <div class="col-xs-2 grid grid_text url_text grid_boundary_bottom_loop">已過期</div>
       <% else %>
-        <div class="col-xs-1 grid grid_text url_text grid_boundary_bottom_loop"><%= c.menu.deadline %></div>
+        <div class="col-xs-2 grid grid_text url_text grid_boundary_bottom_loop"><%= c.menu.deadline %></div>
       <% end %>
       <% if c.owner == "android" %>
-        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
+        <div class="col-xs-3 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop">-</div>
+        <div class="col-xs-3 grid url_text grid_boundary_bottom_loop">-</div>
       <!-- <div class="col-xs-4 grid url_text"><%#= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
       <% end %>
       <% if c.owner == "ios" %>
-        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
+        <div class="col-xs-3 grid url_text grid_boundary_bottom_loop"><%= c.case_url %></div>
       <% else %>
-        <div class="col-xs-4 grid url_text grid_boundary_bottom_loop">-</div>
+        <div class="col-xs-3 grid url_text grid_boundary_bottom_loop">-</div>
       <!-- <div class="col-xs-4 grid url_text"><%#= c.menu.case_url_with_user_and_owner(current_user, "ios") %></div> -->
       <% end %>
-      <div class="col-xs-1 grid grid_text grid_boundary_right grid_boundary_bottom_loop">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
+      <div class="col-xs-2 grid grid_text grid_boundary_right grid_boundary_bottom_loop">$<%= c.total_profit?("customer",c.created_at.to_date, c.menu.deadline) %></div>
     </div>
     <% end %>
     <%# end %>

@@ -21,15 +21,15 @@ namespace :dev do
 
   task :fix_friendly_id => :environment do
     Menu.all.each do |e|
-      e.friendly_id = SecureRandom.hex(5)
+      e.friendly_id = SecureRandom.hex(3)
       e.save!
     end
     User.all.each do |e|
-      e.friendly_id = SecureRandom.hex(5)
+      e.friendly_id = SecureRandom.hex(3)
       e.save!
     end
     Case.all.each do |e|
-      e.friendly_id = SecureRandom.hex(5)
+      e.friendly_id = SecureRandom.hex(3)
       e.save!
     end
   end

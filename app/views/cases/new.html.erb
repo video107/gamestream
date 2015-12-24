@@ -8,7 +8,10 @@
      <%= f.hidden_field :case_url%>
      <% if @menu.menu_url_ios.blank? %>
      <% elsif already_created_link_by(current_user, @menu, "ios") %>
-       <h3 style="color: red;">已建立IOS連結, 請到後台領取</h3>
+       <h3 style="color: red;">
+         已建立IOS連結, 請到後台領取<br>
+         切勿以任何方式修改專屬連結(包含縮網址,轉址),若造成追蹤失效,本平台概不負責
+       </h3>
        <%= link_to "我的連結", user_cases_path(current_user), class: "btn btn-primary" %>
      <% else %>
        <%= f.submit "建立專屬IOS連結", :class => "btn btn-primary" ,:name => "commit" %>
