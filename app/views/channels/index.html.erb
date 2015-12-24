@@ -2,21 +2,21 @@
 <div class="row">
   <div id="wrapper">
     <div id="myCarousel" data-carousel-3d>
-        <% if @channels_top5[0].present? %>
-          <%= link_to image_tag(@channels_top5[0].url,size: "685x455"), @channels_top5[0], target: "_blank"  %>
-        <% end %>
-        <% if @channels_top5[1].present? %>
-            <%= link_to image_tag(@channels_top5[1].url,size: "685x455"), @channels_top5[1], target: "_blank"  %>
-        <% end %>
-        <% if @channels_top5[2].present? %>
-            <%= link_to image_tag(@channels_top5[2].url,size: "685x455"), @channels_top5[2], target: "_blank"  %>
-        <% end %>
-        <% if @channels_top5[3].present? %>
-            <%= link_to image_tag(@channels_top5[3].url,size: "685x455"), @channels_top5[3], target: "_blank"  %>
-        <% end %>
-        <% if @channels_top5[4].present? %>
-            <%= link_to image_tag(@channels_top5[4].url,size: "685x455"), @channels_top5[4], target: "_blank"  %>
-        <% end %>
+      <% if @channels_top5[0].present? %>
+        <%= link_to image_tag(@channels_top5[0].url, size: "685x455"), @channels_top5[0], target: "_blank"  %>
+      <% end %>
+      <% if @channels_top5[1].present? %>
+        <%= link_to image_tag(@channels_top5[1].url, size: "685x455"), @channels_top5[1], target: "_blank"  %>
+      <% end %>
+      <% if @channels_top5[2].present? %>
+        <%= link_to image_tag(@channels_top5[2].url, size: "685x455"), @channels_top5[2], target: "_blank"  %>
+      <% end %>
+      <% if @channels_top5[3].present? %>
+        <%= link_to image_tag(@channels_top5[3].url, size: "685x455"), @channels_top5[3], target: "_blank"  %>
+      <% end %>
+      <% if @channels_top5[4].present? %>
+        <%= link_to image_tag(@channels_top5[4].url, size: "685x455"), @channels_top5[4], target: "_blank"  %>
+      <% end %>
     </div>
   </div>
 </div>

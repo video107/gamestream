@@ -16,8 +16,5 @@
 //= require jquery.carousel-3d
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require plugin
-//= require variable
-// = require main
 //= require bootstrap-datepicker
 //= require_tree .
