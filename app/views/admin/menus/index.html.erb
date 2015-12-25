@@ -13,7 +13,7 @@
       <%= search_form_for @q do |f| %>
       <%= f.label :name_cont,"遊戲名" %>
       <%= f.search_field :name_cont, :class => "form-control form_word" %>
-      <%= f.submit "Search", :class=>"btn btn-default"%>
+      <%= f.submit "搜尋", :class=>"btn btn-default"%>
       <% end %>
     </div>
     <span><%= link_to '新遊戲', new_admin_menu_path, :class => "btn btn-warning" %></span>
