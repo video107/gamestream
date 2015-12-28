@@ -19,4 +19,10 @@ namespace :cron do
       end
     end
   end
+
+  task :usr_setup_profit => :environment do
+    User.all.each do |u|
+      u.update(profit_money: u.total_profit?)
+    end
+  end
 end

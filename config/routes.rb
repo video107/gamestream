@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :cases, path: :c do
         get :case_report, on: :member
     end
-    resources :deposit_records
+    resources :withdraw_records
   end
 
   get 'admin/index' => "admin#index"

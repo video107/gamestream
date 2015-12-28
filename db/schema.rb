@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203042321) do
+ActiveRecord::Schema.define(version: 20151228045154) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -88,19 +88,6 @@ ActiveRecord::Schema.define(version: 20151203042321) do
   end
 
   add_index "channels", ["user_id"], name: "index_channels_on_user_id", using: :btree
-
-  create_table "deposit_records", force: :cascade do |t|
-    t.integer  "amount",                        limit: 4,   default: 0
-    t.integer  "user_id",                       limit: 4
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.string   "withdrawaler_nanme",            limit: 255
-    t.string   "withdrawaler_phone",            limit: 255
-    t.string   "withdrawaler_bank_name",        limit: 255
-    t.string   "withdrawaler_bank_branch_name", limit: 255
-    t.string   "withdrawaler_bank_name_code",   limit: 255
-    t.string   "withdrawaler_bank_account",     limit: 255
-  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -225,6 +212,7 @@ ActiveRecord::Schema.define(version: 20151203042321) do
     t.string   "twitch_account_url",     limit: 255
     t.string   "youtube_account_url",    limit: 255
     t.string   "bank_branch_name",       limit: 255
+    t.string   "profit_money",           limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -243,6 +231,19 @@ ActiveRecord::Schema.define(version: 20151203042321) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "withdraw_records", force: :cascade do |t|
+    t.integer  "amount",                        limit: 4,   default: 0
+    t.integer  "user_id",                       limit: 4
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.string   "withdrawaler_nanme",            limit: 255
+    t.string   "withdrawaler_phone",            limit: 255
+    t.string   "withdrawaler_bank_name",        limit: 255
+    t.string   "withdrawaler_bank_branch_name", limit: 255
+    t.string   "withdrawaler_bank_name_code",   limit: 255
+    t.string   "withdrawaler_bank_account",     limit: 255
+  end
 
   add_foreign_key "channels", "users"
 end

@@ -15,7 +15,7 @@
               未領取獎金:
             </div>
             <div class="col-xs-8">
-              <%= current_user.total_profit? - current_user.deposit? %>元
+              <%= current_user.total_profit? - current_user.withdraw? %>元
             </div>
           </div>
 
@@ -24,7 +24,7 @@
               已領取獎金:
             </div>
             <div class="col-xs-8">
-              <%= current_user.deposit? %>元
+              <%= current_user.withdraw? %>元
             </div>
           </div>
 
@@ -42,7 +42,7 @@
         <div class="row">
           <h3 class="edit_bar">取款資訊</h3>
         </div>
-        <%= form_for @deposit_record, :url => user_deposit_records_path(current_user), :method => :post do |f| %>
+        <%= form_for @withdraw_record, :url => user_withdraw_records_path(current_user), :method => :post do |f| %>
 
         <div class="row row_input">
           <div class="row user_row">

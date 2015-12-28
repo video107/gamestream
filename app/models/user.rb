@@ -17,7 +17,7 @@
   has_many :clicks, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
   has_many :installs, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
   has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
-  has_many :deposit_records
+  has_many :withdraw_records
   has_many :channels, :dependent => :destroy
 
   validates_presence_of :friendly_id
@@ -92,8 +92,8 @@
     end
   end
 
-  def deposit?
-    self.deposit_records.all.map { |x| x.amount}.sum
+  def withdraw?
+    self.withdraw_records.all.map { |x| x.amount}.sum
   end
 
 

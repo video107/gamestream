@@ -27,6 +27,11 @@
 # Learn more: http://github.com/javan/whenever
 env :PATH, ENV['PATH']
 set :output, 'log/cron.log'
+
 every 5.minutes do
   rake "cron:channel_setup"
+end
+
+every 1.day do
+  rake "cron:usr_setup_profit"
 end

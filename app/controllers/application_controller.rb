@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   admin_config = Rails.application.config_for(:admin)
-  
+
   if Rails.env.production?
     http_basic_authenticate_with(
       name: admin_config["name"],

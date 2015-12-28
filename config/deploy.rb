@@ -13,7 +13,7 @@ set :passenger_restart_command, -> { "touch #{fetch(:deploy_to)}/current/tmp/res
 set :passenger_restart_options, ""
 # Default value for :scm is :git
 # set :scm, :git
-
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 # Default value for :format is :pretty
 # set :format, :pretty
 
