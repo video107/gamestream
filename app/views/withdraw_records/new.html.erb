@@ -15,7 +15,7 @@
               未領取獎金:
             </div>
             <div class="col-xs-8">
-              <%= current_user.total_profit? - current_user.withdraw? %>元
+              <%= current_user.profit_money %>元
             </div>
           </div>
 
@@ -33,7 +33,7 @@
               總獎金
             </div>
             <div class="col-xs-8">
-              <%= current_user.total_profit? %>元
+              <%= current_user.total_earn_money %>元
             </div>
           </div>
 
@@ -104,11 +104,11 @@
               <%= f.label :欲領取金額 %>
             </div>
             <div class="col-xs-8">
-              <% if current_user.total_profit? >= 1 && current_user.total_profit? < 1000 %>
-                <%= f.text_field :amount, autofocus: true, :class => "form-control form_word" %>
-              <% else %>
+              <% if current_user.profit_money.to_i >= 1 && current_user.profit_money.to_i < 1000 %>
                 <%= f.hidden_field :amount, :class => "form-control form_word" %>
-                總獎金累積達1000 NT才可進行領取
+                未領取獎金累積達1000 NT才可進行領取
+              <% else %>
+                <%= f.text_field :amount, autofocus: true, :class => "form-control form_word" %>
               <% end %>
             </div>
           </div>
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-xs-7 col-xs-offset-1 col-sm-6 col-sm-offset-1">
-              <% if current_user.total_profit? < 1000 %>
+              <% if current_user.profit_money.to_i < 1000 %>
                 <%= link_to "確認送出","", :class => "btn btn-customized", :disabled => "disabled" %>
                 未達1000元, 不能領取
               <% else %>

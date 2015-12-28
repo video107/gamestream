@@ -50,16 +50,16 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body text-center">
-            <% if current_user.total_profit? == 0 %>
+            <% if current_user.profit_money.to_i == 0 %>
               <h2>您目前沒有待領款項</h2>
-            <% elsif current_user.total_profit? >= 1 && current_user.total_profit? < 1000 %>
-              <h2>總獎金累積達1000NT才可進行領取</h2>
+            <% elsif current_user.profit_money.to_i >= 1 && current_user.profit_money.to_i < 1000 %>
+              <h2>未領取獎金累積達1000NT才可進行領取</h2>
             <% else %>
               <h2>請按確認進行獎金領取</h2>
             <% end %>
           </div>
           <div class="modal-footer">
-            <% if current_user.total_profit? == 0 %>
+            <% if current_user.profit_money.to_i == 0 %>
               <button type="button" class="btn btn-primary" data-dismiss="modal">確認</button>
             <% else %>
               <%= link_to "確認", new_user_withdraw_record_path(current_user), class: "btn btn-primary"  %>

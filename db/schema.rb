@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228045154) do
+ActiveRecord::Schema.define(version: 20151228075849) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 20151228045154) do
     t.string   "youtube_account_url",    limit: 255
     t.string   "bank_branch_name",       limit: 255
     t.string   "profit_money",           limit: 255
+    t.string   "total_earn_money",       limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

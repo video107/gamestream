@@ -32,6 +32,6 @@ every 5.minutes do
   rake "cron:channel_setup"
 end
 
-every 1.day do
+every 5.minutes do
   rake "cron:usr_setup_profit"
 end
