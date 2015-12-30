@@ -167,7 +167,11 @@
   <% @key_store.each do |column_name| %>
     $("#withdraw_record_<%= column_name %>").css({"box-shadow":"0 0 5px crimson","border":"1px solid crimson"})
     <%= Rails.logger.info(column_name) %>
-    <% if column_name.to_s == "amount" %>
+    <%= Rails.logger.info(@withdraw_record.errors.messages[column_name]) %>
+    <% if column_name.to_s == "amount" && @withdraw_record.errors.messages[column_name] == ["overbudget"] %>
+      $('#error').empty();
+      $('#error').append('不能領取超過您的待領獎金');
+    <% elsif column_name.to_s == "amount" %>
       $('#error').empty();
       $('#error').append('每次領取獎金必須大於1000');
     <% end %>

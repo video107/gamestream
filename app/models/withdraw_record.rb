@@ -9,6 +9,6 @@ class WithdrawRecord < ActiveRecord::Base
   protected
 
   def amount_limitation
-    errors.add(:amount, "不能超過你的獎金") if self.amount > self.user.profit_money.to_i
+    errors.add(:amount, "overbudget") if self.amount > self.user.profit_money.to_i
   end
 end
