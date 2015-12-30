@@ -57,7 +57,7 @@
               <%= f.label :withdrawaler_name, "取款人姓名" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_name, autofocus: true, :class => "form-control form_word", value: current_user.name %>
+              <%= f.text_field :withdrawaler_name, autofocus: true, :class => "form-control form_word" %>
             </div>
           </div>
 
@@ -66,7 +66,7 @@
               <%= f.label :withdrawaler_phone, "取款人電話(手機10碼)" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_phone, autofocus: true, :class => "form-control form_word", value: current_user.phone %>
+              <%= f.text_field :withdrawaler_phone, autofocus: true, :class => "form-control form_word"%>
             </div>
           </div>
 
@@ -75,7 +75,7 @@
               <%= f.label :withdrawaler_bank_name, "銀行名稱" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_bank_name, autofocus: true, :class => "form-control form_word", value: current_user.bank_name %>
+              <%= f.text_field :withdrawaler_bank_name, autofocus: true, :class => "form-control form_word"%>
             </div>
           </div>
 
@@ -84,7 +84,7 @@
               <%= f.label :withdrawaler_bank_branch_name, "分行名稱" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_bank_branch_name, autofocus: true, :class => "form-control form_word", value: current_user.bank_branch_name %>
+              <%= f.text_field :withdrawaler_bank_branch_name, autofocus: true, :class => "form-control form_word"%>
             </div>
           </div>
 
@@ -93,7 +93,7 @@
               <%= f.label :withdrawaler_bank_name_code, "行庫代碼" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_bank_name_code, autofocus: true, :class => "form-control form_word", value: current_user.bank_name_code %>
+              <%= f.text_field :withdrawaler_bank_name_code, autofocus: true, :class => "form-control form_word" %>
             </div>
           </div>
 
@@ -102,7 +102,7 @@
               <%= f.label :withdrawaler_bank_account, "行庫帳戶" %>
             </div>
             <div class="col-xs-8">
-              <%= f.text_field :withdrawaler_bank_account, autofocus: true, :class => "form-control form_word", value: current_user.bank_account %>
+              <%= f.text_field :withdrawaler_bank_account, autofocus: true, :class => "form-control form_word" %>
             </div>
           </div>
 
@@ -166,6 +166,11 @@
   $('#error').append('請確認資料是否漏填或不符格式');
   <% @key_store.each do |column_name| %>
     $("#withdraw_record_<%= column_name %>").css({"box-shadow":"0 0 5px crimson","border":"1px solid crimson"})
+    <%= Rails.logger.info(column_name) %>
+    <% if column_name.to_s == "amount" %>
+      $('#error').empty();
+      $('#error').append('每次領取獎金必須大於1000');
+    <% end %>
   <% end %>
 <% end %>
 </script>

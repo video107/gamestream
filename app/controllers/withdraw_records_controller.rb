@@ -1,7 +1,12 @@
 class WithdrawRecordsController < ApplicationController
 
   def new
-    @withdraw_record = current_user.withdraw_records.new
+    @withdraw_record = current_user.withdraw_records.new(withdrawaler_name: current_user.name,
+                                                         withdrawaler_phone: current_user.phone,
+                                                         withdrawaler_bank_name: current_user.bank_name,
+                                                         withdrawaler_bank_branch_name: current_user.bank_branch_name,
+                                                         withdrawaler_bank_name_code: current_user.bank_name_code,
+                                                         withdrawaler_bank_account: current_user.bank_account)
     # current_user.update(total_earn_money: current_user.total_profit?)
   end
 
