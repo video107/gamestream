@@ -1,0 +1,14 @@
+<div class="modal fade" id="withdrawal_money" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3>
+          您的取款需求已經送出，我們將在次月15日發放至您指定銀行帳戶，如有任何問題，歡迎隨時和<%= link_to "我們聯絡", qa_path, target: "_blank"  %>
+        </h3>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "確認",user_cases_path(current_user), class: "btn btn-default btn-customized" %>
+      </div>
+    </div>
+  </div>
+</div>

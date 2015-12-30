@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228075849) do
+ActiveRecord::Schema.define(version: 20151229182158) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(version: 20151228075849) do
     t.integer  "user_id",                       limit: 4
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
-    t.string   "withdrawaler_nanme",            limit: 255
+    t.string   "withdrawaler_name",             limit: 255
     t.string   "withdrawaler_phone",            limit: 255
     t.string   "withdrawaler_bank_name",        limit: 255
     t.string   "withdrawaler_bank_branch_name", limit: 255

@@ -1,0 +1,11 @@
+<% if @withdraw_record.valid? %>
+  $('#modal_container').html("<%= j(render :partial => "success")%>");
+  $('.modal-backdrop.fade.in').remove();
+  $('#modal_container #withdrawal_money').modal('show');
+<% else %>
+  $('#error').empty();
+  $('#error').append('請確認資料是否漏填或不符格式');
+  <% @key_store.each do |column_name| %>
+    $("#withdraw_record_<%= column_name %>").css({"box-shadow":"0 0 5px crimson","border":"1px solid crimson"})
+  <% end %>
+<% end %>
