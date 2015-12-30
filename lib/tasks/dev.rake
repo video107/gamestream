@@ -34,5 +34,10 @@ namespace :dev do
     end
   end
 
+  task :fix_profit_money => :environment do
+    User.all.each do |u|
+      u.update(profit_money: "0")
+    end
+  end
 
 end

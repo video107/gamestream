@@ -130,7 +130,7 @@
             <div class="col-xs-7 col-xs-offset-1 col-sm-6 col-sm-offset-1">
               <% if current_user.profit_money.to_i < 1000 %>
                 <%= link_to "確認送出","", :class => "btn btn-customized", :disabled => "disabled" %>
-                未達1000元, 不能領取
+                <span class="hightlight">未達1000元, 不能領取</span>
               <% else %>
                 <%#= f.submit "確認送出", :class => "btn btn-default btn-customized"%>
                 <%= link_to "確認送出","", :class => "btn btn-default btn-customized", :data => {:toggle=>"modal", :target => "#withdrawal_money"}  %>

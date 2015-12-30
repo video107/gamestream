@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229182158) do
+ActiveRecord::Schema.define(version: 20151230152303) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -177,12 +177,12 @@ ActiveRecord::Schema.define(version: 20151229182158) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",  null: false
+    t.string   "encrypted_password",     limit: 255, default: "",  null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -191,8 +191,8 @@ ActiveRecord::Schema.define(version: 20151229182158) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "provider",               limit: 255
     t.string   "fb_uid",                 limit: 255
     t.string   "name",                   limit: 255
@@ -212,8 +212,8 @@ ActiveRecord::Schema.define(version: 20151229182158) do
     t.string   "twitch_account_url",     limit: 255
     t.string   "youtube_account_url",    limit: 255
     t.string   "bank_branch_name",       limit: 255
-    t.string   "profit_money",           limit: 255
-    t.string   "total_earn_money",       limit: 255
+    t.string   "profit_money",           limit: 255, default: "0"
+    t.string   "total_earn_money",       limit: 255, default: "0"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
