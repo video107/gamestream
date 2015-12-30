@@ -11,6 +11,9 @@ class CasesController < ApplicationController
     # @cases = Case.joins(:menu).where
     @cases = current_user.cases.page(params[:page]).order(:id => :desc).per(10)
     @cases_for_profit = current_user.cases
+    if current_user.withdraw_records.blank?
+      current_user.update(profit_money: current_user.total_earn_money)
+    end
   end
 
 
