@@ -1,0 +1,20 @@
+<div>
+    <%= @user.try(:name) %>'s 領款通知
+</div>
+<br>
+領款者姓名: <%= @withdraw_record.withdrawaler_name %>
+<br><br>
+領款者電話: <%= @withdraw_record.withdrawaler_phone %>
+<br><br>
+銀行: <%= @withdraw_record.withdrawaler_bank_name %>
+<br><br>
+銀行分行: <%= @withdraw_record.withdrawaler_bank_branch_name %>
+<br><br>
+銀行代碼: <%= @withdraw_record.withdrawaler_bank_name_code %>
+<br><br>
+銀行代碼: <%= @withdraw_record.withdrawaler_bank_account %>
+<br><br>
+領款金額: <%= @withdraw_record.amount %>
+<br><br>
+需求發送時間: <%= @withdraw_record.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+<br><br>

@@ -1,0 +1,8 @@
+<div>
+  <% if @user.try(:name) %>
+    <%= @user.try(:name) %>'s feedback
+  <% else %>
+    Guest's feedback
+  <% end %>
+</div>
+<%= simple_format(@feedback.content) %>

@@ -22,6 +22,7 @@
 /config/facebook.yml
 /config/google.yml
 /config/youtube.yml
+/config/email.yml
 
 # Ignore application configuration
 /config/application.yml

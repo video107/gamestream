@@ -7,7 +7,6 @@ class WithdrawRecordsController < ApplicationController
                                                          withdrawaler_bank_branch_name: current_user.bank_branch_name,
                                                          withdrawaler_bank_name_code: current_user.bank_name_code,
                                                          withdrawaler_bank_account: current_user.bank_account)
-    # current_user.update(total_earn_money: current_user.total_profit?)
   end
 
   def create
@@ -20,8 +19,9 @@ class WithdrawRecordsController < ApplicationController
         # format.js {
         #   render :template => "withdraw_records/success"
         # }
+      UserMailer.notify_withdraw(@withdraw_record).deliver_now!
       redirect_to user_cases_path(current_user)
-      flash[:alert] = "要求成功送出"
+      flash[:alert] = "取款要求成功送出"
       else
         render :new
         # format.html {render :new}
