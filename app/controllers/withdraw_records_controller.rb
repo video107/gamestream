@@ -19,7 +19,7 @@ class WithdrawRecordsController < ApplicationController
         # format.js {
         #   render :template => "withdraw_records/success"
         # }
-      UserMailer.notify_withdraw(@withdraw_record).deliver_now!
+      UserMailer.notify_withdraw(@withdraw_record).deliver!
       redirect_to user_cases_path(current_user)
       flash[:alert] = "取款要求成功送出"
       else

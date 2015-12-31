@@ -57,6 +57,7 @@ gem 'paperclip'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem "letter_opener", :group => :development
+gem 'sidekiq'
 
 # Soft deletion gem
 gem 'paper_trail', '~> 4.0.0.rc'
