@@ -78,8 +78,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  # config.action_mailer.default_url_options = { host: "http://www.streamcircle.net" }
-  config.action_mailer.default_url_options = { host: "139.162.3.89" }
+  config.action_mailer.default_url_options = { host: "http://www.streamcircle.net" }
+  # config.action_mailer.default_url_options = { host: "139.162.3.89" }
 
   config.action_mailer.delivery_method = :smtp
 

@@ -2,7 +2,7 @@
   <% if @user.try(:name) %>
     <%= @user.try(:name) %>'s feedback
   <% else %>
-    Guest's feedback
+    Guest <%= @feedback.name %> feedback
   <% end %>
 </div>
 <%= simple_format(@feedback.content) %>
