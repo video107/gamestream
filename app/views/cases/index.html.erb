@@ -8,7 +8,12 @@
   <div class="row">
     <div class="row">
       <div class="col-xs-8 text-left grid edit_bar">
-        <span class="text_center_for_grid"><h3>成效總覽</h3></span>
+        <div class="col-xs-6 text-left">
+          <h3>成效總覽</h3>
+        </div>
+        <div class="col-xs-6 text-right">
+          <h3>未領取總額: <%= current_user.profit_money %></h3>
+        </div>
       </div>
     </div>
     <div class="row">
