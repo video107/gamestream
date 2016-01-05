@@ -14,7 +14,7 @@ class CasesController < ApplicationController
     # if current_user.withdraw_records.blank?
       # current_user.update(profit_money: current_user.total_earn_money)
     # else
-      current_user.update(profit_money: current_user.total_earn_money.to_i - current_user.withdraw?)
+      current_user.update(total_earn_money: current_user.total_profit?, profit_money: current_user.total_earn_money.to_i - current_user.withdraw?)
     # end
 
   end
