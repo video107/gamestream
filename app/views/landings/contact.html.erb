@@ -14,23 +14,24 @@
   <%= form_for @feedback, :url => feedbacks_path do |f| %>
 
   <div class="field">
-    <%= f.label :如何稱呼您 %><br>
+    <%= f.label :name, "如何稱呼您" %><br>
     <%= f.text_field :name, :class =>"form-control form_word" %>
   </div>
 
   <div class="field">
-    <%= f.label :您的電子郵件信箱 %><br>
+    <%= f.label :email, "您的電子郵件信箱" %><br>
     <%= f.text_field :email, :class =>"form-control form_word" %>
   </div>
 
   <div class="field">
-    <%= f.label :您的意見 %><br>
+    <%= f.label :content, "您的意見" %><br>
     <%= f.text_area :content, :class => "form-control", :rows => "6"%>
   </div>
 
   <div class="spacing"></div>
   <div class="action">
     <%= f.submit "送出問題", :class => "btn btn-success"%>
+    <%= link_to "前往粉絲團", "https://www.facebook.com/StreamCircle", :class => "btn btn-info" %>
   </div>
 
   <% end %>

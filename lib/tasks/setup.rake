@@ -24,4 +24,13 @@ namespace :setup do
           Channel.create!(name: "Youtube", user: User.all.sample, url: "https://i.ytimg.com/vi/#{youtube_url_name[i]}/maxresdefault_live.jpg")
         end
     end
+
+    task :add_always_user => :environment do
+      twitch_url_name = %w[white_destiny tarababcock christinafink marinacsousa ymna syranja brittgun sanxyra sawbb bloody_elf yanatv aimzatchu urqueeen dinshdin shannanina lottattractive heiidii92 thethiliacraft claireproduction 0csns jade17777 yukiinaa nyny_x publicbeta]
+      password = "11111111"
+      twitch_url_name.each do |twitch|
+        user = User.create!(email: Faker::Internet.email, password: password, name: Faker::Internet.user_name, twitch_account_url: "", youtube_account_url: "" )
+        Channel.create!(name: "Twitch", user: user, url: "http://static-cdn.jtvnw.net/previews-ttv/live_user_#{twitch}-900x600.jpg")
+      end
+    end
 end

@@ -11,7 +11,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :會員帳號 %>:
+              <%= f.label :email, "會員帳號" %>:
             </div>
             <div class="col-xs-8">
               <%= @user.email %>
@@ -21,7 +21,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :姓名 %>:
+              <%= f.label :name, "姓名" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :name, autofocus: true, :class => "form-control form_word" %>
@@ -30,7 +30,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :暱稱 %>:
+              <%= f.label :nickname, "暱稱" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :nickname, autofocus: true, :class => "form-control form_word" %>
@@ -39,7 +39,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :聯絡電話 %>:
+              <%= f.label :phone, "聯絡電話" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :phone, autofocus: true, :class => "form-control form_word" %>
@@ -48,7 +48,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :聯絡地址 %>:
+              <%= f.label :address, "聯絡地址" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_area :address, autofocus: true, :class => "form-control form_word_address" %>
@@ -57,7 +57,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :Twitch網址 %>:
+              <%= f.label :twitch_account_url, "Twitch網址" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :twitch_account_url, autofocus: true, :class => "form-control form_word_address" %>
@@ -69,7 +69,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :Youtube網址 %>:
+              <%= f.label :youtube_account_url, "Youtube網址" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :youtube_account_url, autofocus: true, :class => "form-control form_word_address" %>
@@ -90,7 +90,7 @@
         <div class="row row_input">
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :銀行名稱 %>:
+              <%= f.label :bank_name, "銀行名稱" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :bank_name, autofocus: true, :class => "form-control form_word" %>
@@ -99,7 +99,7 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :行庫代碼 %>:
+              <%= f.label :bank_name_code, "行庫代碼" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :bank_name_code, autofocus: true, :class => "form-control form_word" %>
@@ -108,7 +108,16 @@
 
           <div class="row user_row">
             <div class="col-xs-4">
-              <%= f.label :銀行帳號 %>:
+              <%= f.label :bank_branch_name, "分行名稱" %>:
+            </div>
+            <div class="col-xs-8">
+              <%= f.text_field :bank_branch_name, autofocus: true, :class => "form-control form_word" %>
+            </div>
+          </div>
+
+          <div class="row user_row">
+            <div class="col-xs-4">
+              <%= f.label :bank_account, "銀行帳號" %>:
             </div>
             <div class="col-xs-8">
               <%= f.text_field :bank_account, autofocus: true, :class => "form-control form_word" %>
