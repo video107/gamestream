@@ -11,6 +11,9 @@ gem 'capistrano-passenger', :group => :development
 gem 'mysql2'
 
 gem 'faraday'
+gem "font-awesome-rails"
+gem 'ionicons-rails'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -16,14 +16,14 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-1 grid_small grid_boundary_left"></div>
+    <div class="row text-center">
+      <div class="col-xs-1 grid_small grid_boundary_left text-center"></div>
       <div class="col-xs-2 grid_small">點擊數</div>
       <div class="col-xs-2 grid_small">安裝數</div>
       <div class="col-xs-2 grid_small">執行數</div>
       <div class="col-xs-1 grid_small grid_boundary_right">獎金</div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-xs-1 grid_small grid_boundary_left">今日</div>
       <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today, Date.today) %></div>
@@ -33,7 +33,7 @@
         <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized btn-block" %>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-xs-1 grid_small grid_boundary_left">昨日</div>
       <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.yesterday, Date.yesterday) %></div>
       <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.yesterday, Date.yesterday) %></div>
@@ -47,7 +47,7 @@
         <% end %>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-xs-1 grid_small grid_boundary_left grid_boundary_bottom">本月</div>
       <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
       <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
@@ -83,7 +83,7 @@
         <span class="text_center_for_grid"><h3>參與任務</h3></span>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom">任務名稱</div>
       <div class="col-xs-2 grid grid_text grid_boundary_bottom">推廣截止</div>
       <div class="col-xs-3 grid grid_text grid_boundary_bottom">Android連結</div>
@@ -92,7 +92,7 @@
     </div>
     <%# @menus.each do |m| %>
     <% @cases.each do |c| %>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom_loop">
         <div class="overflow_name">
           <%= link_to c.menu.name, case_report_user_case_path(current_user, c), class: "btn btn-primary"%>

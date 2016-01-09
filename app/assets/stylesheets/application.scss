@@ -3,6 +3,9 @@
 @import "bootstrap-datepicker3";
 @import 'ionicons';
 @import "jquery.carousel-3d.default";
+@import "font-awesome";
+@import 'ionicons';
+
 
 
 .regist_word {
@@ -450,4 +453,19 @@ body {
 }
 .hightlight {
   color: red;
+}
+.arrow {
+  padding-top: 5px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  font-size: 32px;
+}
+
+.arrow:hover {
+  border-color: rgba(255,255,255,.5);
+  outline: 0;
+  color: rgba(255,255,255,.5);
 }
