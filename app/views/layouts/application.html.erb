@@ -46,6 +46,7 @@
   </noscript>
 </head>
 <body>
+  <%= render "shared/navbar" %>
   <div class="container-fluid">
     <div class="row">
       <% if (flash[:notice] && !flash[:notice].empty?) %>
@@ -68,8 +69,8 @@
           <%= flash[:danger] %>
         </p>
       <% end %>
-      <%= yield %>
     </div>
+      <%= yield %>
   </div>
 </body>
 <script>

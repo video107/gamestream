@@ -1,4 +1,3 @@
-<%= render "shared/navbar" %>
 <div class="row">
   <div id="wrapper">
     <div id="myCarousel" data-carousel-3d>
@@ -24,13 +23,13 @@
 <div class="clearfix"></div>
 <div class="row">
   <div class="decoration_bar">
-    <div class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-pull-1 col-md-2 col-md-offset-2">
-      <%= link_to image_tag("broadcast.png", size: "55x56", alt: "live stream", class: "live_image"), all_path %>
-    </div>
-    <div class=" text-left col-xs-4 col-sm-4 col-sm-pull-1 col-md-4 col-md-pull-2">
+    <div class="form-inline frame">
+      <%= link_to image_tag("broadcast.png", alt: "live stream",size: "55x56", class: "live_image"), all_path %>
+    <!-- </div> -->
+    <!-- <div class="form-inline frame"> -->
       <span class="live_words">Live Streaming</span>
-    </div>
-    <div class="text-left col-xs-2 col-xs-offset-2 col-md-2 col-md-pull-1">
+    <!-- </div> -->
+    <!-- <div class="form-inline frame"> -->
       <%= link_to  "More", all_path, class: "all_channels" %>
     </div>
   </div>

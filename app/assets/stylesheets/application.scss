@@ -6,8 +6,6 @@
 @import "font-awesome";
 @import 'ionicons';
 
-
-
 .regist_word {
   font-size: 18px;
 }
@@ -109,7 +107,7 @@
 }
 
 .row_width {
-  width: 1200px;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -135,10 +133,11 @@
   margin-top: 40px;
 }
 .live_image {
-  margin-left: 16%;
+  margin-left: 12%;
 }
 .live_words {
   color: white;
+  margin-left: 3%;
 }
 .all_channels {
   margin-left: 52%;
@@ -234,14 +233,18 @@ body {
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
   line-height: 50px;
 }
+.brand-logo {
+  padding-top: 10px;
+}
+.navbar-brand>img {
+  width: 60px;
+  height: 60px;
+}
 .channel_name {
   white-space: nowrap; //忽略換行
   overflow: hidden;
   text-overflow : ellipsis;
   width: 300px;
-}
-.navbar-brand {
-  margin-left: 2%;
 }
 .login_nav {
   margin-right: 2%;
@@ -254,11 +257,12 @@ body {
 .content_align {
   margin-left: 25%;
 }
+// laptop setting
 @media (min-width: 992px) {
   .col-md-offset-1_5 {
       margin-left: 12.5%;
   }
-  .row_witdh {
+  .row_width {
     width: 1000px;
   }
 }
@@ -275,7 +279,33 @@ body {
     width: 800px;
   }
 }
+
+// mobile setting
 @media (max-width: 885px) {
+  .live_image {
+    margin-left: 3%;
+  }
+  .live_words {
+    color: white;
+    margin-left: 3%;
+  }
+  .all_channels {
+    margin-left: 25%;
+    text-decoration: none !important;
+    color: white;
+  }
+  .decoration_bar {
+    height: 50px;
+    line-height: 50px;
+  }
+  .navbar-brand>img {
+    width: 30px;
+    height: 30px;
+  }
+  .decoration_bar img {
+    width: 30px;
+    height: 30px;
+  }
   .navbar-header {
       float: none;
   }
