@@ -279,10 +279,12 @@ body {
     width: 800px;
   }
 }
-.slider_pic img {
-}
+
 // mobile setting
 @media (max-width: 885px) {
+  .control-size {
+    margin-top: 10px !important;
+  }
   [data-carousel-3d] [data-prev-button]:before, [data-carousel-3d] [data-next-button]:before {
     font-size: 32px;
     line-height: 50px;

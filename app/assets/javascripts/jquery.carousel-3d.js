@@ -242,7 +242,8 @@
     $(this._frame).width($(this._content).outerWidth() * scale);
     $(this._frame).height($(this._content).outerHeight() * scale);
     $(this.el).css('padding-left', horizontalOffset + 'px');
-    $(this.el).css('margin-top', '30px');
+    $(this.el).css('margin-top', '20px');
+    $(this.el).addClass('control-size');
     // $(this.el).css('padding-top', verticalOffset + 'px');
     if (Modernizr.csstransforms) {
       $(this._contentWrapper).css('transform', 'scale(' + scale + ')');
