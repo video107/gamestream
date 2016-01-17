@@ -279,9 +279,22 @@ body {
     width: 800px;
   }
 }
-
+.slider_pic img {
+}
 // mobile setting
 @media (max-width: 885px) {
+  [data-carousel-3d] [data-prev-button]:before, [data-carousel-3d] [data-next-button]:before {
+    font-size: 32px;
+    line-height: 50px;
+    text-align: center;
+  }
+  .channels a img {
+    width: 250px;
+    height: 150px;
+  }
+  .channel_name {
+    width: 250px;
+  }
   .live_image {
     margin-left: 3%;
   }
@@ -290,13 +303,14 @@ body {
     margin-left: 3%;
   }
   .all_channels {
-    margin-left: 25%;
+    margin-left: 40%;
     text-decoration: none !important;
     color: white;
   }
   .decoration_bar {
     height: 50px;
     line-height: 50px;
+    font-size: 12px;
   }
   .navbar-brand>img {
     width: 30px;
