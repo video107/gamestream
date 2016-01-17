@@ -39,14 +39,16 @@
 
 <div class="row row_width">
   <% @channels.each do |c| %>
-  <div class="col-xs-8 col-sm-6 col-md-4 channels">
-    <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
-    <div class="channel_name"><%= c.channel_title %></div>
-    <div class="channel_name"><%= c.broadcaster_name %></div>
-    <div class="channel_name">
-      <div id="circle_live" style="display: inline-block;"></div>
-      <div style="display: inline-block;">
-        <span class="user_name"><%= c.name %> Live</span> <%= c.viewers %> 觀眾
+  <div class="col-xs-12 col-sm-6 col-md-4 channels">
+    <div class="wrapper">
+      <div><%= link_to image_tag(c.url,size: "300x180",), c, target: "_blank" %></div>
+      <div class="channel_name"><%= c.channel_title %></div>
+      <div class="channel_name"><%= c.broadcaster_name %></div>
+      <div class="channel_name">
+        <div id="circle_live" style="display: inline-block;"></div>
+        <div style="display: inline-block;">
+          <span class="user_name"><%= c.name %> Live</span> <%= c.viewers %> 觀眾
+        </div>
       </div>
     </div>
     <br>
