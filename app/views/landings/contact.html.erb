@@ -9,19 +9,19 @@
 <div class="row col-xs-10 col-xs-offset-2 col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 row_contact">
   <div><%= image_tag("contact.png", height: "314px", width: "314px", alt: "聯絡我們", class: "square2circle")%></div>
 </div>
-<div class="row col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-4 col-md-pull-2">
+<div class="row col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-4 col-md-pull-2">
   <%= form_for @feedback, :url => feedbacks_path do |f| %>
 
   <div class="field">
     <%= f.label :name, "如何稱呼您" %><br>
     <%= f.text_field :name, :class =>"form-control form_word" %>
   </div>
-
+  <div class="spacing"></div>
   <div class="field">
     <%= f.label :email, "您的電子郵件信箱" %><br>
     <%= f.text_field :email, :class =>"form-control form_word" %>
   </div>
-
+  <div class="spacing"></div>
   <div class="field">
     <%= f.label :content, "您的意見" %><br>
     <%= f.text_area :content, :class => "form-control", :rows => "6"%>
@@ -29,8 +29,8 @@
 
   <div class="spacing"></div>
   <div class="action">
-    <%= f.submit "送出問題", :class => "btn btn-success"%>
-    <%= link_to "前往粉絲團", "https://www.facebook.com/StreamCircle", :class => "btn btn-info" %>
+    <div class="mobile_contact_submit"><%= f.submit "送出問題", :class => "btn btn-success"%></div>
+    <div class="mobile_contact_submit"><%= link_to "前往粉絲團", "https://www.facebook.com/StreamCircle", :class => "btn btn-info" %></div>
   </div>
 
   <% end %>
