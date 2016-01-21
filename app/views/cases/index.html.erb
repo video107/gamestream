@@ -1,12 +1,13 @@
 <br>
-<br>
-<br>
+<div class="mobile_word">
+  欲取得專屬連結、申請獎金及詳細報表請從電腦版操作
+</div>
 <div class="spacing_large"></div>
 <div class="spacing"></div>
-<div class="container">
+<div class="container container_report">
   <div class="row">
     <div class="row">
-      <div class="col-xs-8 text-left grid edit_bar">
+      <div class="col-xs-12 col-sm-8 col-md-8 text-left grid edit_bar">
         <div class="col-xs-6 text-left">
           <h3>成效總覽</h3>
         </div>
@@ -16,29 +17,29 @@
       </div>
     </div>
     <div class="row text-center">
-      <div class="col-xs-1 grid_small grid_boundary_left text-center"></div>
-      <div class="col-xs-2 grid_small">點擊數</div>
-      <div class="col-xs-2 grid_small">安裝數</div>
-      <div class="col-xs-2 grid_small">執行數</div>
-      <div class="col-xs-1 grid_small grid_boundary_right">獎金</div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_left text-center"></div>
+      <div class="col-xs-4 col-sm-2 col-md-2 grid_small">點擊數</div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut">安裝數</div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut">執行數</div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_right">獎金</div>
     </div>
     <div class="row text-center">
-      <div class="col-xs-1 grid_small grid_boundary_left">今日</div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.today, Date.today) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.today, Date.today) %></div>
-      <div class="col-xs-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.today, Date.today) %></div>
-      <div class="col-xs-2 col-xs-offset-1">
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_left">今日</div>
+      <div class="col-xs-4 col-sm-2 col-md-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_install?(Date.today, Date.today) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_excute?(Date.today, Date.today) %></div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.today, Date.today) %></div>
+      <div class="col-xs-2 col-xs-offset-1 col-sm-2 col-md-2 mobile_cut">
         <%= link_to "返回推廣任務", menus_path, :class => "btn btn-default btn-customized btn-block" %>
       </div>
     </div>
     <div class="row text-center">
-      <div class="col-xs-1 grid_small grid_boundary_left">昨日</div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_click?(Date.yesterday, Date.yesterday) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_install?(Date.yesterday, Date.yesterday) %></div>
-      <div class="col-xs-2 grid_small"><%= current_user.total_excute?(Date.yesterday, Date.yesterday) %></div>
-      <div class="col-xs-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.yesterday, Date.yesterday) %></div>
-      <div class="col-xs-2 col-xs-offset-1">
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_left">昨日</div>
+      <div class="col-xs-4 col-sm-2 col-md-2 grid_small"><%= current_user.total_click?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_install?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_excute?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_right"><%= current_user.total_profit_by_date?(Date.yesterday, Date.yesterday) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-xs-offset-1 mobile_cut">
         <% if current_user.profit_money.to_i >= 1000 %>
           <%= link_to "獎金領取", new_user_withdraw_record_path(current_user), :class => "btn btn-default btn-customized btn-block"  %>
         <% else %>
@@ -47,11 +48,11 @@
       </div>
     </div>
     <div class="row text-center">
-      <div class="col-xs-1 grid_small grid_boundary_left grid_boundary_bottom">本月</div>
-      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-2 grid_small grid_boundary_bottom"><%= current_user.total_excute?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
-      <div class="col-xs-1 grid_small grid_boundary_right grid_boundary_bottom"><%= current_user.total_profit_by_date?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_left grid_boundary_bottom">本月</div>
+      <div class="col-xs-4 col-sm-2 col-md-2 grid_small grid_boundary_bottom"><%= current_user.total_click?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small grid_boundary_bottom mobile_cut"><%= current_user.total_install?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-2 col-sm-2 col-md-2 grid_small grid_boundary_bottom mobile_cut"><%= current_user.total_excute?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
+      <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_right grid_boundary_bottom"><%= current_user.total_profit_by_date?(Date.today.beginning_of_month, Date.today.end_of_month) %></div>
     </div>
 
     <div class="modal fade" id="withdraw_records" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -78,20 +79,20 @@
 
     <br>
     <div class="row">
-      <div class="col-xs-12 text-left grid edit_bar">
+      <div class="col-xs-12 text-left grid edit_bar mobile_cut">
         <span class="text_center_for_grid"><h3>參與任務</h3></span>
       </div>
     </div>
     <div class="row text-center">
-      <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom">任務名稱</div>
-      <div class="col-xs-2 grid grid_text grid_boundary_bottom">推廣截止</div>
-      <div class="col-xs-3 grid grid_text grid_boundary_bottom">Android連結</div>
-      <div class="col-xs-3 grid grid_text grid_boundary_bottom">IOS連結</div>
-      <div class="col-xs-2 grid grid_text grid_boundary_right grid_boundary_bottom">獲得獎金</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom mobile_cut">任務名稱</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_bottom mobile_cut">推廣截止</div>
+      <div class="col-xs-3 grid grid_text grid_boundary_bottom mobile_cut">Android連結</div>
+      <div class="col-xs-3 grid grid_text grid_boundary_bottom mobile_cut">IOS連結</div>
+      <div class="col-xs-2 grid grid_text grid_boundary_right grid_boundary_bottom mobile_cut">獲得獎金</div>
     </div>
     <%# @menus.each do |m| %>
     <% @cases.each do |c| %>
-    <div class="row text-center">
+    <div class="row text-center mobile_cut">
       <div class="col-xs-2 grid grid_text grid_boundary_left grid_boundary_bottom_loop">
         <div class="overflow_name">
           <%= link_to c.menu.name, case_report_user_case_path(current_user, c), class: "btn btn-primary"%>
@@ -122,6 +123,11 @@
     <%# end %>
     <div class="spacing"></div>
     <%= paginate @cases %>
+    <div class="row">
+      <div class="mobile_word text-center">
+        <%= link_to "回到首頁", root_path, class: "btn btn-customized" %>
+      </div>
+    </div>
     <div class="spacing_large"></div>
   </div>
 </div>

@@ -5,7 +5,9 @@
 @import "jquery.carousel-3d.default";
 @import "font-awesome";
 @import 'ionicons';
-
+.mobile_word {
+  display: none;
+}
 .regist_word {
   font-size: 18px;
 }
@@ -101,7 +103,6 @@
 .text_center_for_grid>h3 {
   color: white;
 }
-
 .grid_double {
   border: #76933C 3px groove;
 }
@@ -455,6 +456,29 @@ body {
 }
 // mobile setting
 @media (max-width: 885px) {
+  .mobile_word {
+    display: block;
+    font-size: 14px;
+    color: red;
+  }
+  .container {
+    width: auto;
+  }
+  .container_report .mobile_cut {
+    display: none;
+  }
+  .row .grid_small.mobile_cut {
+    display: none;
+  }
+  .mobile_cut a.btn-block {
+    display: none;
+  }
+  .container_report h3{
+    font-size: 14px;
+  }
+  .navbar-nav-customizd li.promote_hide {
+    display: none;
+  }
   .login_block {
     border: 1px gray solid;
     height: 150px;
@@ -532,6 +556,20 @@ body {
     margin-left: 40%;
     text-decoration: none !important;
     color: white;
+  }
+  .all_channel_img img {
+    width: 250px;
+    height: 150px;
+  }
+  .all_channels_bar img {
+    width: 30px;
+    height: 30px;
+  }
+  .rootpath{
+    margin-left: 15%;
+  }
+  .all_channels_bar {
+    font-size: 12px;
   }
   .decoration_bar {
     height: 50px;
