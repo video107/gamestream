@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta property="og:title" content="StreamCircle, The best sharing website" />
-  <meta property="og:image" content="<%= image_tag("streamcircle_logo.png") %>" />
+  <meta property="og:url" content="http://www.streamcircle.net"/>
+  <meta property="og:image" content="<%= asset_path("streamcircle_logo.png") %>" />
   <meta property="og:description" content="About the website" />
   <%= favicon_link_tag 'streamcircle_logo.ico' %>
-  <!-- <meta property="og:url" content="http://www.streamcircle.net"> -->
+
   <title>StreamCircle</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
