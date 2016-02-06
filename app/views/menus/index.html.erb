@@ -7,17 +7,9 @@
     <div class="clearfix"></div>
     <div class="spacing_large"></div>
 
-    <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-2 col-md-push-6 form-media">
-      <%= search_form_for @q do |f| %>
-      <%= f.label :name_or_contents,"遊戲名或簡介", :class => "form-line" %>
-      <%= f.search_field :name_or_contents_cont, :class => "form-control form_word form-line" %>
-      <%= f.submit "搜尋", :class=>"btn btn-default form-line"%>
-      <% end %>
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
+    <div class="col-sm-12 col-md-6">
       <ul class="nav nav-pills">
-        <% Category.all.each do |c| %>
+        <% Category.first(8).each do |c| %>
         <li role="presentation" class="<%= (params[:cid] == c.id.to_s)? "active" : "" %>">
           <%= link_to c.name, menus_path( :cid => c ) %>
         </li>
@@ -25,8 +17,27 @@
         <li role="presentation" class="<%= (params[:cid] == nil)? "active" : "" %>">
           <%= link_to "全部遊戲", menus_path %>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle-category">更多 <b class="caret"></b></a>
+          <ul class="dropdown-menu-category">
+            <% Category.offset(8).each do |c| %>
+              <li role="presentation" class="<%= (params[:cid] == c.id.to_s)? "other-active" : "" %> horizontal-menu-style">
+                <%= link_to c.name, menus_path( :cid => c ) %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
       </ul>
     </div>
+    <div class="col-sm-12 col-md-4 col-md-offset-2 form-media">
+      <%= search_form_for @q do |f| %>
+      <%= f.label :name_or_contents,"遊戲名或簡介", :class => "form-line" %>
+      <%= f.search_field :name_or_contents_cont, :class => "form-control form_word form-line" %>
+      <%= f.submit "搜尋", :class=>"btn btn-default form-line"%>
+      <% end %>
+    </div>
+
     <div class="clearfix"></div>
     <div class="spacing"></div>
     <table class="table">
@@ -71,3 +82,14 @@
     <br>
   </div>
 </div>
+
+<script>
+var main = function(){
+    $('.dropdown-menu-category').hide();
+    $('.dropdown-toggle-category').click(function(){
+        $('.dropdown-menu-category').toggle();
+    });
+
+};
+$(document).ready(main);
+</script>

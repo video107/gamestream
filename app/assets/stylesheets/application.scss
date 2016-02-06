@@ -613,3 +613,37 @@ body {
       padding-bottom: 10px;
   }
 }
+
+.dropdown-menu-category {
+  list-style-type: none;
+  margin-left: -25px;
+}
+.dropdown-menu-category {
+    margin-right:-1000px;
+}
+
+.dropdown-menu-category > li {
+    display: inline-block;
+}
+li.horizontal-menu-style{
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 80px;
+  text-align: center;
+}
+li.horizontal-menu-style:hover{
+  background-color: #EEEEEE;
+}
+
+li.horizontal-menu-style:hover a{
+  text-decoration: none;
+  display: block;
+  width: 80px;
+  height: 28px
+}
+.other-active {
+  background-color: #417DB4;
+}
+.other-active a{
+  color: white;
+}
