@@ -5,14 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  admin_config = Rails.application.config_for(:admin)
-
-  if Rails.env.production?
-    http_basic_authenticate_with(
-      name: admin_config["name"],
-      password: admin_config["passwords"]
-    )
-  end
 
   protected
   def configure_permitted_parameters
