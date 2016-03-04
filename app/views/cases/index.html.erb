@@ -103,10 +103,10 @@
       <% end %>
       <% if c.owner == "android" %>
       <div class="col-xs-3 grid url_text grid_boundary_bottom_loop"><%= c.case_url %>
-      <%= link_to "f", "javascript:fbShareWithoutCallback()", class: "btn btn-primary" %></div>
-      <%= javascript_tag do %>
-          var str = "https://www.facebook.com/sharer/sharer.php?u=<%= c.case_url %>";
-      <% end %>
+      <%#= link_to "f", "javascript:fbShareWithoutCallback()", class: "btn btn-primary" %></div>
+      <%#= javascript_tag do %>
+          <!-- var str = "https://www.facebook.com/sharer/sharer.php?u=<%= c.case_url %>"; -->
+      <%# end %>
       <% else %>
       <div class="col-xs-3 grid url_text grid_boundary_bottom_loop">-</div>
       <!-- <div class="col-xs-4 grid url_text"><%#= c.menu.case_url_with_user_and_owner(current_user, "android") %></div> -->
