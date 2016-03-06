@@ -24,7 +24,7 @@
 <div class="row">
   <div class="decoration_bar">
     <div class="frame">
-      <%= link_to image_tag("broadcast.png", alt: "live stream",size: "55x56", class: "live_image"), all_path %>
+      <%= link_to image_tag("broadcast.png", alt: "live stream",size: "55x56", class: "live_image"), all_path, onclick: "ga('send', 'event', 'category', 'Triggered Event', '');" %>
       <span class="live_words">Live Streaming</span>
       <%= link_to  "More", all_path, class: "all_channels" %>
     </div>
