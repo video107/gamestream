@@ -13,12 +13,15 @@
   has_many :follow_cases, :through => :case_followers, :source => :case, :dependent => :destroy
   has_paper_trail
 
+
   has_many :case_click_install_excutes, :dependent => :destroy
   has_many :clicks, -> {where(:cpc => true)}, :class_name => "CaseClickInstallExcute"
   has_many :installs, -> {where(:cpi => true)}, :class_name => "CaseClickInstallExcute"
   has_many :excutes, -> {where(:cpa => true)}, :class_name => "CaseClickInstallExcute"
   has_many :withdraw_records
   has_many :channels, :dependent => :destroy
+  has_many :import_members, :dependent => :destroy
+  has_many :follow_members, :through => :import_members, :source => :member
 
   validates_presence_of :friendly_id
   validates_uniqueness_of :friendly_id
@@ -35,6 +38,10 @@
 
   def total_excute?(date1, date2) # clicks of all cases under user
     self.cases.map { |x| x.excuter_by_date(date1, date2)}.sum
+  end
+
+  def total_member_follow?(date1, date2)
+    self.import_members.where(:created_at => date1..date2).count
   end
 
   def total_profit? # all profits (cpc/cpi/cpa) of cases under user from created day to deadline

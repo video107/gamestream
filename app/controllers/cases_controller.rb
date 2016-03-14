@@ -8,14 +8,9 @@ class CasesController < ApplicationController
 
   def index
     @menus = Menu.joins(:cases).where(:cases =>{user: current_user}).uniq
-    # @cases = Case.joins(:menu).where
     @cases = current_user.cases.page(params[:page]).order(:id => :desc).per(10)
     @cases_for_profit = current_user.cases
-    # if current_user.withdraw_records.blank?
-      # current_user.update(profit_money: current_user.total_earn_money)
-    # else
-      current_user.update(total_earn_money: current_user.total_profit?, profit_money: current_user.total_earn_money.to_i - current_user.withdraw?)
-    # end
+    current_user.update(total_earn_money: current_user.total_profit?, profit_money: current_user.total_earn_money.to_i - current_user.withdraw?)
 
   end
 

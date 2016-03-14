@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230152303) do
+ActiveRecord::Schema.define(version: 20160313104052) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -97,6 +97,14 @@ ActiveRecord::Schema.define(version: 20151230152303) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "import_members", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "case_id",    limit: 4
+    t.integer  "member_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.text     "contents",                limit: 65535
@@ -149,6 +157,10 @@ ActiveRecord::Schema.define(version: 20151230152303) do
     t.string   "friendly_id",             limit: 255
     t.string   "package_name",            limit: 255
     t.integer  "cpa_period",              limit: 4,     default: 1
+    t.float    "cpl_android",             limit: 24,    default: 0.0
+    t.float    "cpl_ios",                 limit: 24,    default: 0.0
+    t.float    "cpl_android_user",        limit: 24,    default: 0.0
+    t.float    "cpl_ios_user",            limit: 24,    default: 0.0
   end
 
   add_index "menus", ["category_id"], name: "index_menus_on_category_id", using: :btree
