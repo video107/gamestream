@@ -4,17 +4,17 @@ class Admin::UsersController < AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.all.where(:master => "true")
+    @admin_users = Admin::User.all.order(:id => :desc).where(:master => "true")
     @q = @admin_users.ransack(params[:q])
     @admin_users = @q.result(distinct: true).page(params[:page]).per(7)
   end
 
   def fans
-    @admin_users = Admin::User.all.where(:fans => "true").page(params[:page]).per(7)
+    @admin_users = Admin::User.all.order(:id => :desc).where(:fans => "true").page(params[:page]).per(7)
   end
 
   def valueless
-    @admin_users = Admin::User.all.where(:master => nil, :fans => nil).page(params[:page]).per(7)
+    @admin_users = Admin::User.all.order(:id => :desc).where(:master => nil, :fans => nil).page(params[:page]).per(7)
   end
 
   def suspend
