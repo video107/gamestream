@@ -63,6 +63,11 @@ class Case < ActiveRecord::Base
     self.case_excuters.where(:created_at => date1..date2).count
   end
 
+  def import_by_date(date1,date2)
+    self.follow_users.map{ |u| u.follow_cases.where(:created_at => date1..date2).first.id == self.id }.count
+    # users = User.find_by_sql("SELECT * from users join cases on cases.id = ( select id from cases where cases.user_id = cases.id order by id limit 1) where cases.id = #{case.id}")
+  end
+
   def total_click?(date1,date2)
    self.click_users.where(:created_at => date1..date2).count + self.follower_by_date(date1,date2)
   end

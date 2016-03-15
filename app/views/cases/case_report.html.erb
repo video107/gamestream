@@ -37,21 +37,26 @@
     <div class="spacing_large"></div>
 
     <div class="row">
-      <div class="col-xs-3 edit_bar grid">
-        <span class="text_center_for_grid"><h3>點擊成效</h3></span>
+      <div class="col-xs-3 edit_bar grid text-center grid_border">
+        <h3>點擊成效</h3>
       </div>
-      <div class="col-xs-3 col-xs-offset-1 edit_bar grid">
-        <span class="text_center_for_grid"><h3>安裝成效</h3></span>
+      <div class="col-xs-3 edit_bar grid text-center grid_border">
+        <h3>安裝成效</h3>
       </div>
-      <div class="col-xs-3 col-xs-offset-1 edit_bar grid">
-        <span class="text_center_for_grid"><h3>執行成效</h3></span>
+      <div class="col-xs-3 edit_bar grid text-center grid_border">
+        <h3>執行成效</h3>
+      </div>
+      <div class="col-xs-3 edit_bar grid text-center grid_border">
+        <h3>執行成效</h3>
       </div>
     </div>
+    <br>
 
     <div class="row text-center">
       <div class="col-xs-3 grid_small">每點擊獎金</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">每安裝獎金</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">每執行獎金</div>
+      <div class="col-xs-3 grid_small">每安裝獎金</div>
+      <div class="col-xs-3 grid_small">每執行獎金</div>
+      <div class="col-xs-3 grid_small">每註冊獎金</div>
     </div>
 
     <div class="row text-center">
@@ -64,7 +69,7 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.menu.cpi_android_user %>
@@ -73,7 +78,7 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.menu.cpa_android_user %>
@@ -82,7 +87,16 @@
         <% end %>
         元
       </div>
+    <div class="col-xs-1 grid_small">Android</div>
+    <div class="col-xs-2 grid_small">
+      <% if @case.owner == "android" %>
+        <%= @case.menu.cpl_android_user %>
+      <% else %>
+        na
+      <% end %>
+      元
     </div>
+  </div>
 
     <div class="row text-center">
       <div class="col-xs-1 grid_small">IOS</div>
@@ -94,7 +108,7 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.menu.cpi_ios_user %>
@@ -103,10 +117,19 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.menu.cpa_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.menu.cpl_ios_user %>
         <% else %>
           na
         <% end %>
@@ -117,8 +140,9 @@
 
     <div class="row text-center">
       <div class="col-xs-3 grid_small">不重複點擊</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">不重複安裝</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">不重複執行</div>
+      <div class="col-xs-3 grid_small">不重複安裝</div>
+      <div class="col-xs-3 grid_small">不重複執行</div>
+      <div class="col-xs-3 grid_small">不重複註冊</div>
     </div>
 
     <div class="row text-center">
@@ -131,7 +155,7 @@
         <% end %>
         次
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.installer_by_date(@early_date,@late_date) %>
@@ -140,10 +164,19 @@
         <% end %>
         次
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.excuter_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.import_by_date(@early_date, @late_date) %>
         <% else %>
           na
         <% end %>
@@ -161,7 +194,7 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.installer_by_date(@early_date,@late_date) %>
@@ -170,10 +203,19 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.excuter_by_date(@early_date,@late_date) %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.import_by_date(@early_date, @late_date) %>
         <% else %>
           na
         <% end %>
@@ -184,8 +226,9 @@
 
     <div class="row text-center">
       <div class="col-xs-3 grid_small">點擊成效獎金</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">安裝成效獎金</div>
-      <div class="col-xs-3 col-xs-offset-1 grid_small">執行成效獎金</div>
+      <div class="col-xs-3 grid_small">安裝成效獎金</div>
+      <div class="col-xs-3 grid_small">執行成效獎金</div>
+      <div class="col-xs-3 grid_small">註冊成效獎金</div>
     </div>
 
     <div class="row text-center">
@@ -198,7 +241,7 @@
         <% end %>
         次
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_android_user  %>
@@ -207,10 +250,19 @@
         <% end %>
         次
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">Android</div>
+      <div class="col-xs-1 grid_small">Android</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "android" %>
           <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_android_user  %>
+        <% else %>
+          na
+        <% end %>
+        次
+      </div>
+      <div class="col-xs-1 grid_small">Android</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "android" %>
+          <%= @case.import_by_date(@early_date,@late_date) * @case.menu.cpl_android_user  %>
         <% else %>
           na
         <% end %>
@@ -228,7 +280,7 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.installer_by_date(@early_date,@late_date) * @case.menu.cpi_ios_user %>
@@ -237,10 +289,19 @@
         <% end %>
         元
       </div>
-      <div class="col-xs-1 col-xs-offset-1 grid_small">IOS</div>
+      <div class="col-xs-1 grid_small">IOS</div>
       <div class="col-xs-2 grid_small">
         <% if @case.owner == "ios" %>
           <%= @case.excuter_by_date(@early_date,@late_date) * @case.menu.cpa_ios_user %>
+        <% else %>
+          na
+        <% end %>
+        元
+      </div>
+      <div class="col-xs-1 grid_small">IOS</div>
+      <div class="col-xs-2 grid_small">
+        <% if @case.owner == "ios" %>
+          <%= @case.import_by_date(@early_date,@late_date) * @case.menu.cpl_ios_user %>
         <% else %>
           na
         <% end %>
