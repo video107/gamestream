@@ -64,7 +64,19 @@ class Case < ActiveRecord::Base
   end
 
   def import_by_date(date1,date2)
-    self.follow_users.map{ |u| u.follow_cases.where(:created_at => date1..date2).first.id == self.id }.count
+    arr = self.follow_users.map do |usr|
+          if usr.follow_cases.first.blank?
+            0
+          else
+            if !usr.follow_cases.first.created_at.between?(date1,date2)
+              0
+            else
+              usr.follow_cases.first.id == self.id ? 1 : 0
+            end
+         end
+       end
+    # arr for counting people who first followed the case, 1 is for true, 0 as false
+    return arr.count(1)
     # users = User.find_by_sql("SELECT * from users join cases on cases.id = ( select id from cases where cases.user_id = cases.id order by id limit 1) where cases.id = #{case.id}")
   end
 
