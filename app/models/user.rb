@@ -67,7 +67,7 @@
       user.name = auth.info.name   # assuming the user model has a name
       user.fb_image = auth.info.image # assuming the user model has an image
       user.google_uid = auth.uid
-      user.twitch_account_url = "http://www.twitch.tv/example"
+      user.twitch_account_url = "https://www.twitch.tv/example"
       user.youtube_account_url = "https://www.youtube.com/watch?v=example"
       user.save!
     end
