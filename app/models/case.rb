@@ -97,21 +97,25 @@ class Case < ActiveRecord::Base
       if self.owner == "android"
         return (self.menu.cpc_android * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
                (self.menu.cpi_android * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
-               (self.menu.cpa_android * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
+               (self.menu.cpa_android * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpl_android * self.user.import_members.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       elsif self.owner == "ios"
         return (self.menu.cpc_ios * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
                (self.menu.cpi_ios * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
-               (self.menu.cpa_ios * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
+               (self.menu.cpa_ios * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpl_ios * self.user.import_members.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       end
     elsif user == "customer"
       if self.owner == "android"
         return (self.menu.cpc_android_user * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
                (self.menu.cpi_android_user * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
-               (self.menu.cpa_android_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
+               (self.menu.cpa_android_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpl_android_user * self.user.import_members.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       elsif self.owner == "ios"
         return (self.menu.cpc_ios_user * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
                (self.menu.cpi_ios_user * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
-               (self.menu.cpa_ios_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
+               (self.menu.cpa_ios_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpl_ios_user * self.user.import_members.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       end
     end
   end

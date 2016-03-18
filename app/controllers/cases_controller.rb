@@ -49,8 +49,12 @@ class CasesController < ApplicationController
       elsif  @case.user == current_user
         return
       else
-        @follow_user = CaseFollower.create(:user => current_user , :case => @case )
-        @import_user = ImportMember.create(user_id: @case.user.id, case_id: @case.id, member_id: current_user.id)
+        if @case.menu.cpc_android || @case.menu.cpc_ios
+          @follow_user = CaseFollower.create(:user => current_user , :case => @case )
+        end
+        if @case.menu.cpl_android || @case.menu.cpl_ios
+          @import_user = ImportMember.create(user_id: @case.user.id, case_id: @case.id, member_id: current_user.id)
+        end
       end
     end
   end
