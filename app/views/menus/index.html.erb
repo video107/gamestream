@@ -63,17 +63,17 @@
             <% if menu.promote?("cpi") %>
               <div class="form-line"><h4 class="promote_tag_cpi text-center form-line">安裝獎勵<%= menu.promote_higher("cpi") %>元</h4></div>
             <% end %>
-            <% if menu.promote?("cpa") %>
+            <%# if menu.promote?("cpa") || menu.promote?("cpl")%>
               <div class="form-line">
                 <h4 class="promote_tag_cpa text-center">
-                  <% if (menu.cpl_android_user || menu.cpl_ios_user) > 0 %>
+                  <% if menu.promote?("cpl")  %>
                     註冊獎勵<%= menu.promote_higher("cpl") %>元
-                  <% else %>
+                  <% elsif menu.promote?("cpa") %>
                     執行獎勵<%= menu.promote_higher("cpa") %>元
                   <% end %>
                 </h4>
               </div>
-            <% end %>
+            <%# end %>
           </div>
         </td>
         <td style="width:120px;" class="text-center"><div class="td_vertical_middle"><%= link_to "我要推廣", new_menu_case_path(menu),:class => "btn btn-danger" %></div></td>
