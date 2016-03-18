@@ -50,7 +50,7 @@ class CasesController < ApplicationController
         return
       else
         @follow_user = CaseFollower.create(:user => current_user , :case => @case )
-        @import_user = ImportMember.create(user_id: @case.user, case_id: @case.id, member_id: current_user.id)
+        @import_user = ImportMember.create(user_id: @case.user.id, case_id: @case.id, member_id: current_user.id)
       end
     end
   end
