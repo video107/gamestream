@@ -41,7 +41,7 @@
   end
 
   def total_member_follow?(date1, date2)
-    self.import_members.where(:created_at => date1..date2).count
+    self.import_members.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def total_profit? # all profits (cpc/cpi/cpa) of cases under user from created day to deadline

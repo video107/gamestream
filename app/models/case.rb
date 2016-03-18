@@ -52,15 +52,15 @@ class Case < ActiveRecord::Base
   end
 
   def follower_by_date(date1,date2)
-    self.case_followers.where(:created_at => date1..date2).count
+    self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def installer_by_date(date1,date2)
-    self.case_installers.where(:created_at => date1..date2).count
+    self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def excuter_by_date(date1,date2)
-    self.case_excuters.where(:created_at => date1..date2).count
+    self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def import_by_date(date1,date2)
@@ -81,37 +81,37 @@ class Case < ActiveRecord::Base
   end
 
   def total_click?(date1,date2)
-   self.click_users.where(:created_at => date1..date2).count + self.follower_by_date(date1,date2)
+   self.click_users.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count + self.follower_by_date(date1,date2)
   end
 
   def total_install?(date1,date2)
-     self.case_installers.where(:created_at => date1..date2).count
+     self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def total_excute?(date1,date2)
-     self.case_excuters.where(:created_at => date1..date2).count
+     self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
   end
 
   def total_profit?(user,date1,date2)
     if user == "admin"
       if self.owner == "android"
-        return (self.menu.cpc_android * self.case_followers.where(:created_at => date1..date2).count) +
-               (self.menu.cpi_android * self.case_installers.where(:created_at => date1..date2).count) +
-               (self.menu.cpa_android * self.case_excuters.where(:created_at => date1..date2).count)
+        return (self.menu.cpc_android * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpi_android * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpa_android * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       elsif self.owner == "ios"
-        return (self.menu.cpc_ios * self.case_followers.where(:created_at => date1..date2).count) +
-               (self.menu.cpi_ios * self.case_installers.where(:created_at => date1..date2).count) +
-               (self.menu.cpa_ios * self.case_excuters.where(:created_at => date1..date2).count)
+        return (self.menu.cpc_ios * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpi_ios * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpa_ios * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       end
     elsif user == "customer"
       if self.owner == "android"
-        return (self.menu.cpc_android_user * self.case_followers.where(:created_at => date1..date2).count) +
-               (self.menu.cpi_android_user * self.case_installers.where(:created_at => date1..date2).count) +
-               (self.menu.cpa_android_user * self.case_excuters.where(:created_at => date1..date2).count)
+        return (self.menu.cpc_android_user * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpi_android_user * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpa_android_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       elsif self.owner == "ios"
-        return (self.menu.cpc_ios_user * self.case_followers.where(:created_at => date1..date2).count) +
-               (self.menu.cpi_ios_user * self.case_installers.where(:created_at => date1..date2).count) +
-               (self.menu.cpa_ios_user * self.case_excuters.where(:created_at => date1..date2).count)
+        return (self.menu.cpc_ios_user * self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpi_ios_user * self.case_installers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count) +
+               (self.menu.cpa_ios_user * self.case_excuters.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count)
       end
     end
   end

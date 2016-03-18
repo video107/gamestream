@@ -58,7 +58,7 @@ class Admin::UsersController < AdminController
     elsif params[:date1] !="" && params[:date2] != ""
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
-      @users = User.order(:id => :desc).where(:created_at => @early_date..@late_date).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
         @date = @early_date..@late_date
       elsif @early_date.to_date == @late_date.to_date
