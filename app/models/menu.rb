@@ -157,6 +157,14 @@ class Menu < ActiveRecord::Base
     self.total_profit?(date1,date2) - self.total_cost_no_repeat?(date1,date2)
   end
 
+  def cpc?
+    self.cpc_android != 0.0 || self.cpc_ios != 0.0
+  end
+
+  def cpl?
+    self.cpl_android != 0.0 || self.cpl_ios != 0.0
+  end
+
 
   private
 
