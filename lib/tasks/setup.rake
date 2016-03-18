@@ -33,4 +33,15 @@ namespace :setup do
         Channel.create!(name: "Twitch", user: user, url: "http://static-cdn.jtvnw.net/previews-ttv/live_user_#{twitch}-900x600.jpg")
       end
     end
+
+    task :setup_importuser => :environment do
+      User.all.each do |usr|
+        if usr.follow_cases.present?
+          master = usr.follow_cases.first.user
+          import_case = usr.follow_cases.first
+          ImportMember.create(user_id: master.id, case_id: import_case.id, member_id: usr.id)
+        end
+      end
+    end
+
 end

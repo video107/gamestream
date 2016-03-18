@@ -68,7 +68,7 @@ class Case < ActiveRecord::Base
           if usr.follow_cases.first.blank?
             0
           else
-            if !usr.follow_cases.first.created_at.between?(date1,date2)
+            if !usr.follow_cases.first.created_at.to_date.between?(date1,date2)
               0
             else
               usr.follow_cases.first.id == self.id ? 1 : 0
