@@ -103,10 +103,9 @@ class Menu < ActiveRecord::Base
     end
   end
 
-  def to_now?
+  def to_now
     self.created_at.to_date..Time.now.to_date
   end
-
 
   def total_click?(owner,date1,date2)
     self.cases.where(:owner => owner).map {|c| c.total_click?(date1,date2)}.sum
@@ -120,6 +119,10 @@ class Menu < ActiveRecord::Base
     self.cases.where(:owner => owner).map {|c| c.total_excute?(date1,date2)}.sum
   end
 
+  def total_import_users(owner,date1,date2)
+    self.cases.where(:owner => owner).map {|c| c.import_by_date(date1,date2)}.sum
+  end
+
   def total_profit?(date1,date2)
     self.total_click?("ios",date1,date2) * self.cpc_ios + self.total_click?("android",date1,date2) * self.cpc_android +
     self.total_install?("ios",date1,date2) * self.cpi_ios + self.total_install?("android",date1,date2) * self.cpi_android +
@@ -129,7 +132,8 @@ class Menu < ActiveRecord::Base
   def total_profit_no_repeat?(date1,date2)
     self.followers?("ios",date1,date2) * self.cpc_ios + self.followers?("android",date1,date2) * self.cpc_android +
     self.total_install?("ios",date1,date2) * self.cpi_ios + self.total_install?("android",date1,date2) * self.cpi_android +
-    self.total_excute?("ios",date1,date2) * self.cpa_ios + self.total_excute?("android",date1,date2) * self.cpa_android
+    self.total_excute?("ios",date1,date2) * self.cpa_ios + self.total_excute?("android",date1,date2) * self.cpa_android +
+    self.total_import_users("ios",date1,date2) * self.cpl_ios + self.total_import_users("android",date1,date2) * self.cpl_android
   end
 
   def total_cost?(date1,date2)
@@ -141,7 +145,8 @@ class Menu < ActiveRecord::Base
   def total_cost_no_repeat?(date1,date2)
     self.followers?("ios",date1,date2) * self.cpc_ios_user + self.followers?("android",date1,date2) * self.cpc_android_user +
     self.total_install?("ios",date1,date2) * self.cpi_ios_user + self.total_install?("android",date1,date2) * self.cpi_android_user +
-    self.total_excute?("ios",date1,date2) * self.cpa_ios_user + self.total_excute?("android",date1,date2) * self.cpa_android_user
+    self.total_excute?("ios",date1,date2) * self.cpa_ios_user + self.total_excute?("android",date1,date2) * self.cpa_android_user +
+    self.total_import_users("ios",date1,date2) * self.cpl_ios_user + self.total_import_users("android",date1,date2) * self.cpl_android_user
   end
 
 
@@ -163,6 +168,10 @@ class Menu < ActiveRecord::Base
 
   def cpl?
     self.cpl_android != 0.0 || self.cpl_ios != 0.0
+  end
+
+  def out_of_budget?
+    self.budget < self.total_cost_no_repeat?(self.created_at.to_date, Date.today)
   end
 
 

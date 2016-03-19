@@ -47,7 +47,7 @@ class Case < ActiveRecord::Base
     self.case_excuters.where(:user_id => user.id).first
   end
 
-  def to_now?
+  def to_now
     self.created_at.to_date..Time.now.to_date
   end
 

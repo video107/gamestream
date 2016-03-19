@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313104052) do
+ActiveRecord::Schema.define(version: 20160319075359) do
 
   create_table "case_click_install_excutes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 20160313104052) do
   create_table "menus", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.text     "contents",                limit: 65535
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "menu_url",                limit: 255
     t.string   "game_pic_file_name",      limit: 255
     t.string   "game_pic_content_type",   limit: 255
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20160313104052) do
     t.float    "cpl_ios",                 limit: 24,    default: 0.0
     t.float    "cpl_android_user",        limit: 24,    default: 0.0
     t.float    "cpl_ios_user",            limit: 24,    default: 0.0
+    t.integer  "budget",                  limit: 4,     default: 1000000
   end
 
   add_index "menus", ["category_id"], name: "index_menus_on_category_id", using: :btree

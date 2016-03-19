@@ -49,10 +49,10 @@ class CasesController < ApplicationController
       elsif  @case.user == current_user
         return
       else
-        if @case.menu.cpc?
+        if @case.menu.cpc? && !@case.menu.out_of_budget?
           @follow_user = CaseFollower.create(:user => current_user , :case => @case )
         end
-        if @case.menu.cpl?
+        if @case.menu.cpl? && !@case.menu.out_of_budget?
           @import_user = ImportMember.create(user_id: @case.user.id, case_id: @case.id, member_id: current_user.id)
         end
       end
