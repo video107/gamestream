@@ -43,6 +43,7 @@ class CasesController < ApplicationController
     if current_user
       @case = Case.find_by_friendly_id(params[:id])
       already_followed = @case.find_followed_by_user(current_user)
+      already_import = current_user.follow_cases.any?
       current_user.update(uid: current_user.id, fans: "true")
       if already_followed
         CaseClickInstallExcute.create(:user => current_user, :case => @case, :cpc => true)
@@ -52,7 +53,7 @@ class CasesController < ApplicationController
         if @case.menu.cpc? && !@case.menu.out_of_budget?
           @follow_user = CaseFollower.create(:user => current_user , :case => @case )
         end
-        if @case.menu.cpl? && !@case.menu.out_of_budget?
+        if @case.menu.cpl? && !@case.menu.out_of_budget? && !already_import
           @import_user = ImportMember.create(user_id: @case.user.id, case_id: @case.id, member_id: current_user.id)
         end
       end
