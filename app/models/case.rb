@@ -52,7 +52,10 @@ class Case < ActiveRecord::Base
   end
 
   def follower_by_date(date1,date2)
-    self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+    if self.menu.cpc_android_user != 0.0 || self.menu.cpc_ios_user != 0.0
+      self.case_followers.where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+    end
+    return 0
   end
 
   def installer_by_date(date1,date2)

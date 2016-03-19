@@ -22,7 +22,9 @@
     </div>
     <div class="row text-center">
       <div class="col-xs-4 col-sm-1 col-md-1 grid_small grid_boundary_left">今日</div>
-      <div class="col-xs-4 col-sm-2 col-md-2 grid_small"><%= current_user.total_click?(Date.today, Date.today) %></div>
+      <div class="col-xs-4 col-sm-2 col-md-2 grid_small">
+        <%= current_user.total_click?(Date.today, Date.today) %>
+      </div>
       <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_install?(Date.today, Date.today) %></div>
       <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_excute?(Date.today, Date.today) %></div>
       <div class="col-xs-2 col-sm-2 col-md-2 grid_small mobile_cut"><%= current_user.total_member_follow?(Date.today, Date.today) %></div>
