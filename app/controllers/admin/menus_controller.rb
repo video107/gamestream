@@ -125,6 +125,6 @@ class Admin::MenusController < AdminController
                                          :_remove_pic_3, :_remove_pic_4, :_remove_pic_5, :_remove_pic_6, :_remove_icon,
                                          :package_name, :cpa_period, :cpl_android,
                                          :cpl_android_user, :cpl_ios,
-                                         :cpl_ios_user )
+                                         :cpl_ios_user, :budget )
     end
 end
