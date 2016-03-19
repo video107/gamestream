@@ -22,13 +22,13 @@ class CasesController < ApplicationController
       @late_date = @case.menu.deadline
       return
     elsif params[:date1] !="" && params[:date2] != ""
-      @early_date = params[:date1]
-      @late_date = params[:date2]
-      if @early_date.to_date != @late_date.to_date && @early_date.to_date < @late_date.to_date
+      @early_date = params[:date1].to_date
+      @late_date = params[:date2].to_date
+      if @early_date != @late_date && @early_date < @late_date
         @date = @early_date + "..." + @late_date
-      elsif @early_date.to_date == @late_date.to_date
+      elsif @early_date == @late_date
         @date = @early_date
-      elsif @early_date.to_date > @late_date.to_date
+      elsif @early_date > @late_date
         flash[:notice] = "日期順序錯誤"
         redirect_to case_report_user_case_path(current_user,@case)
       end
