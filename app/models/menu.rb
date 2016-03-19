@@ -60,7 +60,7 @@ class Menu < ActiveRecord::Base
   end
 
   def promote?(type)
-      self.public_send("#{type}_android") != 0.0 || self.public_send("#{type}_ios") != 0.0
+      self.public_send("#{type}_android_user") != 0.0 || self.public_send("#{type}_ios_user") != 0.0
   end
 
   def case_url_with_user_and_owner(user, owner)
