@@ -25,9 +25,9 @@ class CasesController < ApplicationController
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
       if @early_date != @late_date && @early_date < @late_date
-        @date = @early_date + "..." + @late_date
+        @date = @early_date.to_s + "..." + @late_date.to_s
       elsif @early_date == @late_date
-        @date = @early_date
+        @date = @early_date.to_s
       elsif @early_date > @late_date
         flash[:notice] = "日期順序錯誤"
         redirect_to case_report_user_case_path(current_user,@case)

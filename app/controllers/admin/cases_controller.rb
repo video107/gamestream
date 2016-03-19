@@ -10,9 +10,9 @@ class Admin::CasesController < AdminController
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
       if @early_date != @late_date
-        @date = @early_date + "..." + @late_date
+        @date = @early_date.to_s + "..." + @late_date.to_s
       elsif @early_date == @late_date
-        @date = @early_date
+        @date = @early_date.to_s
       end
     else
       render "error"

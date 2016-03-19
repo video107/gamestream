@@ -34,9 +34,9 @@ class Admin::MenusController < AdminController
       @late_date = params[:date2].to_date
       @admin_menus = Admin::Menu.all.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date != @late_date && @early_date < @late_date
-        @date = @early_date + "..." + @late_date
+        @date = @early_date.to_s + "..." + @late_date.to_s
       elsif @early_date == @late_date
-        @date = @early_date
+        @date = @early_date.to_s
       elsif @early_date > @late_date
         flash[:alert] = "日期順序錯誤"
         redirect_to total_report_admin_menus_path
@@ -54,9 +54,9 @@ class Admin::MenusController < AdminController
       @early_date = params[:date1].to_date
       @late_date = params[:date2].to_date
       if @early_date != @late_date && @early_date < @late_date
-        @date = @early_date + "..." + @late_date
+        @date = @early_date.to_s + "..." + @late_date.to_s
       elsif @early_date == @late_date
-        @date = @early_date
+        @date = @early_date.to_s
       elsif @early_date > @late_date
         flash[:alert] = "日期順序錯誤"
         redirect_to day_report_admin_menu_path(@admin_menu)

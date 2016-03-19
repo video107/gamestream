@@ -60,9 +60,9 @@ class Admin::UsersController < AdminController
       @late_date = params[:date2].to_date
       @users = User.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", @early_date, @late_date).page(params[:page]).per(7)
       if @early_date != @late_date && @early_date < @late_date
-        @date = @early_date..@late_date
+        @date = @early_date.to_s..@late_date.to_s
       elsif @early_date == @late_date
-        @date = @early_date
+        @date = @early_date.to_s
       elsif @early_date > @late_date
         flash[:alert] = "日期順序錯誤"
         redirect_to regist_admin_users_path
