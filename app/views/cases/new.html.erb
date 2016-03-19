@@ -31,7 +31,7 @@
 
     <div class="spacing"></div>
     <div class="regist_word">遊戲簡介：</div>
-    <%= @menu.contents %>
+    <%= simple_format(@menu.contents) %>
     <div class="spacing"></div>
     <div class="regist_word">官方android商店連結：</div>
     <%= @menu.menu_url %>
