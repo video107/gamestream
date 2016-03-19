@@ -52,7 +52,7 @@ class Admin::UsersController < AdminController
   def regist
     @first_user = User.first.created_at.to_date
     if params[:date1] == nil || params[:date2] == nil
-      @users = User.order(:id => :desc).where(:created_at => 20.days.ago.to_date..Date.today).page(params[:page]).per(7)
+      @users = User.order(:id => :desc).where("DATE(created_at) >= ? && DATE(created_at) <= ?", 20.days.ago.to_date, Date.today).page(params[:page]).per(7)
       @date = 10.days.ago.to_date..Date.today
       return
     elsif params[:date1] !="" && params[:date2] != ""
