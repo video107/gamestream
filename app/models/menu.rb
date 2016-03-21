@@ -213,7 +213,7 @@ class Menu < ActiveRecord::Base
 
   def check_remove_pic_6
     if self._remove_pic_6 == "1"
-      self.game_image = nil
+      self.game_pic_6 = nil
     end
   end
 

@@ -105,7 +105,7 @@
       <strong>遊戲圖片2:</strong> <br>
       <%= link_to image_tag(@menu.game_pic_4(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic4"} %>
       <%= link_to image_tag(@menu.game_pic_5(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic5"} %>
-      <%= link_to image_tag(@menu.game_image(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic6"} %>
+      <%= link_to image_tag(@menu.game_pic_6(:thumb)), "" , :data => {:toggle=>"modal", :target => "#pic6"} %>
     </p>
 
     <p>
@@ -182,7 +182,7 @@
     <div class="modal-content">
       <div class="modal-body text-center">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <%= image_tag( @menu.game_image(:large)) %>
+            <%= image_tag( @menu.game_pic_6(:large)) %>
         </div>
     </div>
   </div>

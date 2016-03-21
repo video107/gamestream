@@ -153,12 +153,12 @@
   <div class="field">
     <%= f.label :game_pic_6 %><br>
     <% if @menu %>
-      <%= image_tag(@menu.game_image(:thumb)) %>
-      <% if @menu.game_image.exists? %>
+      <%= image_tag(@menu.game_pic_6(:thumb)) %>
+      <% if @menu.game_pic_6.exists? %>
       <%= f.check_box "_remove_pic_6" %>  Remove Pic
       <% end %>
     <% end %>
-    <%= f.file_field :game_image %>
+    <%= f.file_field :game_pic_6 %>
   </div>
   <div class="field">
     <%= f.label :game_icon %><br>
