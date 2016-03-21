@@ -109,8 +109,8 @@
   protected
 
   def validate_account_url
-    errors.add(:twitch, "twitch帳號格式有誤") unless self.twitch_account_url =~ /https:\/\/www.twitch.tv\/.+/ || self.twitch_account_url == ""
-    errors.add(:youtube, "youtube帳號格式有誤") unless self.youtube_account_url =~ /https:\/\/.*youtube.com\/watch\?v=.+/ || self.youtube_account_url == ""
+    errors.add(:twitch, "twitch帳號格式有誤") unless self.twitch_account_url =~ /https:\/\/www.twitch.tv\/.+/ || self.twitch_account_url =~ /http:\/\/www.twitch.tv\/.+/ || self.twitch_account_url == ""
+    errors.add(:youtube, "youtube帳號格式有誤") unless self.youtube_account_url =~ /https:\/\/.*youtube.com\/watch\?v=.+/ || self.youtube_account_url =~ /http:\/\/.*youtube.com\/watch\?v=.+/ || self.youtube_account_url == ""
   end
 
 
