@@ -111,6 +111,7 @@
             <th>案件不重複點擊數</th>
             <th>案件不重複安裝數</th>
             <th>案件不重複執行數</th>
+            <th>案件不重複安裝數</th>
             <th>案件獲利</th>
           </tr>
          <% @cases.each do |c| %>
@@ -119,7 +120,8 @@
             <td><%= c.case_followers.count %></td>
             <td>none</td>
             <td>none</td>
-            <td>none</td>
+            <td><%= c.import_by_date(c.created_at.to_date, Date.today) %></td>
+            <td><%= c.total_profit?("admin",c.created_at.to_date,Date.today) %></td>
           </tr>
 
           <% end %>

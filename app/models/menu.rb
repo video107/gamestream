@@ -130,7 +130,8 @@ class Menu < ActiveRecord::Base
   def total_profit?(date1,date2)
     self.total_click?("ios",date1,date2) * self.cpc_ios + self.total_click?("android",date1,date2) * self.cpc_android +
     self.total_install?("ios",date1,date2) * self.cpi_ios + self.total_install?("android",date1,date2) * self.cpi_android +
-    self.total_excute?("ios",date1,date2) * self.cpa_ios + self.total_excute?("android",date1,date2) * self.cpa_android
+    self.total_excute?("ios",date1,date2) * self.cpa_ios + self.total_excute?("android",date1,date2) * self.cpa_android +
+    self.total_import_users("ios",date1,date2) * self.cpl_ios + self.total_import_users("android",date1,date2) * self.cpl_android
   end
 
   def total_profit_no_repeat?(date1,date2)
@@ -143,7 +144,9 @@ class Menu < ActiveRecord::Base
   def total_cost?(date1,date2)
     self.total_click?("ios",date1,date2) * self.cpc_ios_user + self.total_click?("android",date1,date2) * self.cpc_android_user +
     self.total_install?("ios",date1,date2) * self.cpi_ios_user + self.total_install?("android",date1,date2) * self.cpi_android_user +
-    self.total_excute?("ios",date1,date2) * self.cpa_ios_user + self.total_excute?("android",date1,date2) * self.cpa_android_user
+    self.total_excute?("ios",date1,date2) * self.cpa_ios_user + self.total_excute?("android",date1,date2) * self.cpa_android_user +
+    self.total_import_users("ios",date1,date2) * self.cpl_ios_user + self.total_import_users("android",date1,date2) * self.cpl_android_user
+
   end
 
   def total_cost_no_repeat?(date1,date2)
