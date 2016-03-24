@@ -103,6 +103,18 @@
     self.withdraw_records.all.map { |x| x.amount}.sum
   end
 
+  def self.masters_count?(date1,date2)
+    self.where(master: "true").where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+  end
+
+  def self.fans_count?(date1,date2)
+    self.where(fans: "true").where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+  end
+
+  def self.useless_count?(date1,date2)
+    self.where(fans: nil, master: nil).where("DATE(created_at) >= ? && DATE(created_at) <= ?", date1, date2).count
+  end
+
 
 
 
